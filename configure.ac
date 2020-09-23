@@ -2051,6 +2051,31 @@ then
     AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_STATIC_PSK"
 fi
 
+
+
+# XMSS
+# to turn this on build with ./configure --enable-XMSS, to disable use --disable-XMSS
+ AC_ARG_ENABLE([XMSS],
+     [AS_HELP_STRING([--enable-XMSS],[Enable XMSS (default: enabled)])],
+     [ ENABLED_XMSS=$enableval ],
+     [ ENABLED_XMSS=yes ]
+     )
+
+# If XMSS is not turned on (--disable-XMSS was used) then set relevant CFLAGS "NO_XMSS"
+ if test "$ENABLED_XMSS" = "no"
+ then
+     AM_CFLAGS="$AM_CFLAGS -DNO_XMSS"
+ else
+     # turn off XMSS if leanpsk or leantls on
+     if test "$ENABLED_LEANPSK" = "yes" || test "$ENABLED_LEANTLS" = "yes"
+     then
+         AM_CFLAGS="$AM_CFLAGS -DNO_XMSS"
+         ENABLED_XMSS=no
+     fi
+ fi
+
+
+
 # RSA
 AC_ARG_ENABLE([rsa],
     [AS_HELP_STRING([--enable-rsa],[Enable RSA (default: enabled)])],
@@ -5255,6 +5280,9 @@ esac
 # The following AM_CONDITIONAL statements set flags for use in the Makefiles.
 # Some of these affect build targets and objects, some trigger different
 # test scripts for make check.
+
+AM_CONDITIONAL([BUILD_XMSS],[test "x$ENABLED_XMSS" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
+
 AM_CONDITIONAL([BUILD_DISTRO],[test "x$ENABLED_DISTRO" = "xyes"])
 AM_CONDITIONAL([BUILD_ALL],[test "x$ENABLED_ALL" = "xyes"])
 AM_CONDITIONAL([BUILD_TLS13],[test "x$ENABLED_TLS13" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
@@ -5650,6 +5678,7 @@ echo "   * Inline Code:                $ENABLED_INLINE"
 echo "   * Linux AF_ALG:               $ENABLED_AFALG"
 echo "   * Linux devcrypto:            $ENABLED_DEVCRYPTO"
 echo "   * Crypto callbacks:           $ENABLED_CRYPTOCB"
+echo "   * XMSS signature  :           $ENABLED_XMSS"
 echo ""
 echo "---"
 
