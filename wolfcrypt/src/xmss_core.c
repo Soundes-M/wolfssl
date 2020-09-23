@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "hash.h"
+#include "hash_XMSS.h"
 #include "hash_address.h"
 #include "params.h"
 #include "randombytes.h"

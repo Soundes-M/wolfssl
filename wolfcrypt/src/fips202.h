@@ -17,6 +17,6 @@ void shake256(unsigned char *out, unsigned long long outlen,
               const unsigned char *in, unsigned long long inlen);
 
 
-void KeccakF1600_StatePermute(uint64_t * state); 
 
 #endif
+ 

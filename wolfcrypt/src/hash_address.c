@@ -1,4 +1,7 @@
 #include <stdint.h>
+#ifndef NO_XMSS
+    #include "hash_address.h"
+#endif
 
 void set_layer_addr(uint32_t addr[8], uint32_t layer)
 {

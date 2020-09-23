@@ -38,6 +38,19 @@ if BUILD_RSA
 src_libwolfssl_la_SOURCES += ctaocrypt/src/rsa.c
 endif
 
+if BUILD_XMSS
+src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
+                             wolfcrypt/src/hash_address.c \
+                             wolfcrypt/src/params.c \
+                             wolfcrypt/src/randombytes.c \
+                             wolfcrypt/src/utils.c \
+                             wolfcrypt/src/wots.c \
+                             wolfcrypt/src/xmss.c \
+                             wolfcrypt/src/xmss_commons.c \
+                             wolfcrypt/src/xmss_core.c  \
+                             wolfcrypt/src/fips202.c 
+endif
+
 if BUILD_AES
 src_libwolfssl_la_SOURCES += ctaocrypt/src/aes.c
 endif
@@ -76,7 +89,7 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/rsa.c
 endif
 
 if BUILD_XMSS
-src_libwolfssl_la_SOURCES += wolfcrypt/src/hash.c \
+src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/hash_address.c \
                              wolfcrypt/src/params.c \
                              wolfcrypt/src/randombytes.c \
@@ -84,12 +97,8 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/hash.c \
                              wolfcrypt/src/wots.c \
                              wolfcrypt/src/xmss.c \
                              wolfcrypt/src/xmss_commons.c \
-                             wolfcrypt/src/xmss_core.c \
-                             wolfcrypt/src/xmss_core_fast.c \
-                             wolfcrypt/src/fips202.c \
-                             wolfcrypt/src/ui/keypair.c \
-                             wolfcrypt/src/ui/open.c \
-                             wolfcrypt/src/ui/sign.c 
+                             wolfcrypt/src/xmss_core.c  \
+                             wolfcrypt/src/fips202.c 
 endif
 
 if BUILD_ECC
@@ -221,6 +230,19 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/rsa.c
 endif
 endif
 endif
+endif
+
+if BUILD_XMSS
+src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
+                             wolfcrypt/src/hash_address.c \
+                             wolfcrypt/src/params.c \
+                             wolfcrypt/src/randombytes.c \
+                             wolfcrypt/src/utils.c \
+                             wolfcrypt/src/wots.c \
+                             wolfcrypt/src/xmss.c \
+                             wolfcrypt/src/xmss_commons.c \
+                             wolfcrypt/src/xmss_core.c  \
+                             wolfcrypt/src/fips202.c 
 endif
 
 if BUILD_SP
