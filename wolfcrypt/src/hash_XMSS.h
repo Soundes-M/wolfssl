@@ -1,6 +1,8 @@
 #ifndef XMSS_HASH_H
 #define XMSS_HASH_H
-
+ 
+#include <wolfssl/openssl/sha.h>
+ 
 #include <stdint.h>
 #include "params.h"
 
