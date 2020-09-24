@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "params.h"
-#include "xmss_core.h"
+#include <wolfssl/wolfcrypt/params.h>
+#include <wolfssl/wolfcrypt/xmss_core.h>
 
 int xmss_str_to_oid(uint32_t *oid, const char *s)
 {

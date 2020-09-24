@@ -48,6 +48,7 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/xmss.c \
                              wolfcrypt/src/xmss_commons.c \
                              wolfcrypt/src/xmss_core.c  \
+			     wolfcrypt/src/ui/open.c  \
                              wolfcrypt/src/fips202.c 
 endif
 
@@ -98,6 +99,7 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/xmss.c \
                              wolfcrypt/src/xmss_commons.c \
                              wolfcrypt/src/xmss_core.c  \
+			     wolfcrypt/src/ui/open.c  \
                              wolfcrypt/src/fips202.c 
 endif
 
@@ -242,6 +244,7 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/xmss.c \
                              wolfcrypt/src/xmss_commons.c \
                              wolfcrypt/src/xmss_core.c  \
+			     wolfcrypt/src/ui/open.c  \
                              wolfcrypt/src/fips202.c 
 endif
 

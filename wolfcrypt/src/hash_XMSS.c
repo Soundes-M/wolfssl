@@ -2,13 +2,13 @@
 #include <string.h>
 
  
-#include <wolfssl/openssl/sha.h>
+#include <wolfssl/ssl.h> 
 
-#include "hash_address.h"
-#include "utils.h"
-#include "params.h"
-#include "hash_XMSS.h"
-#include "fips202.h"
+#include <wolfssl/wolfcrypt/hash_address.h>
+#include <wolfssl/wolfcrypt/utils.h>
+#include <wolfssl/wolfcrypt/params.h>
+#include <wolfssl/wolfcrypt/hash_XMSS.h>
+#include <wolfssl/wolfcrypt/fips202.h> 
 
 #define XMSS_HASH_PADDING_F 0
 #define XMSS_HASH_PADDING_H 1
@@ -31,14 +31,14 @@ static int core_hash(const xmss_params *params,
     unsigned char buf[64];
 
     if (params->n == 24 && params->func == XMSS_SHA2) {
-        SHA256(in, inlen, buf);
+        wolfSSL_SHA256(in, inlen, buf);
         memcpy(out, buf, 24);
     }
     else if (params->n == 24 && params->func == XMSS_SHAKE256) {
         shake256(out, 24, in, inlen);
     }   
     else if (params->n == 32 && params->func == XMSS_SHA2) {
-        SHA256(in, inlen, out);
+         wolfSSL_SHA256(in, inlen, out);
     }
     else if (params->n == 32 && params->func == XMSS_SHAKE128) {
         shake128(out, 32, in, inlen);
@@ -47,7 +47,7 @@ static int core_hash(const xmss_params *params,
         shake256(out, 32, in, inlen);
     }
     else if (params->n == 64 && params->func == XMSS_SHA2) {
-        SHA512(in, inlen, out);
+         wolfSSL_SHA512(in, inlen, out);
     }
     else if (params->n == 64 && params->func == XMSS_SHAKE256) {
         shake256(out, 64, in, inlen);

@@ -2,14 +2,15 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "hash_XMSS.h"
-#include "hash_address.h"
-#include "params.h"
-#include "randombytes.h"
-#include "wots.h"
-#include "utils.h"
-#include "xmss_commons.h"
-#include "xmss_core.h"
+#include <wolfssl/wolfcrypt/hash_XMSS.h> 
+#include <wolfssl/wolfcrypt/hash_address.h> 
+#include <wolfssl/wolfcrypt/params.h> 
+#include <wolfssl/wolfcrypt/randombytes.h> 
+#include <wolfssl/wolfcrypt/wots.h> 
+#include <wolfssl/wolfcrypt/utils.h> 
+#include <wolfssl/wolfcrypt/xmss_commons.h>
+#include <wolfssl/wolfcrypt/xmss_core.h>
+ 
 
 /**
  * For a given leaf index, computes the authentication path and the resulting

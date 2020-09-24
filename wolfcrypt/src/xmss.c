@@ -1,8 +1,9 @@
 #include <stdint.h>
-#include "xmss.h"
-#include "params.h"
-#include "xmss_core.h"
-#include "xmss_commons.h"
+#include <wolfssl/wolfcrypt/xmss.h>
+#include <wolfssl/wolfcrypt/params.h> 
+#include <wolfssl/wolfcrypt/xmss_core.h>
+#include <wolfssl/wolfcrypt/xmss_commons.h>
+
 /* This file provides wrapper functions that take keys that include OIDs to
 identify the parameter set to be used. After setting the parameters accordingly
 it falls back to the regular XMSS core functions. */

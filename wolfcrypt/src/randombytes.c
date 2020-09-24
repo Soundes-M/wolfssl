@@ -1,10 +1,8 @@
 /*
 This code was taken from the SPHINCS reference implementation and is public domain.
 */
-#ifndef NO_XMSS
-    #include "randombytes.h"
-#endif
-
+ 
+#include <wolfssl/wolfcrypt/randombytes.h>
 #include <fcntl.h>
 #include <unistd.h>
 

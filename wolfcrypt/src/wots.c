@@ -1,11 +1,11 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "utils.h"
-#include "hash_XMSS.h"
-#include "wots.h"
-#include "hash_address.h"
-#include "params.h"
+#include <wolfssl/wolfcrypt/utils.h>
+#include <wolfssl/wolfcrypt/hash_XMSS.h>
+#include <wolfssl/wolfcrypt/wots.h>
+#include <wolfssl/wolfcrypt/hash_address.h>
+#include <wolfssl/wolfcrypt/params.h>
 
 /**
  * Helper method for pseudorandom key generation.

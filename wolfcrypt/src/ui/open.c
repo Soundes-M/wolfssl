@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../params.h"
-#include "../xmss.h"
-#include "../utils.h"
+#include <wolfssl/wolfcrypt/params.h>
+#include <wolfssl/wolfcrypt/xmss.h>
+#include <wolfssl/wolfcrypt/utils.h>
+ 
 
 #ifdef XMSSMT
     #define XMSS_PARSE_OID xmssmt_parse_oid

@@ -1,4 +1,4 @@
-#include "utils.h"
+#include <wolfssl/wolfcrypt/utils.h>
 
 /**
  * Converts the value of 'in' to 'outlen' bytes in big-endian byte order.
