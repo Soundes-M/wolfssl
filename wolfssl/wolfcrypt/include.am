@@ -85,6 +85,21 @@ noinst_HEADERS+= \
                          wolfssl/wolfcrypt/port/Renesas/renesas-tsip-crypt.h \
                          wolfssl/wolfcrypt/port/cypress/psoc6_crypto.h
 
+if BUILD_XMSS
+nobase_include_HEADERS+= wolfssl/wolfcrypt/fips202.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/hash_address.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/hash_XMSS.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/params.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/randombytes.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/utils.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/wots.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss_commons.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss_core.h
+endif
+
+
+
 if BUILD_CRYPTOAUTHLIB
 nobase_include_HEADERS+= wolfssl/wolfcrypt/port/atmel/atmel.h
 endif
