@@ -2,6 +2,8 @@
 #define XMSS_PARAMS_H
 
 #include <stdint.h>
+#include "config.h"
+#include <wolfssl/wolfcrypt/visibility.h>
 
 /* These are merely internal identifiers for the supported hash functions. */
 #define XMSS_SHA2 0
@@ -37,26 +39,26 @@ typedef struct {
  *  and outputs OIDs such as 0x01000001.
  * Returns -1 when the parameter set is not found, 0 otherwise
  */
-int xmss_str_to_oid(uint32_t *oid, const char *s);
+WOLFSSL_API int xmss_str_to_oid(uint32_t *oid, const char *s);
 
 /**
  * Accepts takes strings such as "XMSSMT-SHA2_20/2_256"
  *  and outputs OIDs such as 0x01000001.
  * Returns -1 when the parameter set is not found, 0 otherwise
  */
-int xmssmt_str_to_oid(uint32_t *oid, const char *s);
+WOLFSSL_API int xmssmt_str_to_oid(uint32_t *oid, const char *s);
 
 /**
  * Accepts OIDs such as 0x01000001, and configures params accordingly.
  * Returns -1 when the OID is not found, 0 otherwise.
  */
-int xmss_parse_oid(xmss_params *params, const uint32_t oid);
+WOLFSSL_API int xmss_parse_oid(xmss_params *params, const uint32_t oid);
 
 /**
  * Accepts OIDs such as 0x01000001, and configures params accordingly.
  * Returns -1 when the OID is not found, 0 otherwise.
  */
-int xmssmt_parse_oid(xmss_params *params, const uint32_t oid);
+WOLFSSL_API int xmssmt_parse_oid(xmss_params *params, const uint32_t oid);
 
 
 /* Given a params struct where the following properties have been initialized;
@@ -67,6 +69,6 @@ int xmssmt_parse_oid(xmss_params *params, const uint32_t oid);
     - wots_w; the Winternitz parameter
     - optionally, bds_k; the BDS traversal trade-off parameter,
     this function initializes the remainder of the params structure. */
-int xmss_xmssmt_initialize_params(xmss_params *params);
+WOLFSSL_API int xmss_xmssmt_initialize_params(xmss_params *params);
 
 #endif
