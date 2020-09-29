@@ -2,7 +2,11 @@
 #define XMSS_H
 
 #include <stdint.h>
-#include "config.h"
+#include <stdint.h>
+#ifdef HAVE_CONFIG_H
+    #include <config.h>
+#endif
+ 
 #include <wolfssl/wolfcrypt/visibility.h>
 
 /**
