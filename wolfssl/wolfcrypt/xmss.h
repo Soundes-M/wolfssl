@@ -2,7 +2,6 @@
 #define XMSS_H
 
 #include <stdint.h>
-
 #include "config.h"
 #include <wolfssl/wolfcrypt/visibility.h>
 
