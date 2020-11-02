@@ -739,13 +739,20 @@ static const byte resumeMasterLabel[RESUME_MASTER_LABEL_SZ + 1] =
  */
 int DeriveResumptionSecret(WOLFSSL* ssl, byte* key)
 {
+    byte* masterSecret;
+
     WOLFSSL_MSG("Derive Resumption Secret");
-    if (ssl == NULL || ssl->arrays == NULL) {
+    if (ssl == NULL) {
         return BAD_FUNC_ARG;
     }
-    return DeriveKey(ssl, key, -1, ssl->arrays->masterSecret,
-                     resumeMasterLabel, RESUME_MASTER_LABEL_SZ,
-                     ssl->specs.mac_algorithm, 1);
+    if (ssl->arrays != NULL) {
+        masterSecret = ssl->arrays->masterSecret;
+    }
+    else {
+        masterSecret = ssl->session.masterSecret;
+    }
+    return DeriveKey(ssl, key, -1, masterSecret, resumeMasterLabel,
+                     RESUME_MASTER_LABEL_SZ, ssl->specs.mac_algorithm, 1);
 }
 #endif
 
@@ -1338,6 +1345,21 @@ end:
     word32 TimeNowInMilliseconds(void)
     {
         return (word32)(uTaskerSystemTick / (TICK_RESOLUTION / 1000));
+    }
+#elif defined(WOLFSSL_LINUXKM)
+    /* The time in milliseconds.
+     * Used for tickets to represent difference between when first seen and when
+     * sending.
+     *
+     * returns the time in milliseconds as a 32-bit value.
+     */
+    word32 TimeNowInMilliseconds(void)
+    {
+    #if LINUX_VERSION_CODE < KERNEL_VERSION(5, 0, 0)
+        return (word32)(ktime_get_real_ns() / (s64)1000000);
+    #else
+        return (word32)(ktime_get_real_ns() / (ktime_t)1000000);
+    #endif
     }
 #else
     /* The time in milliseconds.
@@ -3347,7 +3369,8 @@ static int DoPreSharedKeys(WOLFSSL* ssl, const byte* input, word32 helloSz,
                                      diff - MAX_TICKET_AGE_SECS * 1000 > 1000) {
                 /* Invalid difference, fallback to full handshake. */
                 ssl->options.resuming = 0;
-                break;
+                /* Hash the rest of the ClientHello. */
+                return HashRaw(ssl, input + helloSz - bindersLen, bindersLen);
             }
 
             /* Check whether resumption is possible based on suites in SSL and
@@ -7031,7 +7054,7 @@ int DoTls13HandShakeMsgType(WOLFSSL* ssl, byte* input, word32* inOutIdx,
 
     if (ssl->options.handShakeState == HANDSHAKE_DONE &&
             type != session_ticket && type != certificate_request &&
-            type != certificate && type != key_update) {
+            type != certificate && type != key_update && type != finished) {
         WOLFSSL_MSG("HandShake message after handshake complete");
         SendAlert(ssl, alert_fatal, unexpected_message);
         return OUT_OF_ORDER_E;

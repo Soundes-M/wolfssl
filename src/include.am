@@ -2,7 +2,9 @@
 # included from Top Level Makefile.am
 # All paths should be given relative to the root
 
+if !BUILD_NO_LIBRARY
 lib_LTLIBRARIES+= src/libwolfssl.la
+endif
 src_libwolfssl_la_SOURCES =
 src_libwolfssl_la_LDFLAGS = ${AM_LDFLAGS} -no-undefined -version-info ${WOLFSSL_LIBRARY_VERSION}
 src_libwolfssl_la_LIBADD = $(LIBM) $(LIB_ADD) $(LIB_STATIC_ADD)
@@ -109,6 +111,11 @@ endif
 
 if BUILD_AES
 src_libwolfssl_la_SOURCES += wolfcrypt/src/aes.c
+if BUILD_ARMASM
+if BUILD_FIPS_READY
+src_libwolfssl_la_SOURCES += wolfcrypt/src/port/arm/armv8-aes.c
+endif
+endif
 endif
 
 if BUILD_AESNI
@@ -124,13 +131,26 @@ endif
 
 if BUILD_SHA
 src_libwolfssl_la_SOURCES += wolfcrypt/src/sha.c
+endif
+
+if BUILD_ARMASM
+if BUILD_FIPS_READY
+src_libwolfssl_la_SOURCES += wolfcrypt/src/port/arm/armv8-sha256.c
+endif
+endif
 if BUILD_INTELASM
 src_libwolfssl_la_SOURCES += wolfcrypt/src/sha256_asm.S
-endif
 endif
 
 if BUILD_SHA512
 src_libwolfssl_la_SOURCES += wolfcrypt/src/sha512.c
+if BUILD_ARMASM
+if BUILD_FIPS_READY
+src_libwolfssl_la_SOURCES += wolfcrypt/src/port/arm/armv8-sha512.c
+src_libwolfssl_la_SOURCES += wolfcrypt/src/port/arm/armv8-sha512-asm.S
+src_libwolfssl_la_SOURCES += wolfcrypt/src/port/arm/armv8-32-sha512-asm.S
+endif
+endif
 if BUILD_INTELASM
 src_libwolfssl_la_SOURCES += wolfcrypt/src/sha512_asm.S
 endif
@@ -234,6 +254,7 @@ endif
 endif
 endif
 
+<<<<<<< HEAD
 if BUILD_XMSS
 src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/hash_address.c \
@@ -246,6 +267,10 @@ src_libwolfssl_la_SOURCES += wolfcrypt/src/hash_XMSS.c \
                              wolfcrypt/src/xmss_core.c  \
                              wolfcrypt/test/XMSS_signature_test.c  \
                              wolfcrypt/src/fips202.c 
+=======
+if BUILD_RC2
+src_libwolfssl_la_SOURCES += wolfcrypt/src/rc2.c
+>>>>>>> a411dab74f9cfab74fccbea1d5be42f0f4856e43
 endif
 
 if BUILD_SP
@@ -334,6 +359,11 @@ src_libwolfssl_la_SOURCES += \
                wolfcrypt/src/logging.c \
                wolfcrypt/src/wc_port.c \
                wolfcrypt/src/error.c
+
+if BUILD_DEBUG
+src_libwolfssl_la_SOURCES += \
+               wolfcrypt/src/debug.c
+endif
 
 if !BUILD_FIPS_RAND
 src_libwolfssl_la_SOURCES += \
