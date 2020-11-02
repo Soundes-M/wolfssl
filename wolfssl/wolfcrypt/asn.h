@@ -372,6 +372,7 @@ enum Misc_ASN {
     EIGHTK_BUF          = 8192,    /* Tmp buffer size           */
     MAX_PUBLIC_KEY_SZ   = MAX_NTRU_ENC_SZ + MAX_ALGO_SZ + MAX_SEQ_SZ * 2,
                                    /* use bigger NTRU size */
+    MAX_XMSS_PUBLIC_KEY_SZ = MAX_PUBLIC_KEY_SZ, //needs to be checked
 #ifdef WOLFSSL_ENCRYPTED_KEYS
     HEADER_ENCRYPTED_KEY_SIZE = 88,/* Extra header size for encrypted key */
 #else
@@ -473,6 +474,7 @@ enum Key_Sum {
     ECDSAk   = 518,
     ED25519k = 256,
     ED448k   = 257,
+    XMSSk    = 275,
     DHk      = 647, /* dhKeyAgreement OID: 1.2.840.113549.1.3.1 */
 };
 
@@ -1195,7 +1197,8 @@ enum cert_enums {
     NTRU_KEY        = 11,
     ECC_KEY         = 12,
     ED25519_KEY     = 13,
-    ED448_KEY       = 14
+    ED448_KEY       = 14,
+    XMSS_KEY        = 15
 };
 
 #endif /* WOLFSSL_CERT_GEN */

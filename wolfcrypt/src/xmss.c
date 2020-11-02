@@ -14,7 +14,7 @@ int xmss_keypair(unsigned char *pk, unsigned char *sk, const uint32_t oid)
     unsigned int i;
 
     if (xmss_parse_oid(&params, oid)) {
-        return -1;
+        return -1; 
     }
     for (i = 0; i < XMSS_OID_LEN; i++) {
         pk[XMSS_OID_LEN - i - 1] = (oid >> (8 * i)) & 0xFF;

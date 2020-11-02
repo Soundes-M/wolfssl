@@ -30,8 +30,16 @@ that can be serialized and deserialized in a cross-platform way.
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
-
+#define HAVE_XMSS 1 
 #include <wolfssl/wolfcrypt/settings.h>
+
+
+#ifdef HAVE_XMSS
+#include <wolfssl/wolfcrypt/params.h>
+#include <wolfssl/wolfcrypt/randombytes.h>
+#include <wolfssl/wolfcrypt/xmss.h>
+#endif
+
 
 /*
 ASN Options:
@@ -216,8 +224,7 @@ int GetLength_ex(const byte* input, word32* inOutIdx, int* len,
 
     return length;
 }
-
-
+ 
 /* input : buffer to read from
  * inOutIdx : index to start reading from, gets advanced by 1 if successful
  * maxIdx : maximum index value
@@ -725,7 +732,7 @@ static int SetASNIntRSA(void* n, byte* output)
 
     leadingBit = wc_Rsa_leading_bit(n);
     length = wc_Rsa_unsigned_bin_size(n);
-    idx = SetASNInt(length, leadingBit ? 0x80 : 0x00, output);
+    idx = lk(length, leadingBit ? 0x80 : 0x00, output);
     if ((idx + length) > MAX_RSA_INT_SZ)
         return BUFFER_E;
 
@@ -1523,6 +1530,9 @@ static word32 SetBitString16Bit(word16 val, byte* output)
 #ifdef HAVE_NTRU
     static const byte keyNtruOid[] = {43, 6, 1, 4, 1, 193, 22, 1, 1, 1, 1};
 #endif /* HAVE_NTRU */
+#ifdef HAVE_XMSS
+    static const byte keyXMSSOid[] = {43, 6, 1, 4, 1, 193, 22, 1, 1, 1, 2};
+#endif /* HAVE_XMSS */
 #ifdef HAVE_ECC
     static const byte keyEcdsaOid[] = {42, 134, 72, 206, 61, 2, 1};
 #endif /* HAVE_ECC */
@@ -1862,6 +1872,12 @@ const byte* OidFromId(word32 id, word32 type, word32* oidSz)
                     *oidSz = sizeof(keyNtruOid);
                     break;
                 #endif /* HAVE_NTRU */
+                #ifdef HAVE_XMSS
+                case XMSSk:
+                    oid = keyXMSSOid;
+                    *oidSz = sizeof(keyXMSSOid);
+                    break;
+                #endif /* HAVE_XMSS */
                 #ifdef HAVE_ECC
                 case ECDSAk:
                     oid = keyEcdsaOid;
@@ -6823,7 +6839,7 @@ word32 SetAlgoID(int algoOID, byte* output, int type, int curveSz)
     byte   seqArray[MAX_SEQ_SZ + 1];  /* add object_id to end */
     int    length = 0;
 
-    tagSz = (type == oidHashType ||
+    tagSz = (type == oidHashType || 
              (type == oidSigType
         #ifdef HAVE_ECC
               && !IsSigAlgoECDSA(algoOID)
@@ -6833,6 +6849,9 @@ word32 SetAlgoID(int algoOID, byte* output, int type, int curveSz)
         #endif
         #ifdef HAVE_ED448
               && algoOID != ED448k
+        #endif
+         #ifdef HAVE_XMSS
+              && algoOID != XMSSk
         #endif
               ) ||
              (type == oidKeyType && algoOID == RSAk)) ? 2 : 0;
@@ -11381,7 +11400,7 @@ int wc_InitCert(Cert* cert)
 
     return 0;
 }
-
+ 
 
 /* DER encoded x509 Certificate */
 typedef struct DerCert {
@@ -11502,10 +11521,8 @@ static int wc_SetCert_LoadDer(Cert* cert, const byte* der, word32 derSz)
     }
 
     return ret;
-}
-
-#endif /* WOLFSSL_CERT_GEN */
-
+} 
+#endif /* WOLFSSL_CERT_GEN */ 
 
 #if defined(HAVE_ECC) && defined(HAVE_ECC_KEY_EXPORT)
 
@@ -13012,17 +13029,17 @@ int SetName(byte* output, word32 outputSz, CertName* name)
 
 /* encode info from cert into DER encoded format */
 static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
-                      WC_RNG* rng, const byte* ntruKey, word16 ntruSz,
+                      WC_RNG* rng, const byte* ntruKey, byte* XMSSKey, int XMSSSz, word16 ntruSz,
                       ed25519_key* ed25519Key, ed448_key* ed448Key)
 {
+    
     int ret;
-
     if (cert == NULL || der == NULL || rng == NULL)
         return BAD_FUNC_ARG;
 
     /* make sure at least one key type is provided */
     if (rsaKey == NULL && eccKey == NULL && ed25519Key == NULL &&
-                                          ed448Key == NULL && ntruKey == NULL) {
+                                          ed448Key == NULL && ntruKey == NULL && XMSSKey == NULL) {
         return PUBLIC_KEY_E;
     }
 
@@ -13048,11 +13065,12 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
         return der->serialSz;
 
     /* signature algo */
-    der->sigAlgoSz = SetAlgoID(cert->sigType, der->sigAlgo, oidSigType, 0);
+    der->sigAlgoSz = SetAlgoID(cert->sigType, der->sigAlgo, oidSigType, 0);  
     if (der->sigAlgoSz <= 0)
         return ALGO_ID_E;
 
     /* public key */
+
 #ifndef NO_RSA
     if (cert->keyType == RSA_KEY) {
         if (rsaKey == NULL)
@@ -13061,7 +13079,6 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
                                            sizeof(der->publicKey), 1);
     }
 #endif
-
 #ifdef HAVE_ECC
     if (cert->keyType == ECC_KEY) {
         if (eccKey == NULL)
@@ -13069,7 +13086,7 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
         der->publicKeySz = SetEccPublicKey(der->publicKey, eccKey, 1);
     }
 #endif
-
+ 
 #ifdef HAVE_ED25519
     if (cert->keyType == ED25519_KEY) {
         if (ed25519Key == NULL)
@@ -13085,6 +13102,16 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
         der->publicKeySz = SetEd448PublicKey(der->publicKey, ed448Key, 1);
     }
 #endif
+
+#ifdef HAVE_XMSS
+if (cert->keyType == XMSS_KEY) {
+        if (XMSSKey == NULL)
+            return PUBLIC_KEY_E;
+        // with header always
+        der->publicKeySz = SetXMSSPublicKey(der->publicKey, XMSSKey, XMSSSz); 
+    }
+#endif /* HAVE_XMSS */
+
 
 #ifdef HAVE_NTRU
     if (cert->keyType == NTRU_KEY) {
@@ -13111,7 +13138,7 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
 #else
     (void)ntruSz;
 #endif /* HAVE_NTRU */
-
+  
     if (der->publicKeySz <= 0)
         return PUBLIC_KEY_E;
 
@@ -13404,7 +13431,7 @@ static int WriteCertBody(DerCert* der, byte* buf)
     XMEMCPY(buf + idx, der->subject, der->subjectSz);
     idx += der->subjectSz;
     /* public key */
-    XMEMCPY(buf + idx, der->publicKey, der->publicKeySz);
+    //XMEMCPY(buf + idx, der->publicKey, der->publicKeySz);
     idx += der->publicKeySz;
     if (der->extensionsSz) {
         /* extensions */
@@ -13574,7 +13601,7 @@ static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
 /* Make an x509 Certificate v3 any key type from cert input, write to buffer */
 static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
                        RsaKey* rsaKey, ecc_key* eccKey, WC_RNG* rng,
-                       const byte* ntruKey, word16 ntruSz,
+                       const byte* ntruKey, byte* XMSSKey, int XMSSSz, word16 ntruSz,
                        ed25519_key* ed25519Key, ed448_key* ed448Key)
 {
     int ret;
@@ -13588,7 +13615,7 @@ static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
         return BAD_FUNC_ARG;
     }
 
-    cert->keyType = eccKey ? ECC_KEY : (rsaKey ? RSA_KEY :
+    cert->keyType = XMSSKey ? XMSS_KEY : eccKey ? ECC_KEY : eccKey ? ECC_KEY : (rsaKey ? RSA_KEY :
             (ed25519Key ? ED25519_KEY : (ed448Key ? ED448_KEY : NTRU_KEY)));
 
 #ifdef WOLFSSL_SMALL_STACK
@@ -13597,7 +13624,7 @@ static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
         return MEMORY_E;
 #endif
 
-    ret = EncodeCert(cert, der, rsaKey, eccKey, rng, ntruKey, ntruSz,
+    ret = EncodeCert(cert, der, rsaKey, eccKey, rng, ntruKey, XMSSKey, XMSSSz, ntruSz,
                      ed25519Key, ed448Key);
     if (ret == 0) {
         if (der->total + MAX_SEQ_SZ * 2 > (int)derSz)
@@ -13612,7 +13639,15 @@ static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
 
     return ret;
 }
-
+ 
+int wc_MakeXMSSCert(Cert* cert, byte* derBuffer, word32 derSz,
+                    byte* XMSSKey, int XMSSSz,  WC_RNG* rng)
+{
+    return MakeAnyCert(cert, derBuffer, derSz, NULL, NULL, rng,
+            NULL, XMSSKey, XMSSSz, 0, NULL, NULL);
+} 
+ 
+ 
 
 /* Make an x509 Certificate v3 RSA or ECC from cert input, write to buffer */
 int wc_MakeCert_ex(Cert* cert, byte* derBuffer, word32 derSz, int keyType,
@@ -13632,20 +13667,23 @@ int wc_MakeCert_ex(Cert* cert, byte* derBuffer, word32 derSz, int keyType,
     else if (keyType == ED448_TYPE)
         ed448Key = (ed448_key*)key;
 
-    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, 0,
+    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL, 0,0,
                        ed25519Key, ed448Key);
 }
 /* Make an x509 Certificate v3 RSA or ECC from cert input, write to buffer */
 int wc_MakeCert(Cert* cert, byte* derBuffer, word32 derSz, RsaKey* rsaKey,
              ecc_key* eccKey, WC_RNG* rng)
 {
-    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, 0,
+    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL,0, 0,
                        NULL, NULL);
 }
 
+ 
+
+ 
+
 
 #ifdef HAVE_NTRU
-
 int wc_MakeNtruCert(Cert* cert, byte* derBuffer, word32 derSz,
                   const byte* ntruKey, word16 keySz, WC_RNG* rng)
 {
@@ -14147,8 +14185,40 @@ int wc_SignCert_ex(int requestSz, int sType, byte* buf, word32 buffSz,
 
     return SignCert(requestSz, sType, buf, buffSz, rsaKey, eccKey, ed25519Key,
                     ed448Key, rng);
-}
+} 
 
+#define XMSS_MLEN 32
+
+int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey)
+{  
+    xmss_params params;
+    uint32_t oid;
+    xmss_str_to_oid(&oid,"XMSSMT-SHA2_20/2_256");
+    xmss_parse_oid(&params, oid);
+    int sigSz = 0; 
+    //unsigned long long smlen;
+    // This should be changed later 
+    unsigned char *sm = malloc(params.sig_bytes + XMSS_MLEN);
+
+    // buf bytes and contains the XMSS signature
+    // XMSS_sign signs buff of BuffSz size with an XMSSKey , the final signature is sm (To be checked) 
+    xmss_sign(XMSSKey, sm, &buffSz, buf, XMSS_MLEN);
+    
+   
+    if (sigSz >= 0) {
+        if (requestSz + MAX_SEQ_SZ * 2 + sigSz > (int)buffSz)
+            sigSz = BUFFER_E;
+        else
+            sigSz = AddSignature(buf, requestSz, sm, sigSz,
+                                 sType);
+    }
+
+    
+
+    return sigSz;
+
+
+}
 int wc_SignCert(int requestSz, int sType, byte* buf, word32 buffSz,
                 RsaKey* rsaKey, ecc_key* eccKey, WC_RNG* rng)
 {
@@ -14168,7 +14238,7 @@ int wc_MakeSelfCert(Cert* cert, byte* buf, word32 buffSz,
     return wc_SignCert(cert->bodySz, cert->sigType,
                        buf, buffSz, key, NULL, rng);
 }
-
+ 
 
 #ifdef WOLFSSL_CERT_EXT
 
@@ -14182,6 +14252,96 @@ int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert)
         rc = 0;
     }
     return rc;
+}
+  
+//export the XMSS public key
+int SetXMSSPublicKey(byte* output, byte* XMSSKey, int XMSSSz)
+{ 
+    byte bitString[1 + MAX_LENGTH_SZ + 1];
+    int  idx; 
+    
+    int  bitStringSz; 
+    byte algo[MAX_ALGO_SZ];
+    byte pub[XMSSSz];
+ 
+     
+    int  algoSz; 
+    if (pub == NULL || XMSSKey == NULL || XMSSSz < MAX_SEQ_SZ)
+        return BAD_FUNC_ARG;
+
+    for(int i=0;i<XMSSSz;i++)
+        pub[i] = XMSSKey[i]; 
+
+    //TODO: improve the return values
+    //TODO: check the cast from unsigned char to bytes
+
+    algoSz  = SetAlgoID(XMSSk, algo, oidKeyType, XMSSSz);
+
+    bitStringSz = SetBitString(XMSSSz, 0, bitString);
+
+    idx = SetSequence(XMSSSz +  bitStringSz + algoSz, output);
+    /* algo */
+    if (output)
+        XMEMCPY(output + idx, algo, algoSz);
+    idx += algoSz; 
+    /* bit string */
+    if (output)
+    {   
+        XMEMCPY(output + idx, bitString, bitStringSz);
+        idx += bitStringSz;
+    }
+    else
+        idx = 0;
+
+    /* pub */
+    if (output)
+        XMEMCPY(output + idx, pub, XMSSSz);
+    idx += XMSSSz;
+
+
+
+    return idx;
+}
+// This function is equivalent to SetKeyId From PublicKey for XMSS
+int wc_SetSubjectKeyIdFromXMSSPublicKey(Cert *cert, byte *XMSSKey, int kid_type)
+{
+    byte *buf;
+    int   bufferSz, ret;
+
+    if (cert == NULL || XMSSKey == NULL|| (kid_type != SKID_TYPE && kid_type != AKID_TYPE))
+        return BAD_FUNC_ARG;
+
+    buf = (byte *)XMALLOC(MAX_PUBLIC_KEY_SZ, cert->heap,  DYNAMIC_TYPE_TMP_BUFFER);
+    if (buf == NULL)
+        return MEMORY_E;  
+
+    /* Public Key */
+    bufferSz = -1;
+ 
+    /* XMSS public key */
+    if (XMSSKey != NULL)
+        bufferSz = SetXMSSPublicKey(buf, XMSSKey, MAX_PUBLIC_KEY_SZ);
+   
+    if (bufferSz <= 0) {
+        XFREE(buf, cert->heap, DYNAMIC_TYPE_TMP_BUFFER);
+        return PUBLIC_KEY_E; 
+    }
+
+    /* Compute SKID by hashing public key */
+    if (kid_type == SKID_TYPE) {
+        ret = CalcHashId(buf, bufferSz, cert->skid);
+        cert->skidSz = KEYID_SIZE;
+    }
+    else if (kid_type == AKID_TYPE) {
+        ret = CalcHashId(buf, bufferSz, cert->akid);
+        cert->akidSz = KEYID_SIZE;
+    }
+    else
+        ret = BAD_FUNC_ARG;
+
+    XFREE(buf, cert->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    return ret;
+
 }
 
 /* Set KID from public key */
@@ -14323,6 +14483,7 @@ int wc_SetAuthKeyIdFromPublicKey(Cert *cert, RsaKey *rsakey, ecc_key *eckey)
     return SetKeyIdFromPublicKey(cert, rsakey, eckey, NULL, 0, NULL, NULL,
                                  AKID_TYPE);
 }
+
 
 
 #if !defined(NO_FILESYSTEM) && !defined(NO_ASN_CRYPT)

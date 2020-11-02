@@ -406,16 +406,20 @@ WOLFSSL_API int wc_SetSubjectKeyIdFromPublicKey_ex(Cert *cert, int keyType,
 WOLFSSL_API int wc_SetSubjectKeyIdFromPublicKey(Cert *cert, RsaKey *rsakey,
                                                 ecc_key *eckey);
 WOLFSSL_API int wc_SetSubjectKeyId(Cert *cert, const char* file);
+WOLFSSL_API int wc_SetSubjectKeyIdFromXMSSPublicKey(Cert *cert, byte *XMSSKey, int kid_type);
+ 
 WOLFSSL_API int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert);
 WOLFSSL_API int wc_SetSubjectRaw(Cert* cert, const byte* der, int derSz);
 WOLFSSL_API int wc_SetIssuerRaw(Cert* cert, const byte* der, int derSz);
+//TODO change the declaration to another header 
+WOLFSSL_API int SetXMSSPublicKey(byte* buf, unsigned char* XMSSKey, int outLen);
 
 #ifdef HAVE_NTRU
 WOLFSSL_API int wc_SetSubjectKeyIdFromNtruPublicKey(Cert *cert, byte *ntruKey,
                                                     word16 ntruKeySz);
 #endif
 
-/* Set the KeyUsage.
+/* Set the KeyUsage.  
  * Value is a string separated tokens with ','. Accepted tokens are :
  * digitalSignature,nonRepudiation,contentCommitment,keyCertSign,cRLSign,
  * dataEncipherment,keyAgreement,keyEncipherment,encipherOnly and decipherOnly.
@@ -429,12 +433,14 @@ WOLFSSL_API int wc_SetKeyUsage(Cert *cert, const char *value);
  * any,serverAuth,clientAuth,codeSigning,emailProtection,timeStamping,OCSPSigning
  */
 WOLFSSL_API int wc_SetExtKeyUsage(Cert *cert, const char *value);
-
-
+WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey);
+WOLFSSL_API int wc_MakeXMSSCert(Cert*, byte* derBuffer, word32 derSz,
+                                       byte* XMSSKey, int XMSSSz, 
+                                       WC_RNG*);
 #ifdef WOLFSSL_EKU_OID
 /* Set ExtendedKeyUsage with unique OID
  * oid is expected to be in byte representation
- */
+ */ 
 WOLFSSL_API int wc_SetExtKeyUsageOID(Cert *cert, const char *oid, word32 sz,
                                      byte idx, void* heap);
 #endif /* WOLFSSL_EKU_OID */
@@ -445,7 +451,9 @@ WOLFSSL_API int wc_SetExtKeyUsageOID(Cert *cert, const char *oid, word32 sz,
                                      const byte* ntruKey, word16 keySz,
                                      WC_RNG*);
     #endif
-
+    
+        
+     
 #endif /* WOLFSSL_CERT_GEN */
 
 WOLFSSL_API int wc_GetDateInfo(const byte* certDate, int certDateSz,
