@@ -96,7 +96,7 @@ void wolfssl_thread_entry(void *pvParameters) {
         configASSERT(xConnectedSocket != FREERTOS_INVALID_SOCKET);
 
         /* Create WOLFSSL_CTX object */
-        ctx = wolfSSL_CTX_new(wolfSSLv23_server_method_ex((void *)NULL));
+        ctx = wolfSSL_CTX_new(wolfTLSv1_2_server_method());
 
         /* Load server certificates into WOLFSSL_CTX */
         if (ctx == NULL) {

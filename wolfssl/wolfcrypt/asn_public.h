@@ -394,6 +394,14 @@ WOLFSSL_API int wc_GetCertDates(Cert* cert, struct tm* before,
     struct tm* after);
 #endif
 
+#ifdef HAVE_XMSS
+WOLFSSL_API int SetXMSSPublicKey(byte* buf, byte* XMSSKey, int outLen);
+WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey);
+WOLFSSL_API int wc_MakeXMSSCert(Cert*, byte* derBuffer, word32 derSz,
+                                       byte* XMSSKey, int XMSSSz, 
+                                       WC_RNG*);
+#endif
+
 #ifdef WOLFSSL_CERT_EXT
 WOLFSSL_API int wc_SetAuthKeyIdFromPublicKey_ex(Cert *cert, int keyType,
                                                 void* key);
@@ -412,7 +420,7 @@ WOLFSSL_API int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert);
 WOLFSSL_API int wc_SetSubjectRaw(Cert* cert, const byte* der, int derSz);
 WOLFSSL_API int wc_SetIssuerRaw(Cert* cert, const byte* der, int derSz);
 //TODO change the declaration to another header 
-WOLFSSL_API int SetXMSSPublicKey(byte* buf, unsigned char* XMSSKey, int outLen);
+
 
 #ifdef HAVE_NTRU
 WOLFSSL_API int wc_SetSubjectKeyIdFromNtruPublicKey(Cert *cert, byte *ntruKey,
@@ -433,10 +441,7 @@ WOLFSSL_API int wc_SetKeyUsage(Cert *cert, const char *value);
  * any,serverAuth,clientAuth,codeSigning,emailProtection,timeStamping,OCSPSigning
  */
 WOLFSSL_API int wc_SetExtKeyUsage(Cert *cert, const char *value);
-WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey);
-WOLFSSL_API int wc_MakeXMSSCert(Cert*, byte* derBuffer, word32 derSz,
-                                       byte* XMSSKey, int XMSSSz, 
-                                       WC_RNG*);
+
 #ifdef WOLFSSL_EKU_OID
 /* Set ExtendedKeyUsage with unique OID
  * oid is expected to be in byte representation

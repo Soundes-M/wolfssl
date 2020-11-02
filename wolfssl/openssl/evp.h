@@ -354,12 +354,10 @@ struct WOLFSSL_EVP_CIPHER_CTX {
 #define HAVE_WOLFSSL_EVP_CIPHER_CTX_IV
     int    ivSz;
 #ifdef HAVE_AESGCM
-    byte*   gcmBuffer;
-    int     gcmBufferLen;
+    byte*   gcmDecryptBuffer;
+    int     gcmDecryptBufferLen;
     ALIGN16 unsigned char authTag[AES_BLOCK_SIZE];
     int     authTagSz;
-    byte*   gcmAuthIn;
-    int     gcmAuthInSz;
 #endif
 #endif
 };

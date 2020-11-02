@@ -118,7 +118,7 @@ static int IsOldTlsVersion(const char* line)
 
 
 /* if the cipher suite on line is valid store in suite and return 1, else 0 */
-static int IsValidCipherSuite(const char* line, char *suite, size_t suite_spc)
+static int IsValidCipherSuite(const char* line, char* suite)
 {
     int  found = 0;
     int  valid = 0;
@@ -126,9 +126,6 @@ static int IsValidCipherSuite(const char* line, char *suite, size_t suite_spc)
     const char* find = "-l ";
     const char* begin = strstr(line, find);
     const char* end;
-
-    if (suite_spc < MAX_SUITE_SZ+1)
-        return 0;
 
     suite[0] = '\0';
 
@@ -155,10 +152,10 @@ static int IsValidCipherSuite(const char* line, char *suite, size_t suite_spc)
 
     /* if QSH not enabled then do not use QSH suite */
     #ifdef HAVE_QSH
-        if (suite[0] && (XSTRNCMP(suite, "QSH", 3) == 0)) {
+        if (XSTRNCMP(suite, "QSH", 3) == 0) {
             if (wolfSSL_CTX_set_cipher_list(cipherSuiteCtx, suite + 4)
                                                                  != WOLFSSL_SUCCESS)
-                return 0;
+            return 0;
         }
     #endif
 
@@ -332,7 +329,7 @@ static int execute_test_case(int svr_argc, char** svr_argv,
         strcat(commandLine, svr_argv[i]);
         strcat(commandLine, flagSep);
     }
-    if (IsValidCipherSuite(commandLine, cipherSuite, sizeof cipherSuite) == 0) {
+    if (IsValidCipherSuite(commandLine, cipherSuite) == 0) {
         #ifdef DEBUG_SUITE_TESTS
             printf("cipher suite %s not supported in build\n", cipherSuite);
         #endif

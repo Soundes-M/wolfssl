@@ -2099,11 +2099,7 @@ SP_NOINLINE static sp_digit sp_2048_add_64(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -2141,11 +2137,7 @@ SP_NOINLINE static sp_digit sp_2048_sub_in_place_64(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -2203,19 +2195,11 @@ SP_NOINLINE static void sp_2048_mul_64(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -2228,11 +2212,7 @@ SP_NOINLINE static void sp_2048_mul_64(sp_digit* r, const sp_digit* a,
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -2241,7 +2221,7 @@ SP_NOINLINE static void sp_2048_mul_64(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -2277,11 +2257,7 @@ SP_NOINLINE static void sp_2048_sqr_64(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -2293,11 +2269,7 @@ SP_NOINLINE static void sp_2048_sqr_64(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -2313,25 +2285,13 @@ SP_NOINLINE static void sp_2048_sqr_64(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -2345,11 +2305,7 @@ SP_NOINLINE static void sp_2048_sqr_64(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -2361,11 +2317,7 @@ SP_NOINLINE static void sp_2048_sqr_64(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #2\n\t"
         "lsl	r6, r6, #8\n\t"
         "add	sp, sp, r6\n\t"
@@ -2423,11 +2375,7 @@ SP_NOINLINE static sp_digit sp_2048_add_32(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -2465,11 +2413,7 @@ SP_NOINLINE static sp_digit sp_2048_sub_in_place_32(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -2526,19 +2470,11 @@ SP_NOINLINE static void sp_2048_mul_32(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -2549,11 +2485,7 @@ SP_NOINLINE static void sp_2048_mul_32(sp_digit* r, const sp_digit* a,
         "mov	r9, r8\n\t"
         "mov	r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -2562,7 +2494,7 @@ SP_NOINLINE static void sp_2048_mul_32(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -2598,11 +2530,7 @@ SP_NOINLINE static void sp_2048_sqr_32(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -2614,11 +2542,7 @@ SP_NOINLINE static void sp_2048_sqr_32(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -2633,25 +2557,13 @@ SP_NOINLINE static void sp_2048_sqr_32(sp_digit* r, const sp_digit* a)
         "mov	r6, #128\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -2663,11 +2575,7 @@ SP_NOINLINE static void sp_2048_sqr_32(sp_digit* r, const sp_digit* a)
         "mov	r9, r8\n\t"
         "mov	r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -2677,11 +2585,7 @@ SP_NOINLINE static void sp_2048_sqr_32(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #1\n\t"
         "lsl	r6, r6, #8\n\t"
         "add	sp, sp, r6\n\t"
@@ -2743,11 +2647,7 @@ SP_NOINLINE static void sp_2048_mul_d_64(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -2798,11 +2698,7 @@ SP_NOINLINE static sp_digit sp_2048_cond_sub_32(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -2861,11 +2757,7 @@ SP_NOINLINE static void sp_2048_mont_reduce_32(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+30] += m[30] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -2898,11 +2790,7 @@ SP_NOINLINE static void sp_2048_mont_reduce_32(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #120\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -2973,11 +2861,7 @@ SP_NOINLINE static void sp_2048_mul_d_32(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -3071,11 +2955,7 @@ SP_NOINLINE static int32_t sp_2048_cmp_32(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -3087,7 +2967,7 @@ SP_NOINLINE static int32_t sp_2048_cmp_32(const sp_digit* a, const sp_digit* b)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -3490,11 +3370,7 @@ SP_NOINLINE static sp_digit sp_2048_cond_sub_64(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -3553,11 +3429,7 @@ SP_NOINLINE static void sp_2048_mont_reduce_64(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+62] += m[62] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -3590,11 +3462,7 @@ SP_NOINLINE static void sp_2048_mont_reduce_64(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #248\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -3751,11 +3619,7 @@ SP_NOINLINE static int32_t sp_2048_cmp_64(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -3767,7 +3631,7 @@ SP_NOINLINE static int32_t sp_2048_cmp_64(const sp_digit* a, const sp_digit* b)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -3817,7 +3681,7 @@ static WC_INLINE int sp_2048_mod_64(sp_digit* r, const sp_digit* a, const sp_dig
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -4337,11 +4201,7 @@ SP_NOINLINE static sp_digit sp_2048_cond_add_32(sp_digit* r, const sp_digit* a, 
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -5491,19 +5351,11 @@ SP_NOINLINE static void sp_3072_mul_12(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -5514,11 +5366,7 @@ SP_NOINLINE static void sp_3072_mul_12(sp_digit* r, const sp_digit* a,
         "mov	r9, r8\n\t"
         "mov	r6, #88\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -5527,7 +5375,7 @@ SP_NOINLINE static void sp_3072_mul_12(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -5562,11 +5410,7 @@ SP_NOINLINE static void sp_3072_sqr_12(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -5578,11 +5422,7 @@ SP_NOINLINE static void sp_3072_sqr_12(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -5597,25 +5437,13 @@ SP_NOINLINE static void sp_3072_sqr_12(sp_digit* r, const sp_digit* a)
         "mov	r6, #48\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -5627,11 +5455,7 @@ SP_NOINLINE static void sp_3072_sqr_12(sp_digit* r, const sp_digit* a)
         "mov	r9, r8\n\t"
         "mov	r6, #88\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -5641,11 +5465,7 @@ SP_NOINLINE static void sp_3072_sqr_12(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #96\n\t"
         "add	sp, sp, r6\n\t"
         :
@@ -6975,11 +6795,7 @@ SP_NOINLINE static sp_digit sp_3072_add_96(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -7017,11 +6833,7 @@ SP_NOINLINE static sp_digit sp_3072_sub_in_place_96(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -7082,19 +6894,11 @@ SP_NOINLINE static void sp_3072_mul_96(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -7107,11 +6911,7 @@ SP_NOINLINE static void sp_3072_mul_96(sp_digit* r, const sp_digit* a,
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -7120,7 +6920,7 @@ SP_NOINLINE static void sp_3072_mul_96(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -7158,11 +6958,7 @@ SP_NOINLINE static void sp_3072_sqr_96(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -7174,11 +6970,7 @@ SP_NOINLINE static void sp_3072_sqr_96(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -7195,25 +6987,13 @@ SP_NOINLINE static void sp_3072_sqr_96(sp_digit* r, const sp_digit* a)
         "add	r6, r6, #128\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -7227,11 +7007,7 @@ SP_NOINLINE static void sp_3072_sqr_96(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -7243,11 +7019,7 @@ SP_NOINLINE static void sp_3072_sqr_96(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #3\n\t"
         "lsl	r6, r6, #8\n\t"
         "add	sp, sp, r6\n\t"
@@ -7305,11 +7077,7 @@ SP_NOINLINE static sp_digit sp_3072_add_48(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -7347,11 +7115,7 @@ SP_NOINLINE static sp_digit sp_3072_sub_in_place_48(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -7408,19 +7172,11 @@ SP_NOINLINE static void sp_3072_mul_48(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -7433,11 +7189,7 @@ SP_NOINLINE static void sp_3072_mul_48(sp_digit* r, const sp_digit* a,
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #120\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -7446,7 +7198,7 @@ SP_NOINLINE static void sp_3072_mul_48(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -7483,11 +7235,7 @@ SP_NOINLINE static void sp_3072_sqr_48(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -7499,11 +7247,7 @@ SP_NOINLINE static void sp_3072_sqr_48(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -7518,25 +7262,13 @@ SP_NOINLINE static void sp_3072_sqr_48(sp_digit* r, const sp_digit* a)
         "mov	r6, #192\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -7550,11 +7282,7 @@ SP_NOINLINE static void sp_3072_sqr_48(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #120\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -7566,11 +7294,7 @@ SP_NOINLINE static void sp_3072_sqr_48(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #1\n\t"
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #128\n\t"
@@ -7633,11 +7357,7 @@ SP_NOINLINE static void sp_3072_mul_d_96(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -7688,11 +7408,7 @@ SP_NOINLINE static sp_digit sp_3072_cond_sub_48(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -7751,11 +7467,7 @@ SP_NOINLINE static void sp_3072_mont_reduce_48(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+46] += m[46] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -7788,11 +7500,7 @@ SP_NOINLINE static void sp_3072_mont_reduce_48(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #184\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -7863,11 +7571,7 @@ SP_NOINLINE static void sp_3072_mul_d_48(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -7961,11 +7665,7 @@ SP_NOINLINE static int32_t sp_3072_cmp_48(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -7977,7 +7677,7 @@ SP_NOINLINE static int32_t sp_3072_cmp_48(const sp_digit* a, const sp_digit* b)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -8381,11 +8081,7 @@ SP_NOINLINE static sp_digit sp_3072_cond_sub_96(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -8444,11 +8140,7 @@ SP_NOINLINE static void sp_3072_mont_reduce_96(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+94] += m[94] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -8481,11 +8173,7 @@ SP_NOINLINE static void sp_3072_mont_reduce_96(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #376\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -8644,11 +8332,7 @@ SP_NOINLINE static int32_t sp_3072_cmp_96(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -8660,7 +8344,7 @@ SP_NOINLINE static int32_t sp_3072_cmp_96(const sp_digit* a, const sp_digit* b)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -8710,7 +8394,7 @@ static WC_INLINE int sp_3072_mod_96(sp_digit* r, const sp_digit* a, const sp_dig
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -9230,11 +8914,7 @@ SP_NOINLINE static sp_digit sp_3072_cond_add_48(sp_digit* r, const sp_digit* a, 
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -11307,11 +10987,7 @@ SP_NOINLINE static sp_digit sp_4096_add_128(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -11349,11 +11025,7 @@ SP_NOINLINE static sp_digit sp_4096_sub_in_place_128(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -11413,19 +11085,11 @@ SP_NOINLINE static void sp_4096_mul_128(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -11438,11 +11102,7 @@ SP_NOINLINE static void sp_4096_mul_128(sp_digit* r, const sp_digit* a,
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -11451,7 +11111,7 @@ SP_NOINLINE static void sp_4096_mul_128(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Square a and put result in r. (r = a * a)
@@ -11489,11 +11149,7 @@ SP_NOINLINE static void sp_4096_sqr_128(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -11505,11 +11161,7 @@ SP_NOINLINE static void sp_4096_sqr_128(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -11525,25 +11177,13 @@ SP_NOINLINE static void sp_4096_sqr_128(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -11557,11 +11197,7 @@ SP_NOINLINE static void sp_4096_sqr_128(sp_digit* r, const sp_digit* a)
         "lsl	r6, r6, #8\n\t"
         "add	r6, r6, #248\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -11573,11 +11209,7 @@ SP_NOINLINE static void sp_4096_sqr_128(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #4\n\t"
         "lsl	r6, r6, #8\n\t"
         "add	sp, sp, r6\n\t"
@@ -11637,11 +11269,7 @@ SP_NOINLINE static void sp_4096_mul_d_128(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -11694,11 +11322,7 @@ SP_NOINLINE static sp_digit sp_4096_cond_sub_128(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -11757,11 +11381,7 @@ SP_NOINLINE static void sp_4096_mont_reduce_128(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+126] += m[126] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -11794,11 +11414,7 @@ SP_NOINLINE static void sp_4096_mont_reduce_128(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #504\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -11957,11 +11573,7 @@ SP_NOINLINE static int32_t sp_4096_cmp_128(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -11973,7 +11585,7 @@ SP_NOINLINE static int32_t sp_4096_cmp_128(const sp_digit* a, const sp_digit* b)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -12023,7 +11635,7 @@ static WC_INLINE int sp_4096_mod_128(sp_digit* r, const sp_digit* a, const sp_di
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -12544,11 +12156,7 @@ SP_NOINLINE static sp_digit sp_4096_cond_add_64(sp_digit* r, const sp_digit* a, 
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -15683,11 +15291,7 @@ SP_NOINLINE static int32_t sp_256_cmp_8(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -15730,11 +15334,7 @@ SP_NOINLINE static sp_digit sp_256_cond_sub_8(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -15824,11 +15424,7 @@ SP_NOINLINE static void sp_256_mont_reduce_8(sp_digit* a, const sp_digit* m,
         "add	%[a], %[a], #4\n\t"
         "mov	r6, #8\n\t"
         "cmp	r9, r6\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "sub	%[a], %[a], #32\n\t"
         "mov	r3, r1\n\t"
         "sub	r1, r1, #1\n\t"
@@ -15917,11 +15513,7 @@ SP_NOINLINE static void sp_256_mont_reduce_order_8(sp_digit* a, const sp_digit* 
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+6] += m[6] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -15954,11 +15546,7 @@ SP_NOINLINE static void sp_256_mont_reduce_order_8(sp_digit* a, const sp_digit* 
         /* Next word in a */
         "sub	r10, r10, #24\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -16040,11 +15628,7 @@ SP_NOINLINE static sp_digit sp_256_add_8(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -16685,11 +16269,7 @@ SP_NOINLINE static sp_digit sp_256_sub_8(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6"
@@ -20585,11 +20165,7 @@ SP_NOINLINE static sp_digit sp_256_sub_in_place_8(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -20671,11 +20247,7 @@ SP_NOINLINE static void sp_256_mul_d_8(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -20764,7 +20336,7 @@ static void sp_256_mask_8(sp_digit* r, const sp_digit* a, sp_digit m)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.
@@ -23025,19 +22597,11 @@ SP_NOINLINE static void sp_384_mul_12(sp_digit* r, const sp_digit* a,
         "add	%[a], %[a], #4\n\t"
         "sub	%[b], %[b], #4\n\t"
         "cmp	%[a], r14\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r6, r9\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r12\n\t"
         "mov	r8, r9\n\t"
@@ -23048,11 +22612,7 @@ SP_NOINLINE static void sp_384_mul_12(sp_digit* r, const sp_digit* a,
         "mov	r9, r8\n\t"
         "mov	r6, #88\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r], r8]\n\t"
         "mov	%[a], r10\n\t"
         "mov	%[b], r11\n\t"
@@ -23061,7 +22621,7 @@ SP_NOINLINE static void sp_384_mul_12(sp_digit* r, const sp_digit* a,
         : "memory", "r3", "r4", "r5", "r6", "r8", "r9", "r10", "r11", "r12", "r14"
     );
 
-    XMEMCPY(r, tmp_arr, sizeof(tmp_arr));
+    XMEMCPY(r, tmp, sizeof(tmp));
 }
 
 /* Conditionally subtract b from a using the mask m.
@@ -23092,11 +22652,7 @@ SP_NOINLINE static sp_digit sp_384_cond_sub_12(sp_digit* r, const sp_digit* a,
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -23157,11 +22713,7 @@ SP_NOINLINE static void sp_384_mont_reduce_12(sp_digit* a, const sp_digit* m,
         "adc	r4, r4, #0\n\t"
         "str	r5, [r10], #4\n\t"
         "cmp	r10, r14\n\t"
-#ifdef __GNUC__
-        "blt	2b\n\t"
-#else
         "blt.n	2b\n\t"
-#endif /* __GNUC__ */
         /* a[i+10] += m[10] * mu */
         "ldr	%[a], [r10]\n\t"
         "mov	r5, #0\n\t"
@@ -23194,11 +22746,7 @@ SP_NOINLINE static void sp_384_mont_reduce_12(sp_digit* a, const sp_digit* m,
         /* Next word in a */
         "sub	r10, r10, #40\n\t"
         "cmp	r10, r11\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "mov	%[m], r12\n\t"
         : [ca] "+r" (ca), [a] "+r" (a)
@@ -23257,11 +22805,7 @@ SP_NOINLINE static void sp_384_sqr_12(sp_digit* r, const sp_digit* a)
         "add	r2, r2, r10\n\t"
         "\n2:\n\t"
         "cmp	r2, %[a]\n\t"
-#ifdef __GNUC__
-        "beq	4f\n\t"
-#else
         "beq.n	4f\n\t"
-#endif /* __GNUC__ */
         /* Multiply * 2: Start */
         "ldr	r6, [%[a]]\n\t"
         "ldr	r8, [r2]\n\t"
@@ -23273,11 +22817,7 @@ SP_NOINLINE static void sp_384_sqr_12(sp_digit* r, const sp_digit* a)
         "adcs 	r4, r4, r8\n\t"
         "adc	r5, r5, %[r]\n\t"
         /* Multiply * 2: Done */
-#ifdef __GNUC__
-        "bal	5f\n\t"
-#else
         "bal.n	5f\n\t"
-#endif /* __GNUC__ */
         "\n4:\n\t"
         /* Square: Start */
         "ldr	r6, [%[a]]\n\t"
@@ -23292,25 +22832,13 @@ SP_NOINLINE static void sp_384_sqr_12(sp_digit* r, const sp_digit* a)
         "mov	r6, #48\n\t"
         "add	r6, r6, r10\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "beq	3f\n\t"
-#else
         "beq.n	3f\n\t"
-#endif /* __GNUC__ */
         "cmp	%[a], r2\n\t"
-#ifdef __GNUC__
-        "bgt	3f\n\t"
-#else
         "bgt.n	3f\n\t"
-#endif /* __GNUC__ */
         "mov	r8, r9\n\t"
         "add	r8, r8, r10\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "ble	2b\n\t"
-#else
         "ble.n	2b\n\t"
-#endif /* __GNUC__ */
         "\n3:\n\t"
         "mov	%[r], r11\n\t"
         "mov	r8, r9\n\t"
@@ -23322,11 +22850,7 @@ SP_NOINLINE static void sp_384_sqr_12(sp_digit* r, const sp_digit* a)
         "mov	r9, r8\n\t"
         "mov	r6, #88\n\t"
         "cmp	r8, r6\n\t"
-#ifdef __GNUC__
-        "ble	1b\n\t"
-#else
         "ble.n	1b\n\t"
-#endif /* __GNUC__ */
         "mov	%[a], r10\n\t"
         "str	r3, [%[r], r8]\n\t"
         "mov	%[r], r12\n\t"
@@ -23336,11 +22860,7 @@ SP_NOINLINE static void sp_384_sqr_12(sp_digit* r, const sp_digit* a)
         "ldr	r6, [%[a], r3]\n\t"
         "str	r6, [%[r], r3]\n\t"
         "subs	r3, r3, #4\n\t"
-#ifdef __GNUC__
-        "bge	4b\n\t"
-#else
         "bge.n	4b\n\t"
-#endif /* __GNUC__ */
         "mov	r6, #96\n\t"
         "add	sp, sp, r6\n\t"
         :
@@ -23509,11 +23029,7 @@ SP_NOINLINE static int32_t sp_384_cmp_12(const sp_digit* a, const sp_digit* b)
         "and	r3, r3, r8\n\t"
         "sub	r6, r6, #4\n\t"
         "cmp	r6, #0\n\t"
-#ifdef __GNUC__
-        "bge	1b\n\t"
-#else
         "bge.n	1b\n\t"
-#endif /* __GNUC__ */
         : [r] "+r" (r)
         : [a] "r" (a), [b] "r" (b)
         : "r3", "r4", "r5", "r6", "r8"
@@ -23599,11 +23115,7 @@ SP_NOINLINE static sp_digit sp_384_add_12(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6", "r8"
@@ -23739,11 +23251,7 @@ SP_NOINLINE static sp_digit sp_384_sub_12(sp_digit* r, const sp_digit* a,
         "add	%[b], %[b], #4\n\t"
         "add	%[r], %[r], #4\n\t"
         "cmp	%[a], r6\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [r] "+r" (r), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r4", "r5", "r6"
@@ -23851,11 +23359,7 @@ SP_NOINLINE static sp_digit sp_384_cond_add_12(sp_digit* r, const sp_digit* a, c
         "str	r5, [%[r], r8]\n\t"
         "add	r8, r8, #4\n\t"
         "cmp	r8, r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c)
         : [r] "r" (r), [a] "r" (a), [b] "r" (b), [m] "r" (m)
         : "memory", "r5", "r6", "r8", "r9"
@@ -27550,11 +27054,7 @@ SP_NOINLINE static sp_digit sp_384_sub_in_place_12(sp_digit* a,
         "add	%[a], %[a], #8\n\t"
         "add	%[b], %[b], #8\n\t"
         "cmp	%[a], r8\n\t"
-#ifdef __GNUC__
-        "bne	1b\n\t"
-#else
         "bne.n	1b\n\t"
-#endif /* __GNUC__ */
         : [c] "+r" (c), [a] "+r" (a), [b] "+r" (b)
         :
         : "memory", "r3", "r4", "r5", "r6", "r8"
@@ -27646,11 +27146,7 @@ SP_NOINLINE static void sp_384_mul_d_12(sp_digit* r, const sp_digit* a,
         "mov	r3, r4\n\t"
         "mov	r4, r5\n\t"
         "cmp	%[a], r9\n\t"
-#ifdef __GNUC__
-        "blt	1b\n\t"
-#else
         "blt.n	1b\n\t"
-#endif /* __GNUC__ */
         "str	r3, [%[r]]\n\t"
         : [r] "+r" (r), [a] "+r" (a)
         : [b] "r" (b)
@@ -27743,7 +27239,7 @@ static void sp_384_mask_12(sp_digit* r, const sp_digit* a, sp_digit m)
 /* Divide d in a and put remainder into r (m*d + r = a)
  * m is not calculated as it is not needed at this time.
  *
- * a  Number to be divided.
+ * a  Nmber to be divided.
  * d  Number to divide with.
  * m  Multiplier result.
  * r  Remainder from the division.

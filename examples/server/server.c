@@ -37,18 +37,11 @@
         #include "rl_net.h"
 #endif
 
-#ifdef NO_FILESYSTEM
-    #ifdef NO_RSA
-    #error currently the example only tries to load in a RSA buffer
-    #endif
-    #undef USE_CERT_BUFFERS_2048
-    #define USE_CERT_BUFFERS_2048
-    #include <wolfssl/certs_test.h>
-#endif
-
 #include <wolfssl/openssl/ssl.h>
 #include <wolfssl/test.h>
-#include <wolfssl/error-ssl.h>
+#ifdef WOLFSSL_DTLS
+    #include <wolfssl/error-ssl.h>
+#endif
 
 #include "examples/server/server.h"
 
@@ -352,7 +345,7 @@ static int NonBlockingSSL_Accept(SSL* ssl)
     return ret;
 }
 
-/* Echo number of bytes specified by -B arg */
+/* Echo number of bytes specified by -e arg */
 int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
                    size_t throughput)
 {
@@ -373,10 +366,7 @@ int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
         select_ret = tcp_select(clientfd, 1); /* Timeout=1 second */
         if (select_ret == TEST_RECV_READY) {
 
-            if (throughput)
-                len = min(block, (int)(throughput - xfer_bytes));
-            else
-                len = block;
+            len = min(block, (int)(throughput - xfer_bytes));
             rx_pos = 0;
 
             if (throughput) {
@@ -396,8 +386,7 @@ int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
                     else
                 #endif
                     if (err != WOLFSSL_ERROR_WANT_READ &&
-                                             err != WOLFSSL_ERROR_ZERO_RETURN &&
-                                             err != APP_DATA_READY) {
+                                             err != WOLFSSL_ERROR_ZERO_RETURN) {
                         printf("SSL_read echo error %d\n", err);
                         err_sys_ex(runWithErrors, "SSL_read failed");
                         break;
@@ -409,8 +398,6 @@ int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
                 }
                 else {
                     rx_pos += ret;
-                    if (!throughput)
-                        break;
                 }
             }
             if (throughput) {
@@ -421,7 +408,7 @@ int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
             /* Write data */
             do {
                 err = 0; /* reset error */
-                ret = SSL_write(ssl, buffer, min(len, rx_pos));
+                ret = SSL_write(ssl, buffer, len);
                 if (ret <= 0) {
                     err = SSL_get_error(ssl, 0);
                 #ifdef WOLFSSL_ASYNC_CRYPT
@@ -432,7 +419,7 @@ int ServerEchoData(SSL* ssl, int clientfd, int echoData, int block,
                 #endif
                 }
             } while (err == WC_PENDING_E);
-            if (ret != (int)min(len, rx_pos)) {
+            if (ret != len) {
                 printf("SSL_write echo error %d\n", err);
                 err_sys_ex(runWithErrors, "SSL_write failed");
             }
@@ -479,26 +466,8 @@ static void ServerRead(WOLFSSL* ssl, char* input, int inputLen)
         err = 0; /* reset error */
         ret = SSL_read(ssl, input, inputLen);
         if (ret < 0) {
-            err = SSL_get_error(ssl, ret);
+            err = SSL_get_error(ssl, 0);
 
-        #ifdef HAVE_SECURE_RENEGOTIATION
-            if (err == APP_DATA_READY) {
-                /* If we receive a message during renegotiation
-                 * then just print it. We return the message sent
-                 * after the renegotiation. */
-                ret = SSL_read(ssl, input, inputLen);
-                if (ret >= 0) {
-                    /* null terminate message */
-                    input[ret] = '\0';
-                    printf("Client message received during "
-                           "secure renegotiation: %s\n", input);
-                    err = WOLFSSL_ERROR_WANT_READ;
-                }
-                else {
-                    err = SSL_get_error(ssl, ret);
-                }
-            }
-        #endif
         #ifdef WOLFSSL_ASYNC_CRYPT
             if (err == WC_PENDING_E) {
                 ret = wolfSSL_AsyncPoll(ssl, WOLF_POLL_FLAG_CHECK_HW);
@@ -512,11 +481,7 @@ static void ServerRead(WOLFSSL* ssl, char* input, int inputLen)
             }
             else
         #endif
-            if (err != WOLFSSL_ERROR_WANT_READ
-        #ifdef HAVE_SECURE_RENEGOTIATION
-                    && err != APP_DATA_READY
-        #endif
-            ) {
+            if (err != WOLFSSL_ERROR_WANT_READ) {
                 printf("SSL_read input error %d, %s\n", err,
                                                  ERR_error_string(err, buffer));
                 err_sys_ex(runWithErrors, "SSL_read failed");
@@ -528,8 +493,7 @@ static void ServerRead(WOLFSSL* ssl, char* input, int inputLen)
         }
     } while (err == WC_PENDING_E || err == WOLFSSL_ERROR_WANT_READ);
     if (ret > 0) {
-        /* null terminate message */
-        input[ret] = '\0';
+        input[ret] = 0; /* null terminate message */
         printf("Client message: %s\n", input);
     }
 }
@@ -576,11 +540,10 @@ static void ServerWrite(WOLFSSL* ssl, const char* output, int outputLen)
 /* when adding new option, please follow the steps below: */
 /*  1. add new option message in English section          */
 /*  2. increase the number of the second column           */
-/*  3. increase the array dimension                       */
-/*  4. add the same message into Japanese section         */
+/*  3. add the same message into Japanese section         */
 /*     (will be translated later)                         */
-/*  5. add printf() into suitable position of Usage()     */
-static const char* server_usage_msg[][56] = {
+/*  4. add printf() into suitable position of Usage()     */
+static const char* server_usage_msg[][49] = {
     /* English */
     {
         " NOTE: All files relative to wolfSSL home dir\n",               /* 0 */
@@ -1748,11 +1711,7 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
 
 #if !defined(NO_CERTS)
     if ((!usePsk || usePskPlus) && !useAnon && !(loadCertKeyIntoSSLObj == 1)) {
-    #ifdef NO_FILESYSTEM
-        if (wolfSSL_CTX_use_certificate_chain_buffer(ctx, server_cert_der_2048,
-            sizeof_server_cert_der_2048) != WOLFSSL_SUCCESS)
-            err_sys_ex(catastrophic, "can't load server cert buffer");
-    #elif !defined(TEST_LOAD_BUFFER)
+    #ifndef TEST_LOAD_BUFFER
         if (SSL_CTX_use_certificate_chain_file(ctx, ourCert)
                                          != WOLFSSL_SUCCESS)
             err_sys_ex(catastrophic, "can't load server cert file, check file "
@@ -1799,11 +1758,7 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
         && !pkCallbacks
     #endif /* HAVE_PK_CALLBACKS && TEST_PK_PRIVKEY */
     ) {
-    #ifdef NO_FILESYSTEM
-        if (wolfSSL_CTX_use_PrivateKey_buffer(ctx, server_key_der_2048,
-            sizeof_server_key_der_2048, SSL_FILETYPE_ASN1) != WOLFSSL_SUCCESS)
-            err_sys_ex(catastrophic, "can't load server private key buffer");
-    #elif !defined(TEST_LOAD_BUFFER)
+    #ifndef TEST_LOAD_BUFFER
         if (SSL_CTX_use_PrivateKey_file(ctx, ourKey, WOLFSSL_FILETYPE_PEM)
                                          != WOLFSSL_SUCCESS)
             err_sys_ex(catastrophic, "can't load server private key file, "
@@ -2005,11 +1960,7 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
     /* Support for loading private key and cert using WOLFSSL object */
 #if !defined(NO_CERTS)
     if ((!usePsk || usePskPlus) && !useAnon && loadCertKeyIntoSSLObj) {
-    #ifdef NO_FILESYSTEM
-        if (wolfSSL_use_certificate_chain_buffer(ssl, server_cert_der_2048,
-            sizeof_server_cert_der_2048) != WOLFSSL_SUCCESS)
-            err_sys_ex(catastrophic, "can't load server cert buffer");
-    #elif !defined(TEST_LOAD_BUFFER)
+    #ifndef TEST_LOAD_BUFFER
         if (SSL_use_certificate_chain_file(ssl, ourCert)
                                          != WOLFSSL_SUCCESS)
             err_sys_ex(catastrophic, "can't load server cert file, check file "
@@ -2026,11 +1977,7 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
         && !pkCallbacks
     #endif /* HAVE_PK_CALLBACKS && TEST_PK_PRIVKEY */
     ) {
-    #if defined(NO_FILESYSTEM)
-        if (wolfSSL_use_PrivateKey_buffer(ssl, server_key_der_2048,
-            sizeof_server_key_der_2048, SSL_FILETYPE_ASN1) != WOLFSSL_SUCCESS)
-            err_sys_ex(catastrophic, "can't load server private key buffer");
-    #elif !defined(TEST_LOAD_BUFFER)
+    #ifndef TEST_LOAD_BUFFER
         if (SSL_use_PrivateKey_file(ssl, ourKey, WOLFSSL_FILETYPE_PEM)
                                          != WOLFSSL_SUCCESS)
             err_sys_ex(catastrophic, "can't load server private key file, check"
@@ -2085,39 +2032,6 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
             }
         }
 #endif /* HAVE_SECURE_RENEGOTIATION */
-
-#if !defined(NO_FILESYSTEM) && !defined(NO_CERTS)
-    #if defined(WOLFSSL_TLS13) && defined(WOLFSSL_POST_HANDSHAKE_AUTH)
-        if (postHandAuth) {
-            unsigned int verify_flags = 0;
-
-            SSL_set_verify(ssl, WOLFSSL_VERIFY_PEER |
-                                ((usePskPlus) ? WOLFSSL_VERIFY_FAIL_EXCEPT_PSK :
-                                WOLFSSL_VERIFY_FAIL_IF_NO_PEER_CERT), 0);
-
-        #ifdef TEST_BEFORE_DATE
-            verify_flags |= WOLFSSL_LOAD_FLAG_DATE_ERR_OKAY;
-        #endif
-
-            if (wolfSSL_CTX_load_verify_locations_ex(ctx, verifyCert, 0,
-                                                     verify_flags)
-                                                     != WOLFSSL_SUCCESS) {
-                err_sys_ex(runWithErrors, "can't load ca file, Please run from "
-                                          "wolfSSL home dir");
-            }
-            #ifdef WOLFSSL_TRUST_PEER_CERT
-            if (trustCert) {
-                if ((ret = wolfSSL_trust_peer_cert(ssl, trustCert,
-                                    WOLFSSL_FILETYPE_PEM)) != WOLFSSL_SUCCESS) {
-                    err_sys_ex(runWithErrors, "can't load trusted peer cert "
-                                              "file");
-                }
-            }
-            #endif /* WOLFSSL_TRUST_PEER_CERT */
-       }
-    #endif
-#endif
-
 
 #ifndef NO_HANDSHAKE_DONE_CB
         wolfSSL_SetHsDoneCb(ssl, myHsDoneCb, NULL);
@@ -2473,6 +2387,38 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
         }
 #endif
 
+#if !defined(NO_FILESYSTEM) && !defined(NO_CERTS)
+    #if defined(WOLFSSL_TLS13) && defined(WOLFSSL_POST_HANDSHAKE_AUTH)
+        if (postHandAuth) {
+            unsigned int verify_flags = 0;
+
+            SSL_set_verify(ssl, WOLFSSL_VERIFY_PEER |
+                                ((usePskPlus) ? WOLFSSL_VERIFY_FAIL_EXCEPT_PSK :
+                                WOLFSSL_VERIFY_FAIL_IF_NO_PEER_CERT), 0);
+
+        #ifdef TEST_BEFORE_DATE
+            verify_flags |= WOLFSSL_LOAD_FLAG_DATE_ERR_OKAY;
+        #endif
+
+            if (wolfSSL_CTX_load_verify_locations_ex(ctx, verifyCert, 0,
+                                                     verify_flags)
+                                                     != WOLFSSL_SUCCESS) {
+                err_sys_ex(runWithErrors, "can't load ca file, Please run from "
+                                          "wolfSSL home dir");
+            }
+            #ifdef WOLFSSL_TRUST_PEER_CERT
+            if (trustCert) {
+                if ((ret = wolfSSL_trust_peer_cert(ssl, trustCert,
+                                    WOLFSSL_FILETYPE_PEM)) != WOLFSSL_SUCCESS) {
+                    err_sys_ex(runWithErrors, "can't load trusted peer cert "
+                                              "file");
+                }
+            }
+            #endif /* WOLFSSL_TRUST_PEER_CERT */
+       }
+    #endif
+#endif
+
         if (echoData == 0 && throughput == 0) {
             ServerRead(ssl, input, sizeof(input)-1);
             err = SSL_get_error(ssl, 0);
@@ -2482,44 +2428,8 @@ THREAD_RETURN WOLFSSL_THREAD server_test(void* args)
     defined(HAVE_SERVER_RENEGOTIATION_INFO)
         if (scr && forceScr) {
             if (nonBlocking) {
-                if ((ret = wolfSSL_Rehandshake(ssl)) != WOLFSSL_SUCCESS) {
-                    err = wolfSSL_get_error(ssl, 0);
-                    if (err == WOLFSSL_ERROR_WANT_READ ||
-                            err == WOLFSSL_ERROR_WANT_WRITE) {
-                        do {
-                            if (err == APP_DATA_READY) {
-                                if ((ret = wolfSSL_read(ssl, input, sizeof(input)-1)) < 0) {
-                                    err_sys("APP DATA should be present but error returned");
-                                }
-                                printf("Received message: %s\n", input);
-                            }
-                            err = 0;
-                            if ((ret = wolfSSL_accept(ssl)) != WOLFSSL_SUCCESS) {
-                                err = wolfSSL_get_error(ssl, ret);
-                            }
-                        } while (ret != WOLFSSL_SUCCESS &&
-                                (err == WOLFSSL_ERROR_WANT_READ ||
-                                        err == WOLFSSL_ERROR_WANT_WRITE ||
-                                        err == APP_DATA_READY));
-
-                        if (ret != WOLFSSL_SUCCESS) {
-                            err = wolfSSL_get_error(ssl, 0);
-                            printf("wolfSSL_Rehandshake error %d, %s\n", err,
-                                wolfSSL_ERR_error_string(err, buffer));
-                            wolfSSL_free(ssl); ssl = NULL;
-                            wolfSSL_CTX_free(ctx); ctx = NULL;
-                            err_sys("non-blocking wolfSSL_Rehandshake failed");
-                        }
-                        printf("NON-BLOCKING RENEGOTIATION SUCCESSFUL\n");
-                    }
-                    else {
-                        printf("wolfSSL_Rehandshake error %d, %s\n", err,
-                            wolfSSL_ERR_error_string(err, buffer));
-                        wolfSSL_free(ssl); ssl = NULL;
-                        wolfSSL_CTX_free(ctx); ctx = NULL;
-                        err_sys("non-blocking wolfSSL_Rehandshake failed");
-                    }
-                }
+                printf("not doing secure renegotiation on example with"
+                       " nonblocking yet\n");
             } else {
                 if ((ret = wolfSSL_Rehandshake(ssl)) != WOLFSSL_SUCCESS) {
 #ifdef WOLFSSL_ASYNC_CRYPT

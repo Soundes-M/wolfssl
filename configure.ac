@@ -67,45 +67,10 @@ AC_CHECK_SIZEOF([long long])
 AC_CHECK_SIZEOF([long])
 AC_CHECK_SIZEOF([time_t])
 AC_CHECK_TYPES([__uint128_t])
-
-AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h netdb.h netinet/in.h stddef.h time.h sys/ioctl.h sys/socket.h sys/time.h errno.h])
+AC_CHECK_FUNCS([gethostbyname getaddrinfo gettimeofday gmtime_r inet_ntoa memset socket])
+AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h netdb.h netinet/in.h stddef.h sys/ioctl.h sys/socket.h sys/time.h errno.h])
 AC_CHECK_LIB([network],[socket])
 AC_C_BIGENDIAN
-
-# check if functions of interest are linkable, but also check if
-# they're declared by the expected headers, and if not, supersede the
-# unusable positive from AC_CHECK_FUNCS().
-AC_CHECK_FUNCS([gethostbyname getaddrinfo gettimeofday gmtime_r inet_ntoa memset socket strftime])
-AC_CHECK_DECLS([gethostbyname, getaddrinfo, gettimeofday, gmtime_r, inet_ntoa, memset, socket, strftime], [], [
-if test "$(eval echo \$"$(eval 'echo ac_cv_func_${as_decl_name}')")" = "yes"
-then
-    echo "    note: earlier check for $(eval 'echo ${as_decl_name}') superseded."
-    eval "$(eval 'echo ac_cv_func_${as_decl_name}=no')"
-    _mask_varname=HAVE_`eval "echo '${as_decl_name}'" | tr 'a-z' 'A-Z'`
-    echo "g/#define $_mask_varname 1/s//\/* #undef $_mask_varname *\//
-wq
-." | ed -s confdefs.h
-fi
-], [[
-#ifdef HAVE_SYS_SOCKET_H
-    #include <sys/socket.h>
-#endif
-#ifdef HAVE_STRING_H
-    #include <string.h>
-#endif
-#ifdef HAVE_NETDB_H
-    #include <netdb.h>
-#endif
-#ifdef HAVE_ARPA_INET_H
-    #include <arpa/inet.h>
-#endif
-#ifdef HAVE_SYS_TIME_H
-    #include <sys/time.h>
-#endif
-#ifdef HAVE_TIME_H
-    #include <time.h>
-#endif
-]])
 
 AC_PROG_INSTALL
 AC_TYPE_SIZE_T
@@ -176,90 +141,6 @@ then
 fi
 
 
-# Linux Kernel Module
-AC_ARG_ENABLE([linuxkm],
-    [AS_HELP_STRING([--enable-linuxkm],[Enable Linux Kernel Module (default: disabled)])],
-    [ENABLED_LINUXKM=$enableval],
-    [ENABLED_LINUXKM=no]
-    )
-
-AC_ARG_ENABLE([linuxkm-defaults],
-    [AS_HELP_STRING([--enable-linuxkm-defaults],[Enable feature defaults for Linux Kernel Module (default: disabled)])],
-    [ENABLED_LINUXKM_DEFAULTS=$enableval],
-    [ENABLED_LINUXKM_DEFAULTS=$ENABLED_LINUXKM]
-    )
-
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-then
-    AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_DH_CONST -DWOLFSSL_SP_MOD_WORD_RP -DWOLFSSL_OLD_PRIME_CHECK -DWOLFSSL_SP_DIV_64 -DWOLFSSL_SP_DIV_WORD_HALF -DSP_HALF_SIZE=32 -DSP_HALF_MAX=4294967295U"
-fi
-
-AC_ARG_WITH([linux-source],
-    [AS_HELP_STRING([--with-linux-source=PATH],[PATH to root of Linux kernel build tree])],
-    [KERNEL_ROOT=$withval],
-    [KERNEL_ROOT=""])
-
-AC_ARG_WITH([linux-arch],
-    [AS_HELP_STRING([--with-linux-arch=arch],[built arch (SRCARCH) of Linux kernel build tree])],
-    [KERNEL_ARCH=$withval],
-    [KERNEL_ARCH=""])
-
-if test "x$ENABLED_LINUXKM" = "xyes"
-then
-    AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_LINUXKM"
-    ENABLED_NO_LIBRARY=yes
-
-    if test "$KERNEL_ROOT" = ""; then
-        AC_PATH_DEFAULT_KERNEL_SOURCE
-        KERNEL_ROOT="$DEFAULT_KERNEL_ROOT"
-    fi
-    AC_SUBST([KERNEL_ROOT])
-
-    if test "$KERNEL_ARCH" = ""; then
-        AC_DEFAULT_KERNEL_ARCH
-        KERNEL_ARCH="$DEFAULT_KERNEL_ARCH"
-    fi
-    AC_SUBST([KERNEL_ARCH])
-
-    if test "${KERNEL_ROOT}" = ""; then
-        AC_MSG_ERROR([Linux kernel source root not found -- supply with --with-linux-source=PATH.])
-    fi
-    if test "${KERNEL_ARCH}" = ""; then
-        AC_MSG_ERROR([Linux kernel target architecture for build tree ${KERNEL_ROOT} could not be determined.  Is target kernel configured?])
-    fi
-
-    AM_CFLAGS="$AM_CFLAGS -DNO_DEV_RANDOM -DNO_WRITEV -DNO_STDIO_FILESYSTEM -DWOLFSSL_NO_SOCK -DWOLFSSL_USER_IO"
-fi
-
-
-# Single Precision maths implementation
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-then
-    ENABLED_SP_DEFAULT=small
-else
-    ENABLED_SP_DEFAULT=no
-fi
-AC_ARG_ENABLE([sp],
-    [AS_HELP_STRING([--enable-sp],[Enable Single Precision maths implementation (default: disabled)])],
-    [ ENABLED_SP=$enableval ],
-    [ ENABLED_SP=$ENABLED_SP_DEFAULT ],
-    )
-
-
-# Single Precision maths exclusively (no fastmath)
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes" && test "$ENABLED_SP" != "no"
-then
-    ENABLED_SP_MATH_DEFAULT=yes
-else
-    ENABLED_SP_MATH_DEFAULT=no
-fi
-AC_ARG_ENABLE([sp-math],
-    [AS_HELP_STRING([--enable-sp-math],[Enable Single Precision math implementation only (default: disabled)])],
-    [ ENABLED_SP_MATH=$enableval ],
-    [ ENABLED_SP_MATH=$ENABLED_SP_MATH_DEFAULT ],
-    )
-
-
 # ALL FEATURES
 AC_ARG_ENABLE([all],
     [AS_HELP_STRING([--enable-all],[Enable all wolfSSL features, except SSLv3 (default: disabled)])],
@@ -314,7 +195,6 @@ then
     enable_webserver=yes
     enable_hc128=yes
     enable_rabbit=yes
-    enable_xchacha=yes
     enable_ocsp=yes
     enable_ocspstapling=yes
     enable_ocspstapling2=yes
@@ -349,161 +229,19 @@ then
     enable_indef=yes
     enable_enckeys=yes
     enable_hashflags=yes
-    enable_defaultdhparams=yes
-    enable_arc4=yes
-    enable_des3=yes
-    enable_nullcipher=yes
-    enable_blake2=yes
-    enable_blake2s=yes
-    enable_md2=yes
-    enable_md4=yes
-    enable_postauth=yes
-    enable_hrrcookie=yes
-    enable_cryptocb=yes
-    enable_fallback_scsv=yes
-    enable_anon=yes
-    enable_mcast=yes
-
-    # Enable DH const table speedups (eliminates `-lm` math lib dependency)
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_FFDHE_2048 -DHAVE_FFDHE_3072 -DFP_MAX_BITS=8192"
-
-    # Enable multiple attribute additions such as DC
-    AM_CFLAGS="-DWOLFSSL_MULTI_ATTRIB $AM_CFLAGS"
+    enable_dhdefaultparams=yes
 
     # Enable AES Decrypt, AES ECB, Alt Names, DER Load, Keep Certs, CRL IO with Timeout
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_AES_DECRYPT -DHAVE_AES_ECB -DWOLFSSL_ALT_NAMES -DWOLFSSL_DER_LOAD -DKEEP_OUR_CERT -DKEEP_PEER_CERT"
-
-    # Enable ECC Key Gen checks
-    AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_VALIDATE_ECC_KEYGEN"
-
-    if test "$ENABLED_LINUXKM_DEFAULTS" != "yes"
-    then
-        AM_CFLAGS="$AM_CFLAGS -DHAVE_CRL_IO -DHAVE_IO_TIMEOUT"
-    fi
-
-    if test "$ENABLED_SP_MATH" = "no"
-    then
-        # Enable ECC Import checks
-        AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_VALIDATE_ECC_IMPORT"
-    else
-        # sp-math is incompatible with opensslextra, ECC custom curves, and DSA:
-
-        enable_openssh=no
-        enable_opensslextra=no
-        enable_opensslall=no
-        enable_dsa=no
-        enable_ecccustcurves=no
-        enable_srp=no
-        enable_certservice=no
-        enable_jni=no
-        enable_lighty=no
-        enable_haproxy=no
-        enable_stunnel=no
-        enable_nginx=no
-        enable_apachehttpd=no
-        enable_openvpn=no
-        enable_asio=no
-        enable_libwebsockets=no
-        enable_qt=no
-    fi
-
-    if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-    then
-        enable_compkey=no
-    fi
-fi
-
-
-# ALL CRYPTO FEATURES
-AC_ARG_ENABLE([all-crypto],
-    [AS_HELP_STRING([--enable-all-crypto],[Enable all wolfcrypt algorithms (default: disabled)])],
-    [ ENABLED_ALL_CRYPT=$enableval ],
-    [ ENABLED_ALL_CRYPT=no ]
-    )
-if test "$ENABLED_ALL_CRYPT" = "yes"
-then
-    enable_atomicuser=yes
-    enable_pkcallbacks=yes
-    enable_aesgcm=yes
-    enable_aesccm=yes
-    enable_aesctr=yes
-    enable_aesofb=yes
-    enable_aescfb=yes
-    enable_camellia=yes
-    enable_ripemd=yes
-    enable_sha512=yes
-    enable_sha224=yes
-    enable_sha3=yes
-    enable_sessioncerts=yes
-    enable_keygen=yes
-    enable_certgen=yes
-    enable_certreq=yes
-    enable_certext=yes
-    enable_sep=yes
-    enable_hkdf=yes
-    enable_curve25519=yes
-    enable_curve448=yes
-    enable_ed448=yes
-    enable_ed25519=yes
-    enable_fpecc=yes
-    enable_eccencrypt=yes
-    enable_psk=yes
-    enable_idea=yes
-    enable_cmac=yes
-    enable_xts=yes
-    enable_hc128=yes
-    enable_rabbit=yes
-    enable_xchacha=yes
-    enable_ocsp=yes
-    enable_ocspstapling=yes
-    enable_ocspstapling2=yes
-    enable_crl=yes
-    enable_supportedcurves=yes
-    enable_tlsx=yes
-    enable_pkcs7=yes
-    enable_pwdbased=yes
-    enable_aeskeywrap=yes
-    enable_x963kdf=yes
-    enable_scrypt=yes
-    enable_indef=yes
-    enable_enckeys=yes
-    enable_hashflags=yes
-    enable_defaultdhparams=yes
-    enable_arc4=yes
-    enable_des3=yes
-    enable_nullcipher=yes
-    enable_blake2=yes
-    enable_blake2s=yes
-    enable_md2=yes
-    enable_md4=yes
-    enable_cryptocb=yes
-    enable_anon=yes
-
-    if test "$ENABLED_LINUXKM_DEFAULTS" != "yes"
-    then
-        enable_compkey=yes
-    fi
-
-    # Enable AES Decrypt, AES ECB, Alt Names, DER Load
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_AES_DECRYPT -DHAVE_AES_ECB -DWOLFSSL_ALT_NAMES -DWOLFSSL_DER_LOAD"
+    AM_CFLAGS="$AM_CFLAGS -DHAVE_AES_DECRYPT -DHAVE_AES_ECB -DWOLFSSL_ALT_NAMES -DWOLFSSL_DER_LOAD -DKEEP_OUR_CERT -DKEEP_PEER_CERT -DHAVE_CRL_IO -DHAVE_IO_TIMEOUT"
 
     # Enable DH const table speedups (eliminates `-lm` math lib dependency)
     AM_CFLAGS="$AM_CFLAGS -DHAVE_FFDHE_2048 -DHAVE_FFDHE_3072 -DFP_MAX_BITS=8192"
 
+    # Enable ECC Key Gen / Import checks
+    AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_VALIDATE_ECC_IMPORT -DWOLFSSL_VALIDATE_ECC_KEYGEN"
+
     # Enable multiple attribute additions such as DC
     AM_CFLAGS="-DWOLFSSL_MULTI_ATTRIB $AM_CFLAGS"
-
-    # Enable ECC Key Gen checks
-    AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_VALIDATE_ECC_KEYGEN"
-
-    if test "$ENABLED_SP_MATH" = "no"
-    then
-        enable_dsa=yes
-        enable_ecccustcurves=yes
-
-        # Enable ECC Import checks
-        AM_CFLAGS="$AM_CFLAGS -DWOLFSSL_VALIDATE_ECC_IMPORT"
-    fi
 fi
 
 
@@ -541,7 +279,6 @@ if test "$ENABLED_ASM" = "no"
 then
     AM_CFLAGS="$AM_CFLAGS -DTFM_NO_ASM -DWOLFSSL_NO_ASM"
 fi
-AC_SUBST([ENABLED_ASM])
 
 
 # SINGLE THREADED
@@ -1300,14 +1037,8 @@ then
     *)
         case $host_cpu in
         *aarch64*)
-            case $host_os in
-            *darwin*)
-                ;;
-            *)
-                # +crypto needed for hardware acceleration
-                AM_CPPFLAGS="$AM_CPPFLAGS -mcpu=generic+crypto"
-                ;;
-            esac
+            # +crypto needed for hardware acceleration
+            AM_CPPFLAGS="$AM_CPPFLAGS -mcpu=generic+crypto"
             # Include options.h
             AM_CCASFLAGS="$AM_CCASFLAGS -DEXTERNAL_OPTS_OPENVPN"
 
@@ -1589,7 +1320,7 @@ fi
 AC_ARG_ENABLE([blake2s],
     [AS_HELP_STRING([--enable-blake2s],[Enable wolfSSL BLAKE2s support (default: disabled)])],
     [ ENABLED_BLAKE2S=$enableval ],
-    [ ENABLED_BLAKE2S=no ]
+    [ ENABLED_BLAKE2S=Sno ]
     )
 
 if test "$ENABLED_BLAKE2S" = "yes"
@@ -2186,34 +1917,11 @@ AC_ARG_ENABLE([stacksize],
     [ ENABLED_STACKSIZE=no ]
     )
 
-# verbose, per-test stack size info, currently only implemented in testwolfcrypt
-AC_ARG_ENABLE([stacksize-verbose],
-    [AS_HELP_STRING([--enable-stacksize-verbose],[Enable verbose stack size info on testwolfcrypt (default: disabled)])],
-    [ ENABLED_STACKSIZE_VERBOSE=$enableval ],
-    [ ENABLED_STACKSIZE_VERBOSE=no ]
-    )
-
-if test "$ENABLED_STACKSIZE_VERBOSE" = "yes"
-then
-    ENABLED_STACKSIZE=yes
-fi
-
 if test "$ENABLED_STACKSIZE" = "yes"
 then
     AC_CHECK_FUNC([posix_memalign], [], [AC_MSG_ERROR(stacksize needs posix_memalign)])
-    AC_CHECK_DECL([posix_memalign], [], [AC_MSG_ERROR(stacksize needs posix_memalign)])
     AC_CHECK_FUNC([pthread_attr_setstack], [], AC_CHECK_LIB([pthread],[pthread_attr_setstack]))
-    AC_CHECK_DECL([pthread_attr_setstack], [], [AC_MSG_ERROR(stacksize needs pthread_attr_setstack)], [[#include <pthread.h>]])
     AM_CFLAGS="$AM_CFLAGS -DHAVE_STACK_SIZE"
-fi
-
-if test "$ENABLED_STACKSIZE_VERBOSE" = "yes"
-then
-    if test "$thread_ls_on" != "yes"
-    then
-        AC_MSG_ERROR(stacksize-verbose needs thread-local storage.)
-    fi
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_STACK_SIZE_VERBOSE"
 fi
 
 
@@ -2807,19 +2515,6 @@ else
 fi
 
 
-# RC2
-AC_ARG_ENABLE([rc2],
-    [AS_HELP_STRING([--enable-rc2],[Enable RC2 encryption (default: disabled)])],
-    [ ENABLED_RC2=$enableval ],
-    [ ENABLED_RC2=no ]
-    )
-
-if test "$ENABLED_RC2" = "yes"
-then
-    AM_CFLAGS="$AM_CFLAGS -DWC_RC2"
-fi
-
-
 # FIPS
 AS_CASE([$FIPS_VERSION],
     ["v2"],[
@@ -3037,23 +2732,6 @@ then
 fi
 
 
-# XCHACHA
-AC_ARG_ENABLE([xchacha],
-    [AS_HELP_STRING([--enable-xchacha],[Enable XCHACHA (default: disabled).])],
-    [ ENABLED_XCHACHA=$enableval ],
-    [ ENABLED_XCHACHA=no]
-    )
-
-if test "$ENABLED_XCHACHA" = "yes"
-then
-    if test "$ENABLED_CHACHA" = "no"
-    then
-        AC_MSG_ERROR([XChaCha (--enable-xchacha) depends on ChaCha (--enable-chacha)])
-    fi
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_XCHACHA"
-fi
-
-
 # Hash DRBG
 AC_ARG_ENABLE([hashdrbg],
     [AS_HELP_STRING([--enable-hashdrbg],[Enable Hash DRBG support (default: enabled)])],
@@ -3077,16 +2755,10 @@ fi
 
 
 # Filesystem Build
-if test "$ENABLED_LINUXKM" = "yes"
-then
-    ENABLED_FILESYSTEM_DEFAULT=no
-else
-    ENABLED_FILESYSTEM_DEFAULT=yes
-fi
 AC_ARG_ENABLE([filesystem],
     [AS_HELP_STRING([--enable-filesystem],[Enable Filesystem support (default: enabled)])],
     [ ENABLED_FILESYSTEM=$enableval ],
-    [ ENABLED_FILESYSTEM=$ENABLED_FILESYSTEM_DEFAULT ]
+    [ ENABLED_FILESYSTEM=yes ]
     )
 
 if test "$ENABLED_FILESYSTEM" = "no"
@@ -3094,7 +2766,7 @@ then
     AM_CFLAGS="$AM_CFLAGS -DNO_FILESYSTEM"
 else
     # turn off filesystem if leanpsk on
-    if test "$ENABLED_LEANPSK" = "yes" || test "$ENABLED_LINUXKM" = "yes"
+    if test "$ENABLED_LEANPSK" = "yes"
     then
         AM_CFLAGS="$AM_CFLAGS -DNO_FILESYSTEM"
         ENABLED_FILESYSTEM=no
@@ -3348,7 +3020,7 @@ then
         AC_MSG_ERROR([cannot enable qsh without NTRU])
     fi
 
-    AM_CFLAGS="$AM_CFLAGS -DHAVE_QSH -DWOLFSSL_STATIC_DH -DWOLFSSL_STATIC_PSK"
+    AM_CFLAGS="$AM_CFLAGS -DHAVE_QSH"
 fi
 
 
@@ -3688,17 +3360,12 @@ then
 fi
 
 
+
 # Small Stack - Cache on object
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-then
-    ENABLED_SMALL_STACK_CACHE_DEFAULT=yes
-else
-    ENABLED_SMALL_STACK_CACHE_DEFAULT=no
-fi
 AC_ARG_ENABLE([smallstackcache],
     [AS_HELP_STRING([--enable-smallstackcache],[Enable Small Stack Usage Caching (default: disabled)])],
     [ ENABLED_SMALL_STACK_CACHE=$enableval ],
-    [ ENABLED_SMALL_STACK_CACHE=$ENABLED_SMALL_STACK_CACHE_DEFAULT ]
+    [ ENABLED_SMALL_STACK_CACHE=no ]
     )
 
 if test "x$ENABLED_SMALL_STACK_CACHE" = "xyes"
@@ -3707,16 +3374,10 @@ then
 fi
 
 # Small Stack
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-then
-    ENABLED_SMALL_STACK_DEFAULT=yes
-else
-    ENABLED_SMALL_STACK_DEFAULT=no
-fi
 AC_ARG_ENABLE([smallstack],
     [AS_HELP_STRING([--enable-smallstack],[Enable Small Stack Usage (default: disabled)])],
     [ ENABLED_SMALL_STACK=$enableval ],
-    [ ENABLED_SMALL_STACK=$ENABLED_SMALL_STACK_DEFAULT ]
+    [ ENABLED_SMALL_STACK=no ]
     )
 
 if test "x$ENABLED_SMALL_STACK_CACHE" = "xyes"
@@ -4347,10 +4008,6 @@ if test "$host_cpu" = "x86_64" || test "$host_cpu" = "aarch64"
 then
     FASTMATH_DEFAULT=yes
 fi
-if test "$ENABLED_LINUXKM_DEFAULTS" = "yes"
-then
-    FASTMATH_DEFAULT=no
-fi
 if test "$ENABLED_SP_MATH" = "yes"
 then
     FASTMATH_DEFAULT=no
@@ -4408,16 +4065,10 @@ fi
 
 
 # Enable Examples, used to disable examples
-if test "$ENABLED_LINUXKM" = "yes"
-then
-    ENABLED_EXAMPLES_DEFAULT=no
-else
-    ENABLED_EXAMPLES_DEFAULT=yes
-fi
 AC_ARG_ENABLE([examples],
     [AS_HELP_STRING([--enable-examples],[Enable Examples  (default: enabled)])],
     [ ENABLED_EXAMPLES=$enableval ],
-    [ ENABLED_EXAMPLES=$ENABLED_EXAMPLES_DEFAULT ]
+    [ ENABLED_EXAMPLES=yes ]
     )
 
 AS_IF([test "x$ENABLED_FILESYSTEM" = "xno"], [ENABLED_EXAMPLES="no"])
@@ -4426,18 +4077,11 @@ AS_IF([test "x$ENABLED_CRYPTONLY" = "xyes"], [ENABLED_EXAMPLES="no"])
 
 
 # Enable wolfCrypt test and benchmark
-if test "$ENABLED_LINUXKM" = "yes"
-then
-    ENABLED_CRYPT_TESTS_DEFAULT=no
-else
-    ENABLED_CRYPT_TESTS_DEFAULT=yes
-fi
 AC_ARG_ENABLE([crypttests],
     [AS_HELP_STRING([--enable-crypttests],[Enable Crypt Bench/Test  (default: enabled)])],
     [ ENABLED_CRYPT_TESTS=$enableval ],
-    [ ENABLED_CRYPT_TESTS=$ENABLED_CRYPT_TESTS_DEFAULT ]
+    [ ENABLED_CRYPT_TESTS=yes ]
     )
-AC_SUBST([ENABLED_CRYPT_TESTS])
 
 
 # LIBZ
@@ -4668,6 +4312,13 @@ AS_IF([test "x$ENABLED_INTEL_QA" = "xyes" || test "x$ENABLED_INTEL_QA_SYNC" = "x
      CPPFLAGS="$OLD_CPPFLAGS"
 ])
 
+
+# Single Precision maths implementation
+AC_ARG_ENABLE([sp],
+    [AS_HELP_STRING([--enable-sp],[Enable Single Precision maths implementation (default: disabled)])],
+    [ ENABLED_SP=$enableval ],
+    [ ENABLED_SP=no ],
+    )
 
 ENABLED_SP_RSA=no
 ENABLED_SP_DH=no
@@ -4915,6 +4566,11 @@ if test "$ENABLED_SP_ASM" = "yes"; then
   esac
 fi
 
+AC_ARG_ENABLE([sp-math],
+    [AS_HELP_STRING([--enable-sp-math],[Enable Single Precision math implementation only (default: disabled)])],
+    [ ENABLED_SP_MATH=$enableval ],
+    [ ENABLED_SP_MATH=no ],
+    )
 if test "$ENABLED_SP_MATH" = "yes"; then
     if test "$ENABLED_SP" = "no"; then
         AC_MSG_ERROR([Must have SP enabled: --enable-sp])
@@ -5543,7 +5199,13 @@ AS_IF([test "x$ENABLED_NULL_CIPHER" = "xno" && \
 # This will let you know if you enabled wolfSSH but have any of the prereqs
 # disabled. Some of these options, disabling them adds things to the FLAGS and
 # you need to check and add items in two places depending on the option.
-AS_IF([test "x$ENABLED_WOLFSSH" = "xyes"],[AS_IF([test "x$ENABLED_WPAS" = "xno"],[AM_CFLAGS="-DWOLFSSL_PUBLIC_MP $AM_CFLAGS"])])
+AS_IF([test "x$ENABLED_WOLFSSH" = "xyes"],
+      [AS_IF([test "x$ENABLED_WPAS" = "xno"],[AM_CFLAGS="-DWOLFSSL_PUBLIC_MP $AM_CFLAGS"])
+       AS_IF([test "x$ENABLED_AESGCM" = "xno"],[AC_MSG_ERROR([cannot enable wolfSSH with AES-GCM disabled])])
+       AS_IF([test "x$ENABLED_ECC" = "xno"],[AC_MSG_ERROR([cannot enable wolfSSH with ECC disabled])])
+       AS_IF([test "x$ENABLED_SHA" = "xno"],[AC_MSG_ERROR([cannot enable wolfSSH with SHA-1 disabled])])
+       AS_IF([test "x$ENABLED_SHA512" = "xno"],[AC_MSG_ERROR([cannot enable wolfSSH with SHA-512/384 disabled])])
+      ])
 
 if test "x$ENABLED_OPENSSLCOEXIST" = "xyes"; then
     if test "x$ENABLED_OPENSSLALL" = "xyes"; then
@@ -5614,78 +5276,6 @@ case $host_os in
         fi ;;
 esac
 
-if test "x$ENABLED_LINUXKM" = "xyes"; then
-    AX_SIMD_CC_COMPILER_FLAGS
-    AC_SUBST([CFLAGS_FPU_DISABLE])
-    AC_SUBST([CFLAGS_FPU_ENABLE])
-    AC_SUBST([CFLAGS_SIMD_DISABLE])
-    AC_SUBST([CFLAGS_SIMD_ENABLE])
-    AC_SUBST([CFLAGS_AUTO_VECTORIZE_DISABLE])
-    AC_SUBST([CFLAGS_AUTO_VECTORIZE_ENABLE])
-    AC_SUBST([ASFLAGS_FPU_DISABLE_SIMD_ENABLE])
-    AC_SUBST([ASFLAGS_FPU_ENABLE_SIMD_DISABLE])
-    AC_SUBST([ASFLAGS_FPUSIMD_DISABLE])
-    AC_SUBST([ASFLAGS_FPUSIMD_ENABLE])
-
-    if test "$ENABLED_FILESYSTEM" = "yes"; then
-        AC_MSG_ERROR([--enable-filesystem is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_AFALG" = "yes"; then
-        AC_MSG_ERROR([--enable-afalg is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_DEVCRYPTO" = "yes"; then
-        AC_MSG_ERROR([--enable-devcrypto is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_PKCS11" = "yes"; then
-        AC_MSG_ERROR([--enable-pkcs11 is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_JNI" = "yes"; then
-        AC_MSG_ERROR([--enable-jni is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_16BIT" = "yes"; then
-        AC_MSG_ERROR([--enable-16bit is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_SINGLETHREADED" = "yes"; then
-        AC_MSG_ERROR([--enable-singlethreaded is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_VALGRIND" = "yes"; then
-        AC_MSG_ERROR([--enable-valgrind is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_FASTMATH" = "yes"; then
-        AC_MSG_ERROR([--enable-fastmath is incompatible with --enable-linuxkm (exceeds stack limit).])
-    fi
-    if test "$ENABLED_FAST_RSA" = "yes"; then
-        AC_MSG_ERROR([--enable-fastrsa is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_LIBZ_RSA" = "yes"; then
-        AC_MSG_ERROR([--with-libz is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_IOPOOL" = "yes"; then
-        AC_MSG_ERROR([--enable-iopool is incompatible with --enable-linuxkm.])
-    fi
-    #FIPS currently depends on thread-local storage
-    if test "$ENABLED_FIPS" = "yes"; then
-        AC_MSG_ERROR([--enable-fips is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_EXAMPLES" = "yes"; then
-        AC_MSG_ERROR([--enable-examples is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_SMALL_STACK" != "yes"; then
-        AC_MSG_ERROR([--enable-smallstack is required for --enable-linuxkm.])
-    fi
-    if test "$ENABLED_SP_MATH" = "no"; then
-        AC_MSG_ERROR([--enable-sp-math is required for --enable-linuxkm.])
-    fi
-    if test "$ENABLED_STACKSIZE" = "yes"; then
-        AC_MSG_ERROR([--enable-stacksize is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_STACKLOG" = "yes"; then
-        AC_MSG_ERROR([--enable-stacklog is incompatible with --enable-linuxkm.])
-    fi
-    if test "$ENABLED_COMPKEY" = "yes"; then
-        AC_MSG_ERROR([--enable-compkey is incompatible with --enable-linuxkm.])
-    fi
-fi
 
 # The following AM_CONDITIONAL statements set flags for use in the Makefiles.
 # Some of these affect build targets and objects, some trigger different
@@ -5751,14 +5341,12 @@ AM_CONDITIONAL([BUILD_FIPS],[test "x$ENABLED_FIPS" = "xyes"])
 AM_CONDITIONAL([BUILD_FIPS_V1],[test "x$FIPS_VERSION" = "xv1"])
 AM_CONDITIONAL([BUILD_FIPS_V2],[test "x$FIPS_VERSION" = "xv2"])
 AM_CONDITIONAL([BUILD_FIPS_RAND],[test "x$FIPS_VERSION" = "xrand"])
-AM_CONDITIONAL([BUILD_FIPS_READY],[test "x$FIPS_READY" = "xyes"])
 AM_CONDITIONAL([BUILD_CMAC],[test "x$ENABLED_CMAC" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_SELFTEST],[test "x$ENABLED_SELFTEST" = "xyes"])
 AM_CONDITIONAL([BUILD_SHA224],[test "x$ENABLED_SHA224" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_SHA3],[test "x$ENABLED_SHA3" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_POLY1305],[test "x$ENABLED_POLY1305" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_CHACHA],[test "x$ENABLED_CHACHA" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
-AM_CONDITIONAL([BUILD_XCHACHA],[test "x$ENABLED_XCHACHA" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_INLINE],[test "x$ENABLED_INLINE" = "xyes"])
 AM_CONDITIONAL([BUILD_OCSP],[test "x$ENABLED_OCSP" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_OCSP_STAPLING],[test "x$ENABLED_CERTIFICATE_STATUS_REQUEST" = "xyes"])
@@ -5809,10 +5397,6 @@ AM_CONDITIONAL([BUILD_PKI],[test "x$ENABLED_PKI" = "xyes"])
 AM_CONDITIONAL([BUILD_DES3],[test "x$ENABLED_DES3" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_PKCS7],[test "x$ENABLED_PKCS7" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
 AM_CONDITIONAL([BUILD_HASHFLAGS],[test "x$ENABLED_HASHFLAGS" = "xyes"])
-AM_CONDITIONAL([BUILD_LINUXKM],[test "$ENABLED_LINUXKM" = "yes"])
-AM_CONDITIONAL([BUILD_NO_LIBRARY],[test "$ENABLED_NO_LIBRARY" = "yes"])
-AM_CONDITIONAL([BUILD_DEBUG],[test "$ax_enable_debug" = "yes" || test "$ENABLED_STACKSIZE" = "yes"])
-AM_CONDITIONAL([BUILD_RC2],[test "x$ENABLED_RC2" = "xyes"])
 
 
 CREATE_HEX_VERSION
@@ -5944,21 +5528,6 @@ echo "   * C++ Flags:                  $CXXFLAGS"
 echo "   * CPP Flags:                  $CPPFLAGS"
 echo "   * CCAS Flags:                 $CCASFLAGS"
 echo "   * LIB Flags:                  $LIB"
-
-test "$ENABLED_LINUXKM" = "yes" && \
-echo "   * Linux Kernel Build Root:    $KERNEL_ROOT" && \
-echo "   * Linux Kernel Build Arch:    $KERNEL_ARCH" && \
-echo "   * fpu disable C flags:        $CFLAGS_FPU_DISABLE" && \
-echo "   * fpu enable C flags:         $CFLAGS_FPU_ENABLE" && \
-echo "   * SIMD disable C flags:       $CFLAGS_SIMD_DISABLE" && \
-echo "   * SIMD enable C flags:        $CFLAGS_SIMD_ENABLE" && \
-echo "   * No-auto-vectorize C flags:  $CFLAGS_AUTO_VECTORIZE_DISABLE" && \
-echo "   * Auto-vectorize C flags:     $CFLAGS_AUTO_VECTORIZE_ENABLE" && \
-echo "   * SIMD enable as flags:       $ASFLAGS_FPU_DISABLE_SIMD_ENABLE" && \
-echo "   * FPU enable as flags:        $ASFLAGS_FPU_ENABLE_SIMD_DISABLE" && \
-echo "   * SIMD+FPU disable as flags:  $ASFLAGS_FPUSIMD_DISABLE" && \
-
-echo "   * SIMD+FPU enable as flags:   $ASFLAGS_FPUSIMD_ENABLE"
 echo "   * Debug enabled:              $ax_enable_debug"
 echo "   * Coverage enabled:           $ax_enable_coverage"
 echo "   * Warnings as failure:        $ac_cv_warnings_as_errors"
@@ -5989,8 +5558,6 @@ echo "   * DES3:                       $ENABLED_DES3"
 echo "   * IDEA:                       $ENABLED_IDEA"
 echo "   * Camellia:                   $ENABLED_CAMELLIA"
 echo "   * NULL Cipher:                $ENABLED_NULL_CIPHER"
-echo "   * MD2:                        $ENABLED_MD2"
-echo "   * MD4:                        $ENABLED_MD4"
 echo "   * MD5:                        $ENABLED_MD5"
 echo "   * RIPEMD:                     $ENABLED_RIPEMD"
 echo "   * SHA:                        $ENABLED_SHA"
@@ -6000,7 +5567,6 @@ echo "   * SHA-512:                    $ENABLED_SHA512"
 echo "   * SHA3:                       $ENABLED_SHA3"
 echo "   * SHAKE256:                   $ENABLED_SHAKE256"
 echo "   * BLAKE2:                     $ENABLED_BLAKE2"
-echo "   * BLAKE2S:                    $ENABLED_BLAKE2S"
 echo "   * CMAC:                       $ENABLED_CMAC"
 echo "   * keygen:                     $ENABLED_KEYGEN"
 echo "   * certgen:                    $ENABLED_CERTGEN"
@@ -6010,7 +5576,6 @@ echo "   * certgencache:               $ENABLED_certgencache"
 echo "   * HC-128:                     $ENABLED_HC128"
 echo "   * RABBIT:                     $ENABLED_RABBIT"
 echo "   * CHACHA:                     $ENABLED_CHACHA"
-echo "   * XCHACHA:                    $ENABLED_XCHACHA"
 echo "   * Hash DRBG:                  $ENABLED_HASHDRBG"
 echo "   * PWDBASED:                   $ENABLED_PWDBASED"
 echo "   * scrypt:                     $ENABLED_SCRYPT"
@@ -6093,12 +5658,9 @@ echo "   * wolfSSH                     $ENABLED_WOLFSSH"
 echo "   * wolfSCEP                    $ENABLED_WOLFSCEP"
 echo "   * Secure Remote Password      $ENABLED_SRP"
 echo "   * Small Stack:                $ENABLED_SMALL_STACK"
-echo "   * Linux Kernel Module:        $ENABLED_LINUXKM"
 echo "   * valgrind unit tests:        $ENABLED_VALGRIND"
 echo "   * LIBZ:                       $ENABLED_LIBZ"
 echo "   * Examples:                   $ENABLED_EXAMPLES"
-echo "   * Crypt tests:                $ENABLED_CRYPT_TESTS"
-echo "   * Stack sizes in tests:       $ENABLED_STACKSIZE"
 echo "   * User Crypto:                $ENABLED_USER_CRYPTO"
 echo "   * Fast RSA:                   $ENABLED_FAST_RSA"
 echo "   * Single Precision:           $ENABLED_SP"
@@ -6146,3 +5708,4 @@ if test "$MINGW_LIB_WARNING" = "yes"
 then
     AC_MSG_WARN([Building with shared and static library at the same time on this system may cause export/import problems when using non contemporary GNU tools.])
 fi
+
