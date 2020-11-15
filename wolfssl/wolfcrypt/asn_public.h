@@ -139,7 +139,8 @@ enum Ctc_SigType {
     CTC_SHA512wRSA   = 657,
     CTC_SHA512wECDSA = 526,
     CTC_ED25519      = 256,
-    CTC_ED448        = 257
+    CTC_ED448        = 257,
+    CTC_XMSS         = 258
 };
 
 enum Ctc_Encoding {

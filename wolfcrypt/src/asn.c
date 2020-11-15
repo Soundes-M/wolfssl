@@ -1519,6 +1519,10 @@ static word32 SetBitString16Bit(word16 val, byte* output)
 #ifdef HAVE_ED448
     static const byte sigEd448Oid[] = {43, 101, 113};
 #endif /* HAVE_ED448 */
+#ifdef HAVE_XMSS
+    static const byte sigXMSSid[] = {42, 134, 72, 206, 61, 4, 3, 5};
+#endif /* HAVE_XMSS */
+
 
 /* keyType */
 #ifndef NO_DSA
@@ -1839,6 +1843,12 @@ const byte* OidFromId(word32 id, word32 type, word32* oidSz)
                 case CTC_ED25519:
                     oid = sigEd25519Oid;
                     *oidSz = sizeof(sigEd25519Oid);
+                    break;
+                #endif
+                 #ifdef HAVE_XMSS
+                    case CTC_XMSS:
+                    oid = sigXMSSid;
+                    *oidSz = sizeof(sigXMSSid);
                     break;
                 #endif
                 #ifdef HAVE_ED448
@@ -6839,6 +6849,9 @@ word32 SetAlgoID(int algoOID, byte* output, int type, int curveSz)
     byte   seqArray[MAX_SEQ_SZ + 1];  /* add object_id to end */
     int    length = 0;
 
+
+    #ifndef HAVE_XMSS  
+        
     tagSz = (type == oidHashType || 
              (type == oidSigType
         #ifdef HAVE_ECC
@@ -6849,20 +6862,21 @@ word32 SetAlgoID(int algoOID, byte* output, int type, int curveSz)
         #endif
         #ifdef HAVE_ED448
               && algoOID != ED448k
-        #endif
-         #ifdef HAVE_XMSS
-              && algoOID != XMSSk
-        #endif
+        #endif 
               ) ||
              (type == oidKeyType && algoOID == RSAk)) ? 2 : 0;
-
+ 
     algoName = OidFromId(algoOID, type, &algoSz);
-
+    #else
+    tagSz = 2;
+    type = 1;
+    algoName = OidFromId(algoOID, type, &algoSz);
+    #endif 
     if (algoName == NULL) {
         WOLFSSL_MSG("Unknown Algorithm");
         return 0;
     }
-
+    
     idSz  = SetObjectId(algoSz, ID_Length);
     seqSz = SetSequence(idSz + algoSz + tagSz + curveSz, seqArray);
 
@@ -13066,9 +13080,9 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
 
     /* signature algo */
     der->sigAlgoSz = SetAlgoID(cert->sigType, der->sigAlgo, oidSigType, 0);  
-    if (der->sigAlgoSz <= 0)
+    if (der->sigAlgoSz <= 0)  
         return ALGO_ID_E;
-
+    
     /* public key */
 
 #ifndef NO_RSA
@@ -13431,7 +13445,7 @@ static int WriteCertBody(DerCert* der, byte* buf)
     XMEMCPY(buf + idx, der->subject, der->subjectSz);
     idx += der->subjectSz;
     /* public key */
-    //XMEMCPY(buf + idx, der->publicKey, der->publicKeySz);
+    XMEMCPY(buf + idx, der->publicKey, der->publicKeySz);
     idx += der->publicKeySz;
     if (der->extensionsSz) {
         /* extensions */
