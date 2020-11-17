@@ -13591,23 +13591,23 @@ static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
 {
     byte seq[MAX_SEQ_SZ];
     int  idx = bodySz, seqSz;
-
+    
     /* algo */
     idx += SetAlgoID(sigAlgoType, buf ? buf + idx : NULL, oidSigType, 0);
+     
     /* bit string */
     idx += SetBitString(sigSz, 0, buf ? buf + idx : NULL);
     /* signature */
-    if (buf)
-        XMEMCPY(buf + idx, sig, sigSz);
-    idx += sigSz;
 
+    if (buf)
+       XMEMCPY(buf + idx, sig, sigSz); 
+    idx += sigSz; 
     /* make room for overall header */
     seqSz = SetSequence(idx, seq);
     if (buf) {
         XMEMMOVE(buf + seqSz, buf, idx);
         XMEMCPY(buf, seq, seqSz);
-    }
-
+    } 
     return idx + seqSz;
 }
 
@@ -14203,32 +14203,32 @@ int wc_SignCert_ex(int requestSz, int sType, byte* buf, word32 buffSz,
 
 #define XMSS_MLEN 32
 
-int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey)
+int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, unsigned char *XMSSKey)
 {  
     xmss_params params;
     uint32_t oid;
-    xmss_str_to_oid(&oid,"XMSSMT-SHA2_20/2_256");
+    xmss_str_to_oid(&oid,"XMSS-SHA2_10_256"); //XMSS using SHA2_256 and the tree high is 10 This may be changed later 
     xmss_parse_oid(&params, oid);
     int sigSz = 0; 
-    //unsigned long long smlen;
+     
+    unsigned long long smlen;
     // This should be changed later 
-    unsigned char *sm = malloc(params.sig_bytes + XMSS_MLEN);
-
-    // buf bytes and contains the XMSS signature
-    // XMSS_sign signs buff of BuffSz size with an XMSSKey , the final signature is sm (To be checked) 
-    xmss_sign(XMSSKey, sm, &buffSz, buf, XMSS_MLEN);
+    unsigned char *sm = malloc(params.sig_bytes + XMSS_MLEN); 
     
-   
+    // buf bytes and contains the XMSS signature
+    // XMSS_sign signs buff of BuffSz size with an XMSSKey , the final signature is sm (To be checked)  
+    xmss_sign(XMSSKey, sm, &smlen  , buf, buffSz);    
+    sigSz = sizeof(sm);
+    printf("size of the signature %d \n",sigSz);
     if (sigSz >= 0) {
         if (requestSz + MAX_SEQ_SZ * 2 + sigSz > (int)buffSz)
             sigSz = BUFFER_E;
         else
-            sigSz = AddSignature(buf, requestSz, sm, sigSz,
+            sigSz = AddSignature(buf, requestSz, (byte*)sm, sigSz,
                                  sType);
+            
     }
-
-    
-
+  
     return sigSz;
 
 
@@ -14270,10 +14270,10 @@ int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert)
   
 //export the XMSS public key
 int SetXMSSPublicKey(byte* output, byte* XMSSKey, int XMSSSz)
-{ 
+{  
     byte bitString[1 + MAX_LENGTH_SZ + 1];
     int  idx; 
-    
+    XMSSSz = 68; //TODO this hsould be changed 
     int  bitStringSz; 
     byte algo[MAX_ALGO_SZ];
     byte pub[XMSSSz];
@@ -14288,12 +14288,22 @@ int SetXMSSPublicKey(byte* output, byte* XMSSKey, int XMSSSz)
 
     //TODO: improve the return values
     //TODO: check the cast from unsigned char to bytes
-
-    algoSz  = SetAlgoID(XMSSk, algo, oidKeyType, XMSSSz);
+    
+#ifdef WOLFSSL_SMALL_STACK
+        algo = (byte*)XMALLOC(MAX_ALGO_SZ, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+        if (algo == NULL) {
+            XFREE(pub, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+            return MEMORY_E;
+        }
+#endif
+   
+    algoSz  = SetAlgoID(XMSSk, algo, oidKeyType, 0);
 
     bitStringSz = SetBitString(XMSSSz, 0, bitString);
 
     idx = SetSequence(XMSSSz +  bitStringSz + algoSz, output);
+ 
+
     /* algo */
     if (output)
         XMEMCPY(output + idx, algo, algoSz);

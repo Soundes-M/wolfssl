@@ -197,15 +197,14 @@ int xmssmt_core_sign(const xmss_params *params,
     unsigned char idx_bytes_32[32];
     unsigned int i;
     uint32_t idx_leaf;
-
+    
     uint32_t ots_addr[8] = {0};
     set_type(ots_addr, XMSS_ADDR_TYPE_OTS);
 
     /* Already put the message in the right place, to make it easier to prepend
      * things when computing the hash over the message. */
     memcpy(sm + params->sig_bytes, m, mlen);
-    *smlen = params->sig_bytes + mlen;
-
+    *smlen = params->sig_bytes + mlen; 
     /* Read and use the current index from the secret key. */
     idx = (unsigned long)bytes_to_ull(sk, params->index_bytes);
     memcpy(sm, sk, params->index_bytes);
@@ -246,6 +245,5 @@ int xmssmt_core_sign(const xmss_params *params,
         treehash(params, root, sm, sk_seed, pub_seed, idx_leaf, ots_addr);
         sm += params->tree_height*params->n;
     }
-
     return 0;
 }

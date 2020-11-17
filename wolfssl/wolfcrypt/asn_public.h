@@ -397,7 +397,7 @@ WOLFSSL_API int wc_GetCertDates(Cert* cert, struct tm* before,
 
 #ifdef HAVE_XMSS
 WOLFSSL_API int SetXMSSPublicKey(byte* buf, byte* XMSSKey, int outLen);
-WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, byte *XMSSKey);
+WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, unsigned char *XMSSKey);
 WOLFSSL_API int wc_MakeXMSSCert(Cert*, byte* derBuffer, word32 derSz,
                                        byte* XMSSKey, int XMSSSz, 
                                        WC_RNG*);
