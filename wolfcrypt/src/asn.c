@@ -14218,8 +14218,8 @@ int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buff
     // buf bytes and contains the XMSS signature
     // XMSS_sign signs buff of BuffSz size with an XMSSKey , the final signature is sm (To be checked)  
     xmss_sign(XMSSKey, sm, &smlen  , buf, buffSz);    
-    sigSz = sizeof(sm);
-    printf("size of the signature %d \n",sigSz);
+    sigSz = params.sig_bytes + XMSS_MLEN;
+    
     if (sigSz >= 0) {
         if (requestSz + MAX_SEQ_SZ * 2 + sigSz > (int)buffSz)
             sigSz = BUFFER_E;
@@ -14252,6 +14252,7 @@ int wc_MakeSelfCert(Cert* cert, byte* buf, word32 buffSz,
     return wc_SignCert(cert->bodySz, cert->sigType,
                        buf, buffSz, key, NULL, rng);
 }
+ 
  
 
 #ifdef WOLFSSL_CERT_EXT

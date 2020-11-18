@@ -130,8 +130,8 @@ int main(void) {
     wc_InitCert(&newCert);
 
     strncpy(newCert.subject.country, "DE", CTC_NAME_SIZE);
-    strncpy(newCert.subject.state, "Berlin", CTC_NAME_SIZE);
-    strncpy(newCert.subject.locality, "SecT", CTC_NAME_SIZE);
+    strncpy(newCert.subject.state, "Germany", CTC_NAME_SIZE);
+    strncpy(newCert.subject.locality, "Berlin", CTC_NAME_SIZE);
     strncpy(newCert.subject.org, "TU Berlin", CTC_NAME_SIZE);
     strncpy(newCert.subject.unit, "SecT", CTC_NAME_SIZE);
     strncpy(newCert.subject.commonName, "www.TuBerlin.com", CTC_NAME_SIZE);
@@ -142,7 +142,7 @@ int main(void) {
     ret = wc_SetIssuerBuffer(&newCert, derBuf, derBufSz);
     if (ret != 0) goto fail; 
  
-    ret = wc_MakeXMSSCert(&newCert, derBuf, FOURK_SZ,(byte*) pk, XMSS_OID_LEN + params.sk_bytes, &rng); //xmss certificate
+    ret = wc_MakeXMSSCert(&newCert, derBuf, FOURK_SZ,(byte*) pk, XMSS_OID_LEN + params.pk_bytes, &rng); //xmss certificate
     //ret = wc_MakeCert(&newCert, derBuf, FOURK_SZ, NULL, &newKey, &rng); //ecc certificate
  
     if (ret < 0) goto fail;
@@ -161,8 +161,7 @@ int main(void) {
 /* END */
 /*---------------------------------------------------------------------------*/
  
-
-
+ 
 /*---------------------------------------------------------------------------*/
 /* Print XMSS certificate                                                    */
 /*---------------------------------------------------------------------------*/
@@ -174,17 +173,33 @@ if(newCert.isCA == 0)
 	printf("Certificate CA: No\n" );
 else
 printf("Certificate CA: Yes\n" );
-printf("Validity days: %d\n",  newCert.daysValid );
-
-
-
-
+printf("Validity days: %d\n",  newCert.daysValid ); 
 
 printf("**********************Certificate end************************ \n" );
 /*---------------------------------------------------------------------------*/
 /* END                                                                       */
 /*---------------------------------------------------------------------------*/
  
+
+/*---------------------------------------------------------------------------*/
+/* write the new cert to file in der format */
+/*---------------------------------------------------------------------------*/
+    printf("Writing newly generated certificate to file \"%s\"\n",
+                                                                 newCertOutput);
+    file = fopen(newCertOutput, "wb");
+    if (!file) {
+        printf("failed to open file: %s\n", newCertOutput);
+        goto fail;
+    }
+
+    ret = (int) fwrite(derBuf, 1, derBufSz, file);
+    fclose(file);
+    printf("Successfully output %d bytes\n", ret);
+/*---------------------------------------------------------------------------*/
+/* END */
+/*---------------------------------------------------------------------------*/
+
+
     goto success;
 
 fail:
