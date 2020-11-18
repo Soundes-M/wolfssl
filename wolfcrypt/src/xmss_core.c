@@ -160,7 +160,7 @@ int xmssmt_core_seed_keypair(const xmss_params *params,
 
     return 0;
 }
-
+ 
 /*
  * Generates a XMSSMT key pair for a given parameter set.
  * Format sk: [(ceil(h/8) bit) index || SK_SEED || SK_PRF || root || PUB_SEED]

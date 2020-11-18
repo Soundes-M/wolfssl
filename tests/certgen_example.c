@@ -1,3 +1,9 @@
+/*---------------------------------------------------------------------------*/ 
+/* Generating and verifying a chain of Trust based on XMSS signatures        */
+/* Author SOundes Marzougui                                                  */
+/* Technische Universität Berlin                                             */
+/*---------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <wolfssl/options.h>
 #include <wolfssl/wolfcrypt/settings.h>
@@ -11,34 +17,20 @@
 #include <wolfssl/wolfcrypt/randombytes.h>
 #include <wolfssl/wolfcrypt/xmss.h>
 
-
+#define HAVE_XMSS 
 
 #define HEAP_HINT NULL
-#define FOURK_SZ 4096 
-#define HAVE_XMSS
-
+#define FOURK_SZ 4096  
 #define XMSS_MLEN 32
 
-#ifndef XMSS_SIGNATURES
-    #define XMSS_SIGNATURES 16
-#endif
-
-#ifdef XMSSMT
-    #define XMSS_PARSE_OID xmssmt_parse_oid
-    #define XMSS_STR_TO_OID xmssmt_str_to_oid
-    #define XMSS_KEYPAIR xmssmt_keypair
-    #define XMSS_SIGN xmssmt_sign
-    #define XMSS_SIGN_OPEN xmssmt_sign_open
-    #define XMSS_VARIANT "XMSSMT-SHA2_20/2_256"
-#else
-    #define XMSS_PARSE_OID xmss_parse_oid
-    #define XMSS_STR_TO_OID xmss_str_to_oid
-    #define XMSS_KEYPAIR xmss_keypair
-    #define XMSS_SIGN xmss_sign
-    #define XMSS_SIGN_OPEN xmss_sign_open
-    #define XMSS_VARIANT "XMSS-SHA2_10_256"
-#endif
-
+   
+#define XMSS_PARSE_OID xmss_parse_oid
+#define XMSS_STR_TO_OID xmss_str_to_oid
+#define XMSS_KEYPAIR xmss_keypair
+#define XMSS_SIGN xmss_sign
+#define XMSS_SIGN_OPEN xmss_sign_open
+#define XMSS_VARIANT "XMSS-SHA2_10_256"
+ 
 
 
 #if defined(WOLFSSL_CERT_REQ) && defined(WOLFSSL_CERT_GEN)
@@ -52,46 +44,50 @@ int main(void) {
   return 0;
 #else
 
-    int ret = 0;
 
     Cert newCert;
-
-    FILE* file;
-    char certToUse[] = "./ca-ecc-cert.der";
-    char caKeyFile[] = "./ca-ecc-key.der";
+    FILE* file; 
     char newCertOutput[] = "./newCert.der";
-
-    int derBufSz;
-    int caKeySz;
+    char certToUse[] = "./ca-ecc-cert.der";
+    int derBufSz; 
 
     byte* derBuf   = NULL;
     byte* pemBuf   = NULL;
     byte* caKeyBuf = NULL;
-
+    
     /* for MakeCert and SignCert */
     WC_RNG rng;
     ecc_key caKey;
-    ecc_key newKey;
-    word32 idx3 = 0;
+    ecc_key newKey;  
+    int ret = 0;
 
-
-/*---------------------------------------------------------------------------*/ 
-/* Create XMSS Key pair                                                      */
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------*/ 
+/* Create XMSS Key pairs                                                                  */
+/* These n-key pairs are used for the n-entities of our chain of trust(CA excluded)       */
+/*----------------------------------------------------------------------------------------*/
     xmss_params params;
-    uint32_t oid;  
-    // TODO test more different variants
-    XMSS_STR_TO_OID(&oid, XMSS_VARIANT);
+    uint32_t oid;   
+    XMSS_STR_TO_OID(&oid, XMSS_VARIANT); // e.g. XMSS-SHA2_10_256
     XMSS_PARSE_OID(&params, oid);
 
-    unsigned char pk[XMSS_OID_LEN + params.pk_bytes];
-    unsigned char sk[XMSS_OID_LEN + params.sk_bytes];  
+   
+    unsigned char pk[XMSS_OID_LEN + params.pk_bytes]; 
+    unsigned char sk[XMSS_OID_LEN + params.sk_bytes];   
     XMSS_KEYPAIR(pk, sk, oid);
- 
-/*---------------------------------------------------------------------------*/
-/* open the CA der formatted certificate, we need to get it's subject line to
- * use in the new cert we're creating as the "Issuer" line */
-/*---------------------------------------------------------------------------*/
+
+    printf("Successfully create XMSS Keys\n");
+    printf("Size of public key is: %d\n", XMSS_OID_LEN + params.pk_bytes);
+    printf("Size of secret key is: %d\n", XMSS_OID_LEN + params.sk_bytes); 
+
+
+
+/*----------------------------------------------------------------------------*/
+/* open the CA der formatted certificate, we need to get it's subject line to */
+/* use in the new cert we're creating as the "Issuer" line                    */
+/*----------------------------------------------------------------------------*/
+    
+//The CA in our case should be a self-signed DILITHIUM cert. Initially, we 
+//adopt an ecc cert, TODO should be changed to DILITHIUM cert
     printf("Open and read in der formatted certificate\n");
 
     derBuf = (byte*) XMALLOC(FOURK_SZ, HEAP_HINT, DYNAMIC_TYPE_TMP_BUFFER);
@@ -104,7 +100,7 @@ int main(void) {
         printf("failed to find file: %s\n", certToUse);
         goto fail;
     }
-
+    
     derBufSz = fread(derBuf, 1, FOURK_SZ, file);
 
     fclose(file);
@@ -114,59 +110,16 @@ int main(void) {
 /* END */
 /*---------------------------------------------------------------------------*/
 
-/*---------------------------------------------------------------------------*/
-/* open caKey file and get the caKey, we need it to sign our new cert */
-/*---------------------------------------------------------------------------*/
-    printf("Getting the caKey from %s\n", caKeyFile);
-
-    caKeyBuf = (byte*) XMALLOC(FOURK_SZ, HEAP_HINT, DYNAMIC_TYPE_TMP_BUFFER);
-    if (caKeyBuf == NULL) goto fail;
-
-    file = fopen(caKeyFile, "rb");
-    if (!file) {
-        printf("failed to open file: %s\n", caKeyFile);
-        goto fail;
-    }
-
-    caKeySz = fread(caKeyBuf, 1, FOURK_SZ, file);
-    if (caKeySz <= 0) {
-        printf("Failed to read caKey from file\n");
-        goto fail;
-    }
-
-    fclose(file);
-    printf("Successfully read %d bytes\n", caKeySz);
-
-    printf("Init ecc Key\n");
-    wc_ecc_init(&caKey);
-
-    printf("Decode the private key\n");
-    ret = wc_EccPrivateKeyDecode(caKeyBuf, &idx3, &caKey, (word32)caKeySz);
-    if (ret != 0) goto fail;
-
-    printf("Successfully retrieved caKey\n\n");
-/*---------------------------------------------------------------------------*/
-/* END */
-/*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
-/* Generate new private key to go with our new cert */
+/* initializing the rng */
 /*---------------------------------------------------------------------------*/
     printf("initializing the rng\n");
-    ret = wc_InitRng(&rng);
-    if (ret != 0) goto fail;
-
-    printf("Generating a new ecc key\n");
-    ret = wc_ecc_init(&newKey);
-    if (ret != 0) goto fail;
-
-    ret = wc_ecc_make_key(&rng, 32, &newKey);
-    if (ret != 0) goto fail;
-
-    printf("Successfully created new ecc key\n\n");
+    ret = wc_InitRng(&rng); 
 /*---------------------------------------------------------------------------*/
 /* END */
 /*---------------------------------------------------------------------------*/
+
 
 /*---------------------------------------------------------------------------*/
 /* Create a new certificate using SUBJECT information from ca cert
@@ -177,97 +130,70 @@ int main(void) {
     wc_InitCert(&newCert);
 
     strncpy(newCert.subject.country, "DE", CTC_NAME_SIZE);
-    strncpy(newCert.subject.state, "DE-Berlin", CTC_NAME_SIZE);
-    strncpy(newCert.subject.locality, "Marzougui", CTC_NAME_SIZE);
+    strncpy(newCert.subject.state, "Berlin", CTC_NAME_SIZE);
+    strncpy(newCert.subject.locality, "SecT", CTC_NAME_SIZE);
     strncpy(newCert.subject.org, "TU Berlin", CTC_NAME_SIZE);
     strncpy(newCert.subject.unit, "SecT", CTC_NAME_SIZE);
-    strncpy(newCert.subject.commonName, "www.Sou_Sou.com", CTC_NAME_SIZE);
+    strncpy(newCert.subject.commonName, "www.TuBerlin.com", CTC_NAME_SIZE);
     strncpy(newCert.subject.email, "soundes.marzougui@tu-berlin.com", CTC_NAME_SIZE);
     newCert.isCA    = 0;
-    newCert.sigType = CTC_SHA256wECDSA;
+    newCert.sigType = CTC_XMSS;
 
     ret = wc_SetIssuerBuffer(&newCert, derBuf, derBufSz);
     if (ret != 0) goto fail; 
-
-
-    ret = wc_MakeXMSSCert(&newCert, derBuf, FOURK_SZ, pk, XMSS_OID_LEN + params.sk_bytes, &rng); //xmss certificate
+ 
+    ret = wc_MakeXMSSCert(&newCert, derBuf, FOURK_SZ,(byte*) pk, XMSS_OID_LEN + params.sk_bytes, &rng); //xmss certificate
     //ret = wc_MakeCert(&newCert, derBuf, FOURK_SZ, NULL, &newKey, &rng); //ecc certificate
  
     if (ret < 0) goto fail;
   
-    printf("MakeCert returned %d\n", ret);
+    printf("Make XMSS Cert returned %d\n", ret);
 
-    ret = wc_SignXMSSCert(newCert.bodySz, newCert.sigType, derBuf, FOURK_SZ,sk);
+    ret = wc_SignXMSSCert(newCert.bodySz, newCert.sigType, derBuf, FOURK_SZ, sk);
     if (ret < 0) goto fail;
-    printf("SignCert returned %d\n", ret);
+    printf("Sign XMSS Cert returned %d\n", ret);
 
-    derBufSz = ret;
+    derBufSz = ret; 
+
 
     printf("Successfully created new certificate\n");
 /*---------------------------------------------------------------------------*/
 /* END */
 /*---------------------------------------------------------------------------*/
+ 
+
 
 /*---------------------------------------------------------------------------*/
-/* write the new cert to file in der format */
+/* Print XMSS certificate                                                    */
 /*---------------------------------------------------------------------------*/
-    printf("Writing newly generated certificate to file \"%s\"\n",
-                                                                 newCertOutput);
-    file = fopen(newCertOutput, "wb");
-    if (!file) {
-        printf("failed to open file: %s\n", newCertOutput);
-        goto fail;
-    }
+printf("**********************Certificate begin********************** \n" );
+printf("Certificate version: X509 v.%d \n", newCert.version);
+printf("Issuer: country %s, state: %s, locality: %s\n", newCert.issuer.country, newCert.issuer.state, newCert.issuer.locality);
+printf("Subject: country %s, state: %s, locality: %s\n", newCert.subject.country, newCert.subject.state, newCert.subject.locality);
+if(newCert.isCA == 0)
+	printf("Certificate CA: No\n" );
+else
+printf("Certificate CA: Yes\n" );
+printf("Validity days: %d\n",  newCert.daysValid );
 
-    ret = (int) fwrite(derBuf, 1, derBufSz, file);
-    fclose(file);
-    printf("Successfully output %d bytes\n", ret);
+
+
+
+
+printf("**********************Certificate end************************ \n" );
 /*---------------------------------------------------------------------------*/
-/* END */
+/* END                                                                       */
 /*---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------*/
-/* convert the der to a pem and write it to a file */
-/*---------------------------------------------------------------------------*/
-    {
-        char pemOutput[] = "./newCert.pem";
-        int pemBufSz;
-
-        printf("Convert the der cert to pem formatted cert\n");
-
-        pemBuf = (byte*) XMALLOC(FOURK_SZ, HEAP_HINT, DYNAMIC_TYPE_TMP_BUFFER);
-        if (pemBuf == NULL) goto fail;
-
-        XMEMSET(pemBuf, 0, FOURK_SZ);
-
-        pemBufSz = wc_DerToPem(derBuf, derBufSz, pemBuf, FOURK_SZ, CERT_TYPE);
-        if (pemBufSz < 0) goto fail;
-
-        printf("Resulting pem buffer is %d bytes\n", pemBufSz);
-
-        file = fopen(pemOutput, "wb");
-        if (!file) {
-            printf("failed to open file: %s\n", pemOutput);
-            goto fail;
-        }
-        fwrite(pemBuf, 1, pemBufSz, file);
-        fclose(file);
-        printf("Successfully converted the der to pem. Result is in:  %s\n\n",
-                                                                     pemOutput);
-    }
-/*---------------------------------------------------------------------------*/
-/* END */
-/*---------------------------------------------------------------------------*/
-
+ 
     goto success;
 
 fail:
-    free_things(&derBuf, &pemBuf, &caKeyBuf, &caKey, &newKey, &rng);
+    //free_things(&derBuf, &pemBuf, &caKeyBuf, &caKey, &newKey, &rng);
     printf("Failure code was %d\n", ret);
     return -1;
 
 success:
-    free_things(&derBuf, &pemBuf, &caKeyBuf, &caKey, &newKey, &rng);
+    //free_things(&derBuf, &pemBuf, &caKeyBuf, &caKey, &newKey, &rng);
     printf("Tests passed\n");
     return 0;
 }
