@@ -14253,6 +14253,18 @@ int wc_MakeSelfCert(Cert* cert, byte* buf, word32 buffSz,
                        buf, buffSz, key, NULL, rng);
 }
  
+int wc_MakeXMSSSelfCert(Cert* cert, byte* buf, word32 buffSz,
+                    byte* pk,  byte* sk,  int XMSSSz, WC_RNG* rng)
+{
+    int ret;
+
+    ret = wc_MakeXMSSCert(cert, buf, buffSz, pk,  XMSSSz, rng);
+    if (ret < 0)
+        return ret;
+
+    return wc_SignXMSSCert(cert->bodySz, cert->sigType,
+                       buf, buffSz, sk );
+}
  
 
 #ifdef WOLFSSL_CERT_EXT

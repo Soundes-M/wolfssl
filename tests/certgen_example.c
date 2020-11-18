@@ -60,7 +60,7 @@ int main(void) {
     ecc_key caKey;
     ecc_key newKey;  
     int ret = 0;
-
+    int kid_type = 0;
 /*----------------------------------------------------------------------------------------*/ 
 /* Create XMSS Key pairs                                                                  */
 /* These n-key pairs are used for the n-entities of our chain of trust(CA excluded)       */
@@ -87,25 +87,11 @@ int main(void) {
 /*----------------------------------------------------------------------------*/
     
 //The CA in our case should be a self-signed DILITHIUM cert. Initially, we 
-//adopt an ecc cert, TODO should be changed to DILITHIUM cert
-    printf("Open and read in der formatted certificate\n");
-
-    derBuf = (byte*) XMALLOC(FOURK_SZ, HEAP_HINT, DYNAMIC_TYPE_TMP_BUFFER);
-    if (derBuf == NULL) goto fail;
-
-    XMEMSET(derBuf, 0, FOURK_SZ);
-
-    file = fopen(certToUse, "rb");
-    if (!file) {
-        printf("failed to find file: %s\n", certToUse);
-        goto fail;
-    }
-    
-    derBufSz = fread(derBuf, 1, FOURK_SZ, file);
-
-    fclose(file);
-    printf("Successfully read the CA cert we are using to sign our new cert\n");
-    printf("Cert was %d bytes\n\n", derBufSz);
+//adopt an ecc cert, TODO should be changed to DILITHIUM cert 
+    long long int FOURK_SZZ = 10000; 
+    printf("FourkZ %d", FOURK_SZZ);
+    derBuf = malloc(FOURK_SZZ);
+    XMEMSET(derBuf, 0, FOURK_SZZ); 
 /*---------------------------------------------------------------------------*/
 /* END */
 /*---------------------------------------------------------------------------*/
@@ -128,7 +114,7 @@ int main(void) {
     printf("Setting new cert issuer to subject of signer\n");
 
     wc_InitCert(&newCert);
-
+    //Set subject 
     strncpy(newCert.subject.country, "DE", CTC_NAME_SIZE);
     strncpy(newCert.subject.state, "Germany", CTC_NAME_SIZE);
     strncpy(newCert.subject.locality, "Berlin", CTC_NAME_SIZE);
@@ -136,11 +122,25 @@ int main(void) {
     strncpy(newCert.subject.unit, "SecT", CTC_NAME_SIZE);
     strncpy(newCert.subject.commonName, "www.TuBerlin.com", CTC_NAME_SIZE);
     strncpy(newCert.subject.email, "soundes.marzougui@tu-berlin.com", CTC_NAME_SIZE);
-    newCert.isCA    = 0;
+
+    //Set issuer
+    strncpy(newCert.issuer.country, "US", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.state, "Washington", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.locality, "Boston", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.org, "Crypto", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.unit, "Wolfssl", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.commonName, "www.WolfSSl.com", CTC_NAME_SIZE);
+    strncpy(newCert.issuer.email, "Wolfssl@wolfssl.com", CTC_NAME_SIZE);
+
+    //Others
+    newCert.isCA    = 1;
+    newCert.selfSigned = 1;
     newCert.sigType = CTC_XMSS;
 
-    ret = wc_SetIssuerBuffer(&newCert, derBuf, derBufSz);
-    if (ret != 0) goto fail; 
+
+
+    ret = wc_SetSubjectKeyIdFromXMSSPublicKey(&newCert, pk, kid_type);//set the XMSS key as a subject public key 
+    if (ret < 0) goto fail;
  
     ret = wc_MakeXMSSCert(&newCert, derBuf, FOURK_SZ,(byte*) pk, XMSS_OID_LEN + params.pk_bytes, &rng); //xmss certificate
     //ret = wc_MakeCert(&newCert, derBuf, FOURK_SZ, NULL, &newKey, &rng); //ecc certificate
@@ -149,7 +149,7 @@ int main(void) {
   
     printf("Make XMSS Cert returned %d\n", ret);
 
-    ret = wc_SignXMSSCert(newCert.bodySz, newCert.sigType, derBuf, FOURK_SZ, sk);
+    ret = wc_SignXMSSCert(newCert.bodySz, newCert.sigType, derBuf, FOURK_SZ, sk);// sign the certificate with the secret key, well yes it is a self signed certificate but this should be changed 
     if (ret < 0) goto fail;
     printf("Sign XMSS Cert returned %d\n", ret);
 
@@ -173,6 +173,11 @@ if(newCert.isCA == 0)
 	printf("Certificate CA: No\n" );
 else
 printf("Certificate CA: Yes\n" );
+if(newCert.selfSigned == 0)
+	printf("Self signed ertificate: No\n" );
+else
+printf("Self signed ertificate: Yes\n" );
+
 printf("Validity days: %d\n",  newCert.daysValid ); 
 
 printf("**********************Certificate end************************ \n" );
@@ -185,7 +190,7 @@ printf("**********************Certificate end************************ \n" );
 /* write the new cert to file in der format */
 /*---------------------------------------------------------------------------*/
     printf("Writing newly generated certificate to file \"%s\"\n",
-                                                                 newCertOutput);
+                                                                 newCertOutput); 
     file = fopen(newCertOutput, "wb");
     if (!file) {
         printf("failed to open file: %s\n", newCertOutput);
