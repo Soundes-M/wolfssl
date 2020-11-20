@@ -3,6 +3,15 @@
 
 #include "params.h"
 
+#ifdef HAVE_CONFIG_H
+    #include <config.h>
+#endif
+ 
+#include <wolfssl/wolfcrypt/visibility.h>
+
+
+
+
 /**
  * Given a set of parameters, this function returns the size of the secret key.
  * This is implementation specific, as varying choices in tree traversal will

@@ -162,6 +162,32 @@ int main(void) {
 /*---------------------------------------------------------------------------*/
  
  
+
+/*---------------------------------------------------------------------------*/
+/* Verifying the XMSS signature                                              */
+/*---------------------------------------------------------------------------*/
+
+ 
+    byte * smex = malloc(params.sig_bytes + XMSS_MLEN);// size of signature
+    for(int i=0;i<sigSz;i++){
+       smex[i] = buf[derBuf+derBufSz];//540+seqSz the returned value of AddSignature
+       //printf("smex is %c buf is %c \n", smex[i], buf[i]);
+
+    }
+      
+    //verification of signature
+    xmss_sign_open(mout, &mlen, sm, smlen, pk);
+    printf("+++++++++++++++++++++\n");
+    if(*mout == *buf) printf(" Correct signature !\n");
+    else  printf(" Wrong signature !\n");
+    printf("+++++++++++++++++++++\n"); 
+    //end verification 
+
+/*---------------------------------------------------------------------------*/
+/* END */
+/*---------------------------------------------------------------------------*/
+
+
 /*---------------------------------------------------------------------------*/
 /* Print XMSS certificate                                                    */
 /*---------------------------------------------------------------------------*/

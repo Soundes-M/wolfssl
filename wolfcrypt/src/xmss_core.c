@@ -12,6 +12,13 @@
 #include <wolfssl/wolfcrypt/xmss_core.h>
  
 
+#ifdef HAVE_CONFIG_H
+    #include <config.h>
+#endif
+ 
+#include <wolfssl/wolfcrypt/visibility.h>
+
+
 /**
  * For a given leaf index, computes the authentication path and the resulting
  * root node using Merkle's TreeHash algorithm.
@@ -159,8 +166,9 @@ int xmssmt_core_seed_keypair(const xmss_params *params,
     memcpy(sk + 2*params->n, pk, params->n);
 
     return 0;
-}
+} 
  
+
 /*
  * Generates a XMSSMT key pair for a given parameter set.
  * Format sk: [(ceil(h/8) bit) index || SK_SEED || SK_PRF || root || PUB_SEED]

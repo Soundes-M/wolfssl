@@ -1,8 +1,11 @@
+
 #include <stdint.h>
 #include <wolfssl/wolfcrypt/xmss.h>
 #include <wolfssl/wolfcrypt/params.h> 
 #include <wolfssl/wolfcrypt/xmss_core.h>
 #include <wolfssl/wolfcrypt/xmss_commons.h>
+
+#include <stdio.h>
 
 /* This file provides wrapper functions that take keys that include OIDs to
 identify the parameter set to be used. After setting the parameters accordingly
@@ -22,6 +25,7 @@ int xmss_keypair(unsigned char *pk, unsigned char *sk, const uint32_t oid)
         that the OID is part of the secret key as well;
         i.e. not just for interoperability, but also for internal use. */
         sk[XMSS_OID_LEN - i - 1] = (oid >> (8 * i)) & 0xFF;
+
     }
     return xmss_core_keypair(&params, pk + XMSS_OID_LEN, sk + XMSS_OID_LEN);
 }
@@ -50,7 +54,7 @@ int xmss_sign_open(unsigned char *m, unsigned long long *mlen,
     xmss_params params;
     uint32_t oid = 0;
     unsigned int i;
-
+    
     for (i = 0; i < XMSS_OID_LEN; i++) {
         oid |= pk[XMSS_OID_LEN - i - 1] << (i * 8);
     }

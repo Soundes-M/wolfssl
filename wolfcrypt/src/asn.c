@@ -13588,7 +13588,7 @@ exit_ms:
    new length */
 static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
                         int sigAlgoType)
-{
+{ 
     byte seq[MAX_SEQ_SZ];
     int  idx = bodySz, seqSz;
     
@@ -13597,8 +13597,8 @@ static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
      
     /* bit string */
     idx += SetBitString(sigSz, 0, buf ? buf + idx : NULL);
-    /* signature */
-
+ 
+    /* signature */ 
     if (buf)
        XMEMCPY(buf + idx, sig, sigSz); 
     idx += sigSz; 
@@ -13608,6 +13608,9 @@ static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
         XMEMMOVE(buf + seqSz, buf, idx);
         XMEMCPY(buf, seq, seqSz);
     } 
+
+   
+    
     return idx + seqSz;
 }
 
@@ -14201,25 +14204,28 @@ int wc_SignCert_ex(int requestSz, int sType, byte* buf, word32 buffSz,
                     ed448Key, rng);
 } 
 
-#define XMSS_MLEN 32
 
-int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, unsigned char *XMSSKey)
+
+int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, unsigned char *XMSSKey )
 {  
     xmss_params params;
     uint32_t oid;
     xmss_str_to_oid(&oid,"XMSS-SHA2_10_256"); //XMSS using SHA2_256 and the tree high is 10 This may be changed later 
     xmss_parse_oid(&params, oid);
     int sigSz = 0; 
-     
-    unsigned long long smlen;
+#define XMSS_MLEN 32
+    unsigned long long smlen; 
+
     // This should be changed later 
-    unsigned char *sm = malloc(params.sig_bytes + XMSS_MLEN); 
-    
+    sigSz = params.sig_bytes + XMSS_MLEN;
+    unsigned char* sm = malloc(sigSz) ;  
     // buf bytes and contains the XMSS signature
     // XMSS_sign signs buff of BuffSz size with an XMSSKey , the final signature is sm (To be checked)  
-    xmss_sign(XMSSKey, sm, &smlen  , buf, buffSz);    
-    sigSz = params.sig_bytes + XMSS_MLEN;
-    
+
+   
+    xmss_sign(XMSSKey, sm, &smlen  , buf, XMSS_MLEN);
+   
+  
     if (sigSz >= 0) {
         if (requestSz + MAX_SEQ_SZ * 2 + sigSz > (int)buffSz)
             sigSz = BUFFER_E;
@@ -14228,7 +14234,16 @@ int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buff
                                  sType);
             
     }
-  
+    
+     /*   
+    //verification of signature
+    xmss_sign_open(mout, &mlen, sm, smlen, pk);
+    printf("+++++++++++++++++++++\n");
+    if(*mout == *buf) printf(" Correct signature !\n");
+    else  printf(" Wrong signature !\n");
+    printf("+++++++++++++++++++++\n"); 
+    //end verification 
+*/
     return sigSz;
 
 
@@ -14253,18 +14268,7 @@ int wc_MakeSelfCert(Cert* cert, byte* buf, word32 buffSz,
                        buf, buffSz, key, NULL, rng);
 }
  
-int wc_MakeXMSSSelfCert(Cert* cert, byte* buf, word32 buffSz,
-                    byte* pk,  byte* sk,  int XMSSSz, WC_RNG* rng)
-{
-    int ret;
-
-    ret = wc_MakeXMSSCert(cert, buf, buffSz, pk,  XMSSSz, rng);
-    if (ret < 0)
-        return ret;
-
-    return wc_SignXMSSCert(cert->bodySz, cert->sigType,
-                       buf, buffSz, sk );
-}
+ 
  
 
 #ifdef WOLFSSL_CERT_EXT

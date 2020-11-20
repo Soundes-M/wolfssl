@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
-
+#include <stdio.h>
 #include <wolfssl/wolfcrypt/hash_XMSS.h>
 #include <wolfssl/wolfcrypt/hash_address.h>
 #include <wolfssl/wolfcrypt/params.h> 
@@ -209,7 +209,8 @@ int xmssmt_core_sign_open(const xmss_params *params,
     }
 
     /* If verification was successful, copy the message from the signature. */
-    memcpy(m, sm, *mlen);
+    memcpy(m, sm, *mlen); 
 
+    
     return 0;
 }

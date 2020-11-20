@@ -127,7 +127,7 @@ wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo: wolfcrypt/src/hash_XMSS.c \
  wolfssl/openssl/crypto.h wolfssl/wolfcrypt/error-crypt.h \
  wolfssl/wolfcrypt/asn.h wolfssl/wolfcrypt/dh.h wolfssl/openssl/stack.h \
  wolfssl/openssl/conf.h wolfssl/wolfcrypt/hash_address.h \
- wolfssl/wolfcrypt/utils.h wolfssl/wolfcrypt/params.h config.h \
+ wolfssl/wolfcrypt/utils.h config.h wolfssl/wolfcrypt/params.h \
  wolfssl/wolfcrypt/hash_XMSS.h wolfssl/wolfcrypt/params.h \
  wolfssl/wolfcrypt/fips202.h
 
@@ -497,9 +497,9 @@ wolfssl/wolfcrypt/hash_address.h:
 
 wolfssl/wolfcrypt/utils.h:
 
-wolfssl/wolfcrypt/params.h:
-
 config.h:
+
+wolfssl/wolfcrypt/params.h:
 
 wolfssl/wolfcrypt/hash_XMSS.h:
 

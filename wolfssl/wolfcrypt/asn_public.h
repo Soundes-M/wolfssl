@@ -375,8 +375,7 @@ WOLFSSL_API int wc_SignCert(int requestSz, int sigType, byte* derBuffer,
                              word32 derSz, RsaKey*, ecc_key*, WC_RNG*);
 WOLFSSL_API int wc_MakeSelfCert(Cert*, byte* derBuffer, word32 derSz, RsaKey*,
                              WC_RNG*);
-WOLFSSL_API int wc_MakeXMSSSelfCert(Cert* cert, byte* buf, word32 buffSz,
-                    byte* pk,  byte* sk,  int XMSSSz, WC_RNG* rng);
+ 
 
 WOLFSSL_API int wc_SetIssuer(Cert*, const char*);
 WOLFSSL_API int wc_SetSubject(Cert*, const char*);
