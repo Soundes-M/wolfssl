@@ -18,10 +18,13 @@ wolfcrypt/src/src_libwolfssl_la-wots.lo: wolfcrypt/src/wots.c \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- wolfssl/wolfcrypt/utils.h config.h wolfssl/wolfcrypt/visibility.h \
- wolfssl/wolfcrypt/hash_XMSS.h wolfssl/wolfcrypt/params.h \
- wolfssl/wolfcrypt/wots.h wolfssl/wolfcrypt/hash_address.h \
- wolfssl/wolfcrypt/params.h
+ /usr/local/include/wolfssl/wolfcrypt/utils.h config.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/hash_XMSS.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h \
+ /usr/local/include/wolfssl/wolfcrypt/wots.h \
+ /usr/local/include/wolfssl/wolfcrypt/hash_address.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h
 
 /usr/include/stdc-predef.h:
 
@@ -67,18 +70,18 @@ wolfcrypt/src/src_libwolfssl_la-wots.lo: wolfcrypt/src/wots.c \
 
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
 
-wolfssl/wolfcrypt/utils.h:
+/usr/local/include/wolfssl/wolfcrypt/utils.h:
 
 config.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/hash_XMSS.h:
+/usr/local/include/wolfssl/wolfcrypt/hash_XMSS.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
-wolfssl/wolfcrypt/wots.h:
+/usr/local/include/wolfssl/wolfcrypt/wots.h:
 
-wolfssl/wolfcrypt/hash_address.h:
+/usr/local/include/wolfssl/wolfcrypt/hash_address.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:

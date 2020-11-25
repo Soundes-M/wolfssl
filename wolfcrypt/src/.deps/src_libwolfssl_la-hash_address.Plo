@@ -12,7 +12,7 @@ wolfcrypt/src/src_libwolfssl_la-hash_address.lo: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- wolfssl/wolfcrypt/hash_address.h
+ /usr/local/include/wolfssl/wolfcrypt/hash_address.h
 
 /usr/include/stdc-predef.h:
 
@@ -44,4 +44,4 @@ wolfcrypt/src/src_libwolfssl_la-hash_address.lo: \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
-wolfssl/wolfcrypt/hash_address.h:
+/usr/local/include/wolfssl/wolfcrypt/hash_address.h:

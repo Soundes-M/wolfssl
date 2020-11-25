@@ -465,116 +465,161 @@ check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3)
 # It depends on the architecture and conflicts with Multi-Arch.
 @BUILD_DISTRO_TRUE@am__append_1 = cyassl/options.h
 @BUILD_DISTRO_FALSE@am__append_2 = cyassl/options.h
-@BUILD_XMSS_TRUE@am__append_3 = wolfssl/wolfcrypt/fips202.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/hash_address.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/hash_XMSS.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/params.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/randombytes.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/utils.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/wots.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/xmss.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/xmss_commons.h \
-@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/xmss_core.h
-@BUILD_CRYPTOAUTHLIB_TRUE@am__append_4 = wolfssl/wolfcrypt/port/atmel/atmel.h
-@BUILD_AFALG_TRUE@am__append_5 =  \
+@BUILD_XMSS_TRUE@am__append_3 = wolfssl/wolfcrypt/XMSS/fips202.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/hash_address.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/hash_XMSS.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/params.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/randombytes.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/utils.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/wots.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/xmss.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/xmss_commons.h \
+@BUILD_XMSS_TRUE@	wolfssl/wolfcrypt/XMSS/xmss_core.h
+@BUILD_DILITHIUM_TRUE@am__append_4 =  \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/aes256ctr.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/api.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/fips202.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/ntt.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/packing.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/params.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/poly.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/polyvec.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/randombytes.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/reduce.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/rng.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/rounding.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/sign.h \
+@BUILD_DILITHIUM_TRUE@	wolfssl/wolfcrypt/DILITHIUM/symmetric.h
+@BUILD_CRYPTOAUTHLIB_TRUE@am__append_5 = wolfssl/wolfcrypt/port/atmel/atmel.h
+@BUILD_AFALG_TRUE@am__append_6 =  \
 @BUILD_AFALG_TRUE@	wolfssl/wolfcrypt/port/af_alg/afalg_hash.h \
 @BUILD_AFALG_TRUE@	wolfssl/wolfcrypt/port/af_alg/wc_afalg.h
-@BUILD_DEVCRYPTO_TRUE@am__append_6 = wolfssl/wolfcrypt/port/devcrypto/wc_devcrypto.h
-@BUILD_ASYNCCRYPT_TRUE@am__append_7 = wolfssl/wolfcrypt/async.h
-@BUILD_PKCS11_TRUE@am__append_8 = wolfssl/wolfcrypt/wc_pkcs11.h \
+@BUILD_DEVCRYPTO_TRUE@am__append_7 = wolfssl/wolfcrypt/port/devcrypto/wc_devcrypto.h
+@BUILD_ASYNCCRYPT_TRUE@am__append_8 = wolfssl/wolfcrypt/async.h
+@BUILD_PKCS11_TRUE@am__append_9 = wolfssl/wolfcrypt/wc_pkcs11.h \
 @BUILD_PKCS11_TRUE@	wolfssl/wolfcrypt/pkcs11.h
-@BUILD_CAVIUM_TRUE@am__append_9 = wolfssl/wolfcrypt/port/cavium/cavium_nitrox.h
-@BUILD_OCTEON_SYNC_TRUE@am__append_10 = wolfssl/wolfcrypt/port/cavium/cavium_octeon_sync.h
-@BUILD_INTEL_QA_TRUE@am__append_11 = wolfssl/wolfcrypt/port/intel/quickassist.h \
+@BUILD_CAVIUM_TRUE@am__append_10 = wolfssl/wolfcrypt/port/cavium/cavium_nitrox.h
+@BUILD_OCTEON_SYNC_TRUE@am__append_11 = wolfssl/wolfcrypt/port/cavium/cavium_octeon_sync.h
+@BUILD_INTEL_QA_TRUE@am__append_12 = wolfssl/wolfcrypt/port/intel/quickassist.h \
 @BUILD_INTEL_QA_TRUE@	wolfssl/wolfcrypt/port/intel/quickassist_mem.h
-@BUILD_INTEL_QA_SYNC_TRUE@am__append_12 = wolfssl/wolfcrypt/port/intel/quickassist_sync.h
-@BUILD_SP_TRUE@am__append_13 = wolfssl/wolfcrypt/sp.h \
+@BUILD_INTEL_QA_SYNC_TRUE@am__append_13 = wolfssl/wolfcrypt/port/intel/quickassist_sync.h
+@BUILD_SP_TRUE@am__append_14 = wolfssl/wolfcrypt/sp.h \
 @BUILD_SP_TRUE@	wolfssl/wolfcrypt/sp_int.h
-@BUILD_SELFTEST_TRUE@am__append_14 = wolfssl/wolfcrypt/selftest.h
-@BUILD_FIPS_V2_TRUE@am__append_15 = wolfssl/wolfcrypt/fips.h
-@BUILD_FIPS_RAND_TRUE@am__append_16 = wolfssl/wolfcrypt/fips.h
+@BUILD_SELFTEST_TRUE@am__append_15 = wolfssl/wolfcrypt/selftest.h
+@BUILD_FIPS_V2_TRUE@am__append_16 = wolfssl/wolfcrypt/fips.h
+@BUILD_FIPS_RAND_TRUE@am__append_17 = wolfssl/wolfcrypt/fips.h
 
 # For distro build don't install options.h.
 # It depends on the architecture and conflicts with Multi-Arch.
-@BUILD_DISTRO_TRUE@am__append_17 = wolfssl/options.h
-@BUILD_DISTRO_FALSE@am__append_18 = wolfssl/options.h
-@BUILD_FIPS_V2_FALSE@am__append_19 = certs/p521/gen-p521-certs.sh \
+@BUILD_DISTRO_TRUE@am__append_18 = wolfssl/options.h
+@BUILD_DISTRO_FALSE@am__append_19 = wolfssl/options.h
+@BUILD_FIPS_V2_FALSE@am__append_20 = certs/p521/gen-p521-certs.sh \
 @BUILD_FIPS_V2_FALSE@	certs/p521/gen-p521-keys.sh \
 @BUILD_FIPS_V2_FALSE@	certs/check_dates.sh
 
 # install the packaged IPP libraries
 
 # Link needed IPP libraries
-@BUILD_FAST_RSA_TRUE@am__append_20 = IPP_links
-@BUILD_FAST_RSA_TRUE@am__append_21 = $(IPPHEADERS) \
+@BUILD_FAST_RSA_TRUE@am__append_21 = IPP_links
+@BUILD_FAST_RSA_TRUE@am__append_22 = $(IPPHEADERS) \
 @BUILD_FAST_RSA_TRUE@	wolfcrypt/user-crypto/include/user_rsa.h
 
 # fips first  file
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_22 = ctaocrypt/src/wolfcrypt_first.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_23 = ctaocrypt/src/wolfcrypt_first.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/hmac.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/random.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/sha256.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_RSA_TRUE@am__append_23 = ctaocrypt/src/rsa.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@am__append_24 = wolfcrypt/src/hash_XMSS.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/hash_address.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/params.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/randombytes.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/utils.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/wots.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_commons.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_core.c  \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_RSA_TRUE@am__append_24 = ctaocrypt/src/rsa.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@am__append_25 = wolfcrypt/src/XMSS/hash_XMSS.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/hash_address.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/params.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/randombytes.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/utils.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/wots.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_commons.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_core.c  \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@		             wolfcrypt/test/XMSS_signature_test.c  \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/fips202.c 
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/fips202.c 
 
-@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_25 = ctaocrypt/src/aes.c
-@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_26 = ctaocrypt/src/des3.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA_TRUE@am__append_27 = ctaocrypt/src/sha.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA512_TRUE@am__append_28 = ctaocrypt/src/sha512.c
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_26 = wolfcrypt/src/DILITHIUM/aes256ctr.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/fips202.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@			       \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/ntt.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/packing.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/poly.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/polyvec.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                               \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/reduce.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@		             wolfcrypt/src/DILITHIUM/rng.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@		             wolfcrypt/src/DILITHIUM/rounding.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@		             wolfcrypt/src/DILITHIUM/sign.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@		             wolfcrypt/src/DILITHIUM/symmetric-shake.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@                             wolfcrypt/src/DILITHIUM/symmetric-aes.c 
+
+@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_27 = ctaocrypt/src/aes.c
+@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_28 = ctaocrypt/src/des3.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA_TRUE@am__append_29 = ctaocrypt/src/sha.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA512_TRUE@am__append_30 = ctaocrypt/src/sha512.c
 
 # fips last file
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_29 =  \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__append_31 =  \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/fips.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/fips_test.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/wolfcrypt_last.c
 
 # FIPSv2 first file
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_30 = wolfcrypt/src/wolfcrypt_first.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_32 = wolfcrypt/src/wolfcrypt_first.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/hmac.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/random.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/sha256.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_RSA_TRUE@am__append_31 = wolfcrypt/src/rsa.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@am__append_32 = wolfcrypt/src/hash_XMSS.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/hash_address.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/params.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/randombytes.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/utils.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/wots.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_commons.c \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_core.c  \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/test/XMSS_signature_test.c  \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/fips202.c 
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_RSA_TRUE@am__append_33 = wolfcrypt/src/rsa.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@am__append_34 = wolfcrypt/src/XMSS/hash_XMSS.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/hash_address.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/params.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/randombytes.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/utils.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/wots.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_commons.c \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_core.c  \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@		             wolfcrypt/test/XMSS_signature_test.c  \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/fips202.c 
 
-@BUILD_ECC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_33 = wolfcrypt/src/ecc.c
-@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_34 = wolfcrypt/src/aes.c
-@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_35 = wolfcrypt/src/aes_asm.S
-@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@am__append_36 = wolfcrypt/src/aes_gcm_asm.S
-@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_37 = wolfcrypt/src/des3.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA_TRUE@am__append_38 = wolfcrypt/src/sha.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA_TRUE@am__append_39 = wolfcrypt/src/sha256_asm.S
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA512_TRUE@am__append_40 = wolfcrypt/src/sha512.c
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__append_41 = wolfcrypt/src/sha512_asm.S
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA3_TRUE@am__append_42 = wolfcrypt/src/sha3.c
-@BUILD_DH_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_43 = wolfcrypt/src/dh.c
-@BUILD_CMAC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_44 = wolfcrypt/src/cmac.c
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_35 = wolfcrypt/src/DILITHIUM/aes256ctr.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/fips202.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@			      \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/ntt.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/packing.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/poly.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/polyvec.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                               \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/reduce.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@		             wolfcrypt/src/DILITHIUM/rng.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@		             wolfcrypt/src/DILITHIUM/rounding.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@		             wolfcrypt/src/DILITHIUM/sign.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@		             wolfcrypt/src/DILITHIUM/symmetric-shake.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@                             wolfcrypt/src/DILITHIUM/symmetric-aes.c 
+
+@BUILD_ECC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_36 = wolfcrypt/src/ecc.c
+@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_37 = wolfcrypt/src/aes.c
+@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_38 = wolfcrypt/src/aes_asm.S
+@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@am__append_39 = wolfcrypt/src/aes_gcm_asm.S
+@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_40 = wolfcrypt/src/des3.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA_TRUE@am__append_41 = wolfcrypt/src/sha.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA_TRUE@am__append_42 = wolfcrypt/src/sha256_asm.S
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA512_TRUE@am__append_43 = wolfcrypt/src/sha512.c
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__append_44 = wolfcrypt/src/sha512_asm.S
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA3_TRUE@am__append_45 = wolfcrypt/src/sha3.c
+@BUILD_DH_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_46 = wolfcrypt/src/dh.c
+@BUILD_CMAC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_47 = wolfcrypt/src/cmac.c
 
 # fips last file
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_45 =  \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__append_48 =  \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/fips.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/fips_test.c \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/wolfcrypt_last.c
-@BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@am__append_46 = \
+@BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@am__append_49 = \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@               wolfcrypt/src/wolfcrypt_first.c \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@               wolfcrypt/src/hmac.c \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@               wolfcrypt/src/random.c \
@@ -591,167 +636,182 @@ check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3)
 # For wolfRand, exclude just a couple files.
 # For old FIPS, keep the wolfCrypt versions of the
 # CtaoCrypt files included above.
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_47 = wolfcrypt/src/hmac.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_50 = wolfcrypt/src/hmac.c
 
 # CAVP self test
-@BUILD_FIPS_RAND_FALSE@@BUILD_SELFTEST_TRUE@am__append_48 = wolfcrypt/src/selftest.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RNG_TRUE@am__append_49 = wolfcrypt/src/random.c
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_50 = wolfcrypt/src/port/arm/armv8-sha256.c
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_51 = wolfcrypt/src/sha256.c
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@am__append_52 = wolfcrypt/src/sha256_asm.S
-@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_53 = wolfcrypt/src/port/af_alg/afalg_hash.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_WOLFEVENT_TRUE@am__append_54 = wolfcrypt/src/wolfevent.c
-@BUILD_ASYNCCRYPT_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_55 = wolfcrypt/src/async.c
-@BUILD_FAST_RSA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__append_56 = wolfcrypt/user-crypto/src/rsa.c
-@BUILD_FAST_RSA_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__append_57 = wolfcrypt/src/rsa.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@am__append_58 = wolfcrypt/src/hash_XMSS.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/hash_address.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/params.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/randombytes.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/utils.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/wots.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_commons.c \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/xmss_core.c  \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/test/XMSS_signature_test.c  \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/fips202.c 
+@BUILD_FIPS_RAND_FALSE@@BUILD_SELFTEST_TRUE@am__append_51 = wolfcrypt/src/selftest.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RNG_TRUE@am__append_52 = wolfcrypt/src/random.c
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_53 = wolfcrypt/src/port/arm/armv8-sha256.c
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_54 = wolfcrypt/src/sha256.c
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@am__append_55 = wolfcrypt/src/sha256_asm.S
+@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_56 = wolfcrypt/src/port/af_alg/afalg_hash.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_WOLFEVENT_TRUE@am__append_57 = wolfcrypt/src/wolfevent.c
+@BUILD_ASYNCCRYPT_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_58 = wolfcrypt/src/async.c
+@BUILD_FAST_RSA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__append_59 = wolfcrypt/user-crypto/src/rsa.c
+@BUILD_FAST_RSA_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__append_60 = wolfcrypt/src/rsa.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@am__append_61 = wolfcrypt/src/XMSS/hash_XMSS.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/hash_address.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/params.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/randombytes.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/utils.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/wots.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_commons.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/xmss_core.c  \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@		             wolfcrypt/test/XMSS_signature_test.c  \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@                             wolfcrypt/src/XMSS/fips202.c 
 
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@am__append_59 = wolfcrypt/src/sp_c32.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_62 = wolfcrypt/src/DILITHIUM/aes256ctr.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/fips202.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@			       \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/ntt.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/packing.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/poly.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/polyvec.c \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                                 \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/reduce.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@		             wolfcrypt/src/DILITHIUM/rng.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@		             wolfcrypt/src/DILITHIUM/rounding.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@		             wolfcrypt/src/DILITHIUM/sign.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@		             wolfcrypt/src/DILITHIUM/symmetric-shake.c  \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@                             wolfcrypt/src/DILITHIUM/symmetric-aes.c 
+
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@am__append_63 = wolfcrypt/src/sp_c32.c \
 @BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@	wolfcrypt/src/sp_c64.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@am__append_60 = wolfcrypt/src/sp_x86_64.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@am__append_64 = wolfcrypt/src/sp_x86_64.c \
 @BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@	wolfcrypt/src/sp_x86_64_asm.S
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SP_ARM32_TRUE@@BUILD_SP_TRUE@am__append_61 = wolfcrypt/src/sp_arm32.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_THUMB_TRUE@@BUILD_SP_TRUE@am__append_62 = wolfcrypt/src/sp_armthumb.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM64_TRUE@@BUILD_SP_TRUE@am__append_63 = wolfcrypt/src/sp_arm64.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_INT_TRUE@@BUILD_SP_TRUE@am__append_64 = wolfcrypt/src/sp_int.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_CORTEX_TRUE@@BUILD_SP_TRUE@am__append_65 = wolfcrypt/src/sp_cortexm.c
-@BUILD_AES_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_66 = wolfcrypt/src/aes.c
-@BUILD_AES_TRUE@@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_67 = wolfcrypt/src/port/arm/armv8-aes.c
-@BUILD_AES_TRUE@@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_68 = wolfcrypt/src/port/af_alg/afalg_aes.c
-@BUILD_CMAC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_69 = wolfcrypt/src/cmac.c
-@BUILD_DES3_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_70 = wolfcrypt/src/des3.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA_TRUE@am__append_71 = wolfcrypt/src/sha.c
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__append_72 = wolfcrypt/src/port/arm/armv8-sha512.c \
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SP_ARM32_TRUE@@BUILD_SP_TRUE@am__append_65 = wolfcrypt/src/sp_arm32.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_THUMB_TRUE@@BUILD_SP_TRUE@am__append_66 = wolfcrypt/src/sp_armthumb.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM64_TRUE@@BUILD_SP_TRUE@am__append_67 = wolfcrypt/src/sp_arm64.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_INT_TRUE@@BUILD_SP_TRUE@am__append_68 = wolfcrypt/src/sp_int.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_CORTEX_TRUE@@BUILD_SP_TRUE@am__append_69 = wolfcrypt/src/sp_cortexm.c
+@BUILD_AES_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_70 = wolfcrypt/src/aes.c
+@BUILD_AES_TRUE@@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_71 = wolfcrypt/src/port/arm/armv8-aes.c
+@BUILD_AES_TRUE@@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_72 = wolfcrypt/src/port/af_alg/afalg_aes.c
+@BUILD_CMAC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_73 = wolfcrypt/src/cmac.c
+@BUILD_DES3_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_74 = wolfcrypt/src/des3.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA_TRUE@am__append_75 = wolfcrypt/src/sha.c
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__append_76 = wolfcrypt/src/port/arm/armv8-sha512.c \
 @BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@	wolfcrypt/src/port/arm/armv8-sha512-asm.S \
 @BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@	wolfcrypt/src/port/arm/armv8-32-sha512-asm.S
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__append_73 = wolfcrypt/src/sha512.c
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__append_74 = wolfcrypt/src/sha512_asm.S
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA3_TRUE@am__append_75 = wolfcrypt/src/sha3.c
-@BUILD_FIPS_RAND_FALSE@am__append_76 = \
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__append_77 = wolfcrypt/src/sha512.c
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__append_78 = wolfcrypt/src/sha512_asm.S
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA3_TRUE@am__append_79 = wolfcrypt/src/sha3.c
+@BUILD_FIPS_RAND_FALSE@am__append_80 = \
 @BUILD_FIPS_RAND_FALSE@               wolfcrypt/src/wc_encrypt.c \
 @BUILD_FIPS_RAND_FALSE@               wolfcrypt/src/signature.c \
 @BUILD_FIPS_RAND_FALSE@               wolfcrypt/src/wolfmath.c
 
-@BUILD_MEMORY_TRUE@am__append_77 = wolfcrypt/src/memory.c
-@BUILD_DH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_78 = wolfcrypt/src/dh.c
-@BUILD_ASN_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_79 = wolfcrypt/src/asn.c
-@BUILD_CODING_TRUE@am__append_80 = wolfcrypt/src/coding.c
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_81 = wolfcrypt/src/port/arm/armv8-poly1305.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_82 = wolfcrypt/src/poly1305.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@@BUILD_POLY1305_TRUE@am__append_83 = wolfcrypt/src/poly1305_asm.S
-@BUILD_FIPS_RAND_FALSE@@BUILD_RC4_TRUE@am__append_84 = wolfcrypt/src/arc4.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD4_TRUE@am__append_85 = wolfcrypt/src/md4.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD5_TRUE@am__append_86 = wolfcrypt/src/md5.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@am__append_87 = wolfcrypt/src/pwdbased.c \
+@BUILD_MEMORY_TRUE@am__append_81 = wolfcrypt/src/memory.c
+@BUILD_DH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_82 = wolfcrypt/src/dh.c
+@BUILD_ASN_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_83 = wolfcrypt/src/asn.c
+@BUILD_CODING_TRUE@am__append_84 = wolfcrypt/src/coding.c
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_85 = wolfcrypt/src/port/arm/armv8-poly1305.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_86 = wolfcrypt/src/poly1305.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@@BUILD_POLY1305_TRUE@am__append_87 = wolfcrypt/src/poly1305_asm.S
+@BUILD_FIPS_RAND_FALSE@@BUILD_RC4_TRUE@am__append_88 = wolfcrypt/src/arc4.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD4_TRUE@am__append_89 = wolfcrypt/src/md4.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD5_TRUE@am__append_90 = wolfcrypt/src/md5.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@am__append_91 = wolfcrypt/src/pwdbased.c \
 @BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@	wolfcrypt/src/pkcs12.c
-@BUILD_DSA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_88 = wolfcrypt/src/dsa.c
-@BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_89 = wolfcrypt/src/aes_asm.S \
+@BUILD_DSA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_92 = wolfcrypt/src/dsa.c
+@BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_93 = wolfcrypt/src/aes_asm.S \
 @BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@	wolfcrypt/src/aes_gcm_asm.S
-@BUILD_CAMELLIA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_90 = wolfcrypt/src/camellia.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD2_TRUE@am__append_91 = wolfcrypt/src/md2.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_RIPEMD_TRUE@am__append_92 = wolfcrypt/src/ripemd.c
-@BUILD_BLAKE2_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_93 = wolfcrypt/src/blake2b.c
-@BUILD_BLAKE2S_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_94 = wolfcrypt/src/blake2s.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_HC128_TRUE@am__append_95 = wolfcrypt/src/hc128.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_RABBIT_TRUE@am__append_96 = wolfcrypt/src/rabbit.c
-@BUILD_ARMASM_TRUE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_97 = wolfcrypt/src/port/arm/armv8-chacha.c
-@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_98 = wolfcrypt/src/chacha.c
-@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__append_99 = wolfcrypt/src/chacha_asm.S
-@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_100 = wolfcrypt/src/chacha20_poly1305.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_INLINE_FALSE@am__append_101 = wolfcrypt/src/misc.c
-@BUILD_FASTMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_102 = wolfcrypt/src/tfm.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SLOWMATH_TRUE@am__append_103 = wolfcrypt/src/integer.c
-@BUILD_ECC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_104 = wolfcrypt/src/ecc.c
-@BUILD_CURVE25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_105 = wolfcrypt/src/curve25519.c
-@BUILD_ED25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_106 = wolfcrypt/src/ed25519.c
-@BUILD_CURVE25519_SMALL_TRUE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_107 = wolfcrypt/src/fe_low_mem.c
-@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__append_108 = wolfcrypt/src/fe_x25519_asm.S
-@BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__append_109 = wolfcrypt/src/port/arm/armv8-32-curve25519.S \
+@BUILD_CAMELLIA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_94 = wolfcrypt/src/camellia.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD2_TRUE@am__append_95 = wolfcrypt/src/md2.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_RIPEMD_TRUE@am__append_96 = wolfcrypt/src/ripemd.c
+@BUILD_BLAKE2_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_97 = wolfcrypt/src/blake2b.c
+@BUILD_BLAKE2S_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_98 = wolfcrypt/src/blake2s.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_HC128_TRUE@am__append_99 = wolfcrypt/src/hc128.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_RABBIT_TRUE@am__append_100 = wolfcrypt/src/rabbit.c
+@BUILD_ARMASM_TRUE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_101 = wolfcrypt/src/port/arm/armv8-chacha.c
+@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_102 = wolfcrypt/src/chacha.c
+@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__append_103 = wolfcrypt/src/chacha_asm.S
+@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__append_104 = wolfcrypt/src/chacha20_poly1305.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_INLINE_FALSE@am__append_105 = wolfcrypt/src/misc.c
+@BUILD_FASTMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_106 = wolfcrypt/src/tfm.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SLOWMATH_TRUE@am__append_107 = wolfcrypt/src/integer.c
+@BUILD_ECC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__append_108 = wolfcrypt/src/ecc.c
+@BUILD_CURVE25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_109 = wolfcrypt/src/curve25519.c
+@BUILD_ED25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_110 = wolfcrypt/src/ed25519.c
+@BUILD_CURVE25519_SMALL_TRUE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_111 = wolfcrypt/src/fe_low_mem.c
+@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__append_112 = wolfcrypt/src/fe_x25519_asm.S
+@BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__append_113 = wolfcrypt/src/port/arm/armv8-32-curve25519.S \
 @BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@	wolfcrypt/src/port/arm/armv8-curve25519.S
-@BUILD_ARMASM_FALSE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__append_110 = wolfcrypt/src/fe_operations.c
-@BUILD_ED25519_SMALL_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__append_111 = wolfcrypt/src/ge_low_mem.c
-@BUILD_ED25519_SMALL_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__append_112 = wolfcrypt/src/ge_operations.c
-@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_TRUE@am__append_113 = wolfcrypt/src/fe_x25519_asm.S
-@BUILD_ARMASM_TRUE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__append_114 = wolfcrypt/src/port/arm/armv8-curve25519.S
-@BUILD_ARMASM_FALSE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__append_115 = wolfcrypt/src/fe_operations.c
-@BUILD_CURVE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_116 = wolfcrypt/src/curve448.c
-@BUILD_ED448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_117 = wolfcrypt/src/ed448.c
-@BUILD_FE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_118 = wolfcrypt/src/fe_448.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__append_119 = wolfcrypt/src/ge_448.c
-@BUILD_FE448_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__append_120 = wolfcrypt/src/fe_448.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_LIBZ_TRUE@am__append_121 = wolfcrypt/src/compress.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_PKCS7_TRUE@am__append_122 = wolfcrypt/src/pkcs7.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_SRP_TRUE@am__append_123 = wolfcrypt/src/srp.c
-@BUILD_FIPS_RAND_FALSE@@BUILD_IDEA_TRUE@am__append_124 = wolfcrypt/src/idea.c
-@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_125 = wolfcrypt/src/port/af_alg/wc_afalg.c
+@BUILD_ARMASM_FALSE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__append_114 = wolfcrypt/src/fe_operations.c
+@BUILD_ED25519_SMALL_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__append_115 = wolfcrypt/src/ge_low_mem.c
+@BUILD_ED25519_SMALL_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__append_116 = wolfcrypt/src/ge_operations.c
+@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_TRUE@am__append_117 = wolfcrypt/src/fe_x25519_asm.S
+@BUILD_ARMASM_TRUE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__append_118 = wolfcrypt/src/port/arm/armv8-curve25519.S
+@BUILD_ARMASM_FALSE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__append_119 = wolfcrypt/src/fe_operations.c
+@BUILD_CURVE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_120 = wolfcrypt/src/curve448.c
+@BUILD_ED448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_121 = wolfcrypt/src/ed448.c
+@BUILD_FE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_122 = wolfcrypt/src/fe_448.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__append_123 = wolfcrypt/src/ge_448.c
+@BUILD_FE448_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__append_124 = wolfcrypt/src/fe_448.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_LIBZ_TRUE@am__append_125 = wolfcrypt/src/compress.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_PKCS7_TRUE@am__append_126 = wolfcrypt/src/pkcs7.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_SRP_TRUE@am__append_127 = wolfcrypt/src/srp.c
+@BUILD_FIPS_RAND_FALSE@@BUILD_IDEA_TRUE@am__append_128 = wolfcrypt/src/idea.c
+@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__append_129 = wolfcrypt/src/port/af_alg/wc_afalg.c
 
 # ssl files
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__append_126 = \
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__append_130 = \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@               src/internal.c \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@               src/wolfio.c \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@               src/keys.c \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@               src/ssl.c \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@               src/tls.c
 
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_TLS13_TRUE@am__append_127 = src/tls13.c
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_OCSP_TRUE@am__append_128 = src/ocsp.c
-@BUILD_CRL_TRUE@@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__append_129 = src/crl.c
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_SNIFFER_TRUE@am__append_130 = src/sniffer.c
-@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_131 =  \
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_TLS13_TRUE@am__append_131 = src/tls13.c
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_OCSP_TRUE@am__append_132 = src/ocsp.c
+@BUILD_CRL_TRUE@@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__append_133 = src/crl.c
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_SNIFFER_TRUE@am__append_134 = src/sniffer.c
+@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_135 =  \
 @BUILD_WOLFCRYPT_TESTS_TRUE@	wolfcrypt/benchmark/benchmark \
 @BUILD_WOLFCRYPT_TESTS_TRUE@	wolfcrypt/test/testwolfcrypt \
 @BUILD_WOLFCRYPT_TESTS_TRUE@	wolfcrypt/test/testwolfcrypt
-@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_132 =  \
+@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_136 =  \
 @BUILD_WOLFCRYPT_TESTS_TRUE@	wolfcrypt/benchmark/benchmark.h \
 @BUILD_WOLFCRYPT_TESTS_TRUE@	wolfcrypt/test/test.h
-@BUILD_CRYPTOCB_TRUE@am__append_133 = wolfcrypt/src/cryptocb.c
-@BUILD_PKCS11_TRUE@am__append_134 = wolfcrypt/src/wc_pkcs11.c
-@BUILD_DEVCRYPTO_TRUE@am__append_135 = wolfcrypt/src/port/devcrypto/devcrypto_hash.c \
+@BUILD_CRYPTOCB_TRUE@am__append_137 = wolfcrypt/src/cryptocb.c
+@BUILD_PKCS11_TRUE@am__append_138 = wolfcrypt/src/wc_pkcs11.c
+@BUILD_DEVCRYPTO_TRUE@am__append_139 = wolfcrypt/src/port/devcrypto/devcrypto_hash.c \
 @BUILD_DEVCRYPTO_TRUE@	wolfcrypt/src/port/devcrypto/devcrypto_aes.c \
 @BUILD_DEVCRYPTO_TRUE@	wolfcrypt/src/port/devcrypto/wc_devcrypto.c
-@BUILD_CAVIUM_TRUE@am__append_136 = wolfcrypt/src/port/cavium/cavium_nitrox.c
-@BUILD_OCTEON_SYNC_TRUE@am__append_137 = wolfcrypt/src/port/cavium/cavium_octeon_sync.c
-@BUILD_INTEL_QA_TRUE@am__append_138 =  \
+@BUILD_CAVIUM_TRUE@am__append_140 = wolfcrypt/src/port/cavium/cavium_nitrox.c
+@BUILD_OCTEON_SYNC_TRUE@am__append_141 = wolfcrypt/src/port/cavium/cavium_octeon_sync.c
+@BUILD_INTEL_QA_TRUE@am__append_142 =  \
 @BUILD_INTEL_QA_TRUE@	wolfcrypt/src/port/intel/quickassist.c \
 @BUILD_INTEL_QA_TRUE@	wolfcrypt/src/port/intel/quickassist_mem.c
-@BUILD_INTEL_QA_SYNC_TRUE@am__append_139 = wolfcrypt/src/port/intel/quickassist_sync.c
-@BUILD_CRYPTOAUTHLIB_TRUE@am__append_140 = wolfcrypt/src/port/atmel/atmel.c
-@BUILD_CRYPTONLY_TRUE@@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_141 = wolfcrypt/test/testwolfcrypt
-@BUILD_THREADED_EXAMPLES_TRUE@am__append_142 = examples/benchmark/tls_bench
-@BUILD_THREADED_EXAMPLES_TRUE@am__append_143 = examples/benchmark/tls_bench.h
-@BUILD_EXAMPLE_CLIENTS_TRUE@am__append_144 = examples/client/client \
+@BUILD_INTEL_QA_SYNC_TRUE@am__append_143 = wolfcrypt/src/port/intel/quickassist_sync.c
+@BUILD_CRYPTOAUTHLIB_TRUE@am__append_144 = wolfcrypt/src/port/atmel/atmel.c
+@BUILD_CRYPTONLY_TRUE@@BUILD_WOLFCRYPT_TESTS_TRUE@am__append_145 = wolfcrypt/test/testwolfcrypt
+@BUILD_THREADED_EXAMPLES_TRUE@am__append_146 = examples/benchmark/tls_bench
+@BUILD_THREADED_EXAMPLES_TRUE@am__append_147 = examples/benchmark/tls_bench.h
+@BUILD_EXAMPLE_CLIENTS_TRUE@am__append_148 = examples/client/client \
 @BUILD_EXAMPLE_CLIENTS_TRUE@	examples/echoclient/echoclient
-@BUILD_EXAMPLE_CLIENTS_TRUE@am__append_145 = examples/client/client.h \
+@BUILD_EXAMPLE_CLIENTS_TRUE@am__append_149 = examples/client/client.h \
 @BUILD_EXAMPLE_CLIENTS_TRUE@	examples/echoclient/echoclient.h
-@BUILD_EXAMPLE_SERVERS_TRUE@am__append_146 =  \
+@BUILD_EXAMPLE_SERVERS_TRUE@am__append_150 =  \
 @BUILD_EXAMPLE_SERVERS_TRUE@	examples/echoserver/echoserver \
 @BUILD_EXAMPLE_SERVERS_TRUE@	examples/server/server
-@BUILD_EXAMPLE_SERVERS_TRUE@am__append_147 =  \
+@BUILD_EXAMPLE_SERVERS_TRUE@am__append_151 =  \
 @BUILD_EXAMPLE_SERVERS_TRUE@	examples/echoserver/echoserver.h \
 @BUILD_EXAMPLE_SERVERS_TRUE@	examples/server/server.h
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_SCTP_TRUE@am__append_148 = \
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_SCTP_TRUE@am__append_152 = \
 @BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_SCTP_TRUE@				examples/sctp/sctp-server \
 @BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_SCTP_TRUE@				examples/sctp/sctp-server-dtls
 
-@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_SCTP_TRUE@am__append_149 = \
+@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_SCTP_TRUE@am__append_153 = \
 @BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_SCTP_TRUE@				examples/sctp/sctp-client \
 @BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_SCTP_TRUE@				examples/sctp/sctp-client-dtls
 
-@BUILD_TESTS_TRUE@am__append_150 = testsuite/testsuite.test
-@BUILD_TESTS_TRUE@am__append_151 = testsuite/testsuite.test \
+@BUILD_TESTS_TRUE@am__append_154 = testsuite/testsuite.test
+@BUILD_TESTS_TRUE@am__append_155 = testsuite/testsuite.test \
 @BUILD_TESTS_TRUE@	tests/unit.test
-@BUILD_SNIFFTEST_TRUE@am__append_152 = sslSniffer/sslSnifferTest/snifftest
-@BUILD_DISTRO_FALSE@am__append_153 = mqx/util_lib/.cproject \
+@BUILD_SNIFFTEST_TRUE@am__append_156 = sslSniffer/sslSnifferTest/snifftest
+@BUILD_DISTRO_FALSE@am__append_157 = mqx/util_lib/.cproject \
 @BUILD_DISTRO_FALSE@	mqx/util_lib/.project \
 @BUILD_DISTRO_FALSE@	mqx/util_lib/Sources/util.c \
 @BUILD_DISTRO_FALSE@	mqx/util_lib/Sources/util.h \
@@ -1109,34 +1169,34 @@ check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3)
 @BUILD_DISTRO_FALSE@	IDE/MYSQL IDE/LPCXPRESSO IDE/HEXIWEAR \
 @BUILD_DISTRO_FALSE@	IDE/Espressif IDE/zephyr \
 @BUILD_DISTRO_FALSE@	IDE/OPENSTM32/README.md
-@BUILD_DISTRO_FALSE@@BUILD_MCAPI_TRUE@am__append_154 = mcapi/test
-@BUILD_DISTRO_FALSE@@BUILD_MCAPI_TRUE@am__append_155 = mcapi/test 
-@BUILD_DISTRO_FALSE@am__append_156 = mcapi/crypto.h
-@BUILD_SNIFFTEST_TRUE@am__append_157 = scripts/sniffer-testsuite.test
-@BUILD_EXAMPLE_SERVERS_TRUE@am__append_158 = scripts/resume.test
-@BUILD_EXAMPLE_SERVERS_TRUE@am__append_159 = scripts/benchmark.test \
+@BUILD_DISTRO_FALSE@@BUILD_MCAPI_TRUE@am__append_158 = mcapi/test
+@BUILD_DISTRO_FALSE@@BUILD_MCAPI_TRUE@am__append_159 = mcapi/test 
+@BUILD_DISTRO_FALSE@am__append_160 = mcapi/crypto.h
+@BUILD_SNIFFTEST_TRUE@am__append_161 = scripts/sniffer-testsuite.test
+@BUILD_EXAMPLE_SERVERS_TRUE@am__append_162 = scripts/resume.test
+@BUILD_EXAMPLE_SERVERS_TRUE@am__append_163 = scripts/benchmark.test \
 @BUILD_EXAMPLE_SERVERS_TRUE@	scripts/memtest.sh
 
 # The CRL and OCSP tests use RSA certificates.
 
 # make revoked test rely on completion of resume test
-@BUILD_CRL_TRUE@@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_RSA_TRUE@am__append_160 = scripts/crl-revoked.test
+@BUILD_CRL_TRUE@@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_RSA_TRUE@am__append_164 = scripts/crl-revoked.test
 
 # arrange to serialize ocsp.test, ocsp-stapling.test, ocsp-stapling-with-ca-as-responder.test, ocsp-stapling2.test, and testsuite,
 # to help mitigate port conflicts among them.
 # note that unit.test is gated on testsuite in Makefile.am, which is also helpful for these purposes.
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_OCSP_STAPLING_TRUE@@BUILD_RSA_TRUE@am__append_161 = scripts/ocsp-stapling.test \
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_OCSP_STAPLING_TRUE@@BUILD_RSA_TRUE@am__append_165 = scripts/ocsp-stapling.test \
 @BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_OCSP_STAPLING_TRUE@@BUILD_RSA_TRUE@	scripts/ocsp-stapling-with-ca-as-responder.test
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_OCSP_STAPLING_V2_TRUE@@BUILD_RSA_TRUE@am__append_162 = scripts/ocsp-stapling2.test
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_PSK_TRUE@am__append_163 = scripts/psk.test
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_TRUST_PEER_CERT_TRUE@am__append_164 = scripts/trusted_peer.test
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_PKCALLBACKS_TRUE@am__append_165 = scripts/pkcallbacks.test
-@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_TLS13_TRUE@am__append_166 = scripts/tls13.test
-@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@am__append_167 = scripts/external.test \
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_OCSP_STAPLING_V2_TRUE@@BUILD_RSA_TRUE@am__append_166 = scripts/ocsp-stapling2.test
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_PSK_TRUE@am__append_167 = scripts/psk.test
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_TRUST_PEER_CERT_TRUE@am__append_168 = scripts/trusted_peer.test
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_PKCALLBACKS_TRUE@am__append_169 = scripts/pkcallbacks.test
+@BUILD_EXAMPLE_SERVERS_TRUE@@BUILD_TLS13_TRUE@am__append_170 = scripts/tls13.test
+@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@am__append_171 = scripts/external.test \
 @BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@	scripts/google.test \
 @BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@	scripts/openssl.test
-@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@@BUILD_OCSP_TRUE@am__append_168 = scripts/ocsp.test
-@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@am__append_169 = scripts/unit.test
+@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@@BUILD_OCSP_TRUE@am__append_172 = scripts/ocsp.test
+@BUILD_EXAMPLE_CLIENTS_TRUE@@BUILD_IPV6_FALSE@am__append_173 = scripts/unit.test
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_add_am_macro.m4 \
@@ -1213,12 +1273,25 @@ src_libwolfssl_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 am__src_libwolfssl_la_SOURCES_DIST = ctaocrypt/src/wolfcrypt_first.c \
 	ctaocrypt/src/hmac.c ctaocrypt/src/random.c \
 	ctaocrypt/src/sha256.c ctaocrypt/src/rsa.c \
-	wolfcrypt/src/hash_XMSS.c wolfcrypt/src/hash_address.c \
-	wolfcrypt/src/params.c wolfcrypt/src/randombytes.c \
-	wolfcrypt/src/utils.c wolfcrypt/src/wots.c \
-	wolfcrypt/src/xmss.c wolfcrypt/src/xmss_commons.c \
-	wolfcrypt/src/xmss_core.c wolfcrypt/test/XMSS_signature_test.c \
-	wolfcrypt/src/fips202.c ctaocrypt/src/aes.c \
+	wolfcrypt/src/XMSS/hash_XMSS.c \
+	wolfcrypt/src/XMSS/hash_address.c wolfcrypt/src/XMSS/params.c \
+	wolfcrypt/src/XMSS/randombytes.c wolfcrypt/src/XMSS/utils.c \
+	wolfcrypt/src/XMSS/wots.c wolfcrypt/src/XMSS/xmss.c \
+	wolfcrypt/src/XMSS/xmss_commons.c \
+	wolfcrypt/src/XMSS/xmss_core.c \
+	wolfcrypt/test/XMSS_signature_test.c \
+	wolfcrypt/src/XMSS/fips202.c \
+	wolfcrypt/src/DILITHIUM/aes256ctr.c \
+	wolfcrypt/src/DILITHIUM/fips202.c \
+	wolfcrypt/src/DILITHIUM/ntt.c \
+	wolfcrypt/src/DILITHIUM/packing.c \
+	wolfcrypt/src/DILITHIUM/poly.c \
+	wolfcrypt/src/DILITHIUM/polyvec.c \
+	wolfcrypt/src/DILITHIUM/reduce.c wolfcrypt/src/DILITHIUM/rng.c \
+	wolfcrypt/src/DILITHIUM/rounding.c \
+	wolfcrypt/src/DILITHIUM/sign.c \
+	wolfcrypt/src/DILITHIUM/symmetric-shake.c \
+	wolfcrypt/src/DILITHIUM/symmetric-aes.c ctaocrypt/src/aes.c \
 	ctaocrypt/src/des3.c ctaocrypt/src/sha.c \
 	ctaocrypt/src/sha512.c ctaocrypt/src/fips.c \
 	ctaocrypt/src/fips_test.c ctaocrypt/src/wolfcrypt_last.c \
@@ -1289,56 +1362,80 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/src_libwolfssl_la-random.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/src_libwolfssl_la-sha256.lo
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_RSA_TRUE@am__objects_2 = ctaocrypt/src/src_libwolfssl_la-rsa.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@am__objects_3 = wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-hash_address.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-params.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-randombytes.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-utils.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-wots.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_core.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@am__objects_3 = wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips202.lo
-@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_4 = ctaocrypt/src/src_libwolfssl_la-aes.lo
-@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_5 = ctaocrypt/src/src_libwolfssl_la-des3.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA_TRUE@am__objects_6 = ctaocrypt/src/src_libwolfssl_la-sha.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA512_TRUE@am__objects_7 = ctaocrypt/src/src_libwolfssl_la-sha512.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_8 = ctaocrypt/src/src_libwolfssl_la-fips.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_4 = wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo
+@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_5 = ctaocrypt/src/src_libwolfssl_la-aes.lo
+@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_6 = ctaocrypt/src/src_libwolfssl_la-des3.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA_TRUE@am__objects_7 = ctaocrypt/src/src_libwolfssl_la-sha.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@@BUILD_SHA512_TRUE@am__objects_8 = ctaocrypt/src/src_libwolfssl_la-sha512.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@am__objects_9 = ctaocrypt/src/src_libwolfssl_la-fips.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/src_libwolfssl_la-fips_test.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V1_TRUE@	ctaocrypt/src/src_libwolfssl_la-wolfcrypt_last.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_9 = wolfcrypt/src/src_libwolfssl_la-wolfcrypt_first.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_10 = wolfcrypt/src/src_libwolfssl_la-wolfcrypt_first.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/src_libwolfssl_la-hmac.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/src_libwolfssl_la-random.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/src_libwolfssl_la-sha256.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_RSA_TRUE@am__objects_10 = wolfcrypt/src/src_libwolfssl_la-rsa.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@am__objects_11 = wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-hash_address.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-params.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-randombytes.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-utils.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-wots.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_core.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_RSA_TRUE@am__objects_11 = wolfcrypt/src/src_libwolfssl_la-rsa.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@am__objects_12 = wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo \
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips202.lo
-@BUILD_ECC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_12 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
-@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_13 = wolfcrypt/src/src_libwolfssl_la-aes.lo
-@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_14 = wolfcrypt/src/src_libwolfssl_la-aes_asm.lo
-@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@am__objects_15 = wolfcrypt/src/src_libwolfssl_la-aes_gcm_asm.lo
-@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_16 = wolfcrypt/src/src_libwolfssl_la-des3.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA_TRUE@am__objects_17 = wolfcrypt/src/src_libwolfssl_la-sha.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA_TRUE@am__objects_18 = wolfcrypt/src/src_libwolfssl_la-sha256_asm.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA512_TRUE@am__objects_19 = wolfcrypt/src/src_libwolfssl_la-sha512.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__objects_20 = wolfcrypt/src/src_libwolfssl_la-sha512_asm.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA3_TRUE@am__objects_21 = wolfcrypt/src/src_libwolfssl_la-sha3.lo
-@BUILD_DH_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_22 = wolfcrypt/src/src_libwolfssl_la-dh.lo
-@BUILD_CMAC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_23 = wolfcrypt/src/src_libwolfssl_la-cmac.lo
-@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_24 = wolfcrypt/src/src_libwolfssl_la-fips.lo \
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_13 = wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo
+@BUILD_ECC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_14 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
+@BUILD_AES_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_15 = wolfcrypt/src/src_libwolfssl_la-aes.lo
+@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_16 = wolfcrypt/src/src_libwolfssl_la-aes_asm.lo
+@BUILD_AESNI_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@am__objects_17 = wolfcrypt/src/src_libwolfssl_la-aes_gcm_asm.lo
+@BUILD_DES3_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_18 = wolfcrypt/src/src_libwolfssl_la-des3.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA_TRUE@am__objects_19 = wolfcrypt/src/src_libwolfssl_la-sha.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA_TRUE@am__objects_20 = wolfcrypt/src/src_libwolfssl_la-sha256_asm.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA512_TRUE@am__objects_21 = wolfcrypt/src/src_libwolfssl_la-sha512.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__objects_22 = wolfcrypt/src/src_libwolfssl_la-sha512_asm.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@@BUILD_SHA3_TRUE@am__objects_23 = wolfcrypt/src/src_libwolfssl_la-sha3.lo
+@BUILD_DH_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_24 = wolfcrypt/src/src_libwolfssl_la-dh.lo
+@BUILD_CMAC_TRUE@@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_25 = wolfcrypt/src/src_libwolfssl_la-cmac.lo
+@BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@am__objects_26 = wolfcrypt/src/src_libwolfssl_la-fips.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips_test.lo \
 @BUILD_FIPS_TRUE@@BUILD_FIPS_V2_TRUE@	wolfcrypt/src/src_libwolfssl_la-wolfcrypt_last.lo
-@BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@am__objects_25 = wolfcrypt/src/src_libwolfssl_la-wolfcrypt_first.lo \
+@BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@am__objects_27 = wolfcrypt/src/src_libwolfssl_la-wolfcrypt_first.lo \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-hmac.lo \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-random.lo \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-sha256.lo \
@@ -1346,126 +1443,138 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips.lo \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips_test.lo \
 @BUILD_FIPS_RAND_TRUE@@BUILD_FIPS_TRUE@	wolfcrypt/src/src_libwolfssl_la-wolfcrypt_last.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_26 = wolfcrypt/src/src_libwolfssl_la-hmac.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SELFTEST_TRUE@am__objects_27 = wolfcrypt/src/src_libwolfssl_la-selftest.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RNG_TRUE@am__objects_28 = wolfcrypt/src/src_libwolfssl_la-random.lo
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_29 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-sha256.lo
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_30 = wolfcrypt/src/src_libwolfssl_la-sha256.lo
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@am__objects_31 = wolfcrypt/src/src_libwolfssl_la-sha256_asm.lo
-@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_32 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-afalg_hash.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_WOLFEVENT_TRUE@am__objects_33 = wolfcrypt/src/src_libwolfssl_la-wolfevent.lo
-@BUILD_ASYNCCRYPT_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_34 = wolfcrypt/src/src_libwolfssl_la-async.lo
-@BUILD_FAST_RSA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__objects_35 = wolfcrypt/user-crypto/src/src_libwolfssl_la-rsa.lo
-@BUILD_FAST_RSA_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__objects_36 = wolfcrypt/src/src_libwolfssl_la-rsa.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@am__objects_37 = wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-hash_address.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-params.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-randombytes.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-utils.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-wots.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-xmss_core.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_28 = wolfcrypt/src/src_libwolfssl_la-hmac.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SELFTEST_TRUE@am__objects_29 = wolfcrypt/src/src_libwolfssl_la-selftest.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RNG_TRUE@am__objects_30 = wolfcrypt/src/src_libwolfssl_la-random.lo
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_31 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-sha256.lo
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_32 = wolfcrypt/src/src_libwolfssl_la-sha256.lo
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@am__objects_33 = wolfcrypt/src/src_libwolfssl_la-sha256_asm.lo
+@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_34 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-afalg_hash.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_WOLFEVENT_TRUE@am__objects_35 = wolfcrypt/src/src_libwolfssl_la-wolfevent.lo
+@BUILD_ASYNCCRYPT_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_36 = wolfcrypt/src/src_libwolfssl_la-async.lo
+@BUILD_FAST_RSA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__objects_37 = wolfcrypt/user-crypto/src/src_libwolfssl_la-rsa.lo
+@BUILD_FAST_RSA_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_RSA_TRUE@@BUILD_USER_RSA_FALSE@am__objects_38 = wolfcrypt/src/src_libwolfssl_la-rsa.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@am__objects_39 = wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo \
 @BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo \
-@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/src_libwolfssl_la-fips202.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@am__objects_38 = wolfcrypt/src/src_libwolfssl_la-sp_c32.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_XMSS_TRUE@	wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_40 = wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo \
+@BUILD_DILITHIUM_TRUE@@BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@am__objects_41 = wolfcrypt/src/src_libwolfssl_la-sp_c32.lo \
 @BUILD_FIPS_RAND_FALSE@@BUILD_SP_C_TRUE@@BUILD_SP_TRUE@	wolfcrypt/src/src_libwolfssl_la-sp_c64.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@am__objects_39 = wolfcrypt/src/src_libwolfssl_la-sp_x86_64.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@am__objects_42 = wolfcrypt/src/src_libwolfssl_la-sp_x86_64.lo \
 @BUILD_FIPS_RAND_FALSE@@BUILD_SP_TRUE@@BUILD_SP_X86_64_TRUE@	wolfcrypt/src/src_libwolfssl_la-sp_x86_64_asm.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SP_ARM32_TRUE@@BUILD_SP_TRUE@am__objects_40 = wolfcrypt/src/src_libwolfssl_la-sp_arm32.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_THUMB_TRUE@@BUILD_SP_TRUE@am__objects_41 = wolfcrypt/src/src_libwolfssl_la-sp_armthumb.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM64_TRUE@@BUILD_SP_TRUE@am__objects_42 = wolfcrypt/src/src_libwolfssl_la-sp_arm64.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_INT_TRUE@@BUILD_SP_TRUE@am__objects_43 = wolfcrypt/src/src_libwolfssl_la-sp_int.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_CORTEX_TRUE@@BUILD_SP_TRUE@am__objects_44 = wolfcrypt/src/src_libwolfssl_la-sp_cortexm.lo
-@BUILD_AES_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_45 = wolfcrypt/src/src_libwolfssl_la-aes.lo
-@BUILD_AES_TRUE@@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_46 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-aes.lo
-@BUILD_AES_TRUE@@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_47 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-afalg_aes.lo
-@BUILD_CMAC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_48 = wolfcrypt/src/src_libwolfssl_la-cmac.lo
-@BUILD_DES3_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_49 = wolfcrypt/src/src_libwolfssl_la-des3.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA_TRUE@am__objects_50 = wolfcrypt/src/src_libwolfssl_la-sha.lo
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__objects_51 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-sha512.lo \
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SP_ARM32_TRUE@@BUILD_SP_TRUE@am__objects_43 = wolfcrypt/src/src_libwolfssl_la-sp_arm32.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_THUMB_TRUE@@BUILD_SP_TRUE@am__objects_44 = wolfcrypt/src/src_libwolfssl_la-sp_armthumb.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM64_TRUE@@BUILD_SP_TRUE@am__objects_45 = wolfcrypt/src/src_libwolfssl_la-sp_arm64.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_INT_TRUE@@BUILD_SP_TRUE@am__objects_46 = wolfcrypt/src/src_libwolfssl_la-sp_int.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SP_ARM_CORTEX_TRUE@@BUILD_SP_TRUE@am__objects_47 = wolfcrypt/src/src_libwolfssl_la-sp_cortexm.lo
+@BUILD_AES_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_48 = wolfcrypt/src/src_libwolfssl_la-aes.lo
+@BUILD_AES_TRUE@@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_49 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-aes.lo
+@BUILD_AES_TRUE@@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_50 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-afalg_aes.lo
+@BUILD_CMAC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_51 = wolfcrypt/src/src_libwolfssl_la-cmac.lo
+@BUILD_DES3_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_52 = wolfcrypt/src/src_libwolfssl_la-des3.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA_TRUE@am__objects_53 = wolfcrypt/src/src_libwolfssl_la-sha.lo
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__objects_54 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-sha512.lo \
 @BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@	wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-sha512-asm.lo \
 @BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@	wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-32-sha512-asm.lo
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__objects_52 = wolfcrypt/src/src_libwolfssl_la-sha512.lo
-@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__objects_53 = wolfcrypt/src/src_libwolfssl_la-sha512_asm.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA3_TRUE@am__objects_54 = wolfcrypt/src/src_libwolfssl_la-sha3.lo
-@BUILD_FIPS_RAND_FALSE@am__objects_55 = wolfcrypt/src/src_libwolfssl_la-wc_encrypt.lo \
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA512_TRUE@am__objects_55 = wolfcrypt/src/src_libwolfssl_la-sha512.lo
+@BUILD_ARMASM_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_INTELASM_TRUE@@BUILD_SHA512_TRUE@am__objects_56 = wolfcrypt/src/src_libwolfssl_la-sha512_asm.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@@BUILD_SHA3_TRUE@am__objects_57 = wolfcrypt/src/src_libwolfssl_la-sha3.lo
+@BUILD_FIPS_RAND_FALSE@am__objects_58 = wolfcrypt/src/src_libwolfssl_la-wc_encrypt.lo \
 @BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/src_libwolfssl_la-signature.lo \
 @BUILD_FIPS_RAND_FALSE@	wolfcrypt/src/src_libwolfssl_la-wolfmath.lo
-@BUILD_MEMORY_TRUE@am__objects_56 =  \
+@BUILD_MEMORY_TRUE@am__objects_59 =  \
 @BUILD_MEMORY_TRUE@	wolfcrypt/src/src_libwolfssl_la-memory.lo
-@BUILD_DH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_57 = wolfcrypt/src/src_libwolfssl_la-dh.lo
-@BUILD_ASN_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_58 = wolfcrypt/src/src_libwolfssl_la-asn.lo
-@BUILD_CODING_TRUE@am__objects_59 =  \
+@BUILD_DH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_60 = wolfcrypt/src/src_libwolfssl_la-dh.lo
+@BUILD_ASN_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_61 = wolfcrypt/src/src_libwolfssl_la-asn.lo
+@BUILD_CODING_TRUE@am__objects_62 =  \
 @BUILD_CODING_TRUE@	wolfcrypt/src/src_libwolfssl_la-coding.lo
-@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_60 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-poly1305.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_61 = wolfcrypt/src/src_libwolfssl_la-poly1305.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@@BUILD_POLY1305_TRUE@am__objects_62 = wolfcrypt/src/src_libwolfssl_la-poly1305_asm.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_RC4_TRUE@am__objects_63 = wolfcrypt/src/src_libwolfssl_la-arc4.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD4_TRUE@am__objects_64 = wolfcrypt/src/src_libwolfssl_la-md4.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD5_TRUE@am__objects_65 = wolfcrypt/src/src_libwolfssl_la-md5.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@am__objects_66 = wolfcrypt/src/src_libwolfssl_la-pwdbased.lo \
+@BUILD_ARMASM_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_63 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-poly1305.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_64 = wolfcrypt/src/src_libwolfssl_la-poly1305.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@@BUILD_POLY1305_TRUE@am__objects_65 = wolfcrypt/src/src_libwolfssl_la-poly1305_asm.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_RC4_TRUE@am__objects_66 = wolfcrypt/src/src_libwolfssl_la-arc4.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD4_TRUE@am__objects_67 = wolfcrypt/src/src_libwolfssl_la-md4.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD5_TRUE@am__objects_68 = wolfcrypt/src/src_libwolfssl_la-md5.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@am__objects_69 = wolfcrypt/src/src_libwolfssl_la-pwdbased.lo \
 @BUILD_FIPS_RAND_FALSE@@BUILD_PWDBASED_TRUE@	wolfcrypt/src/src_libwolfssl_la-pkcs12.lo
-@BUILD_DSA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_67 = wolfcrypt/src/src_libwolfssl_la-dsa.lo
-@BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_68 = wolfcrypt/src/src_libwolfssl_la-aes_asm.lo \
+@BUILD_DSA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_70 = wolfcrypt/src/src_libwolfssl_la-dsa.lo
+@BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_71 = wolfcrypt/src/src_libwolfssl_la-aes_asm.lo \
 @BUILD_AESNI_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@	wolfcrypt/src/src_libwolfssl_la-aes_gcm_asm.lo
-@BUILD_CAMELLIA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_69 = wolfcrypt/src/src_libwolfssl_la-camellia.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_MD2_TRUE@am__objects_70 = wolfcrypt/src/src_libwolfssl_la-md2.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_RIPEMD_TRUE@am__objects_71 = wolfcrypt/src/src_libwolfssl_la-ripemd.lo
-@BUILD_BLAKE2_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_72 = wolfcrypt/src/src_libwolfssl_la-blake2b.lo
-@BUILD_BLAKE2S_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_73 = wolfcrypt/src/src_libwolfssl_la-blake2s.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_HC128_TRUE@am__objects_74 = wolfcrypt/src/src_libwolfssl_la-hc128.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_RABBIT_TRUE@am__objects_75 = wolfcrypt/src/src_libwolfssl_la-rabbit.lo
-@BUILD_ARMASM_TRUE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_76 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-chacha.lo
-@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_77 = wolfcrypt/src/src_libwolfssl_la-chacha.lo
-@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__objects_78 = wolfcrypt/src/src_libwolfssl_la-chacha_asm.lo
-@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_79 = wolfcrypt/src/src_libwolfssl_la-chacha20_poly1305.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_INLINE_FALSE@am__objects_80 = wolfcrypt/src/src_libwolfssl_la-misc.lo
-@BUILD_FASTMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_81 = wolfcrypt/src/src_libwolfssl_la-tfm.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SLOWMATH_TRUE@am__objects_82 = wolfcrypt/src/src_libwolfssl_la-integer.lo
-@BUILD_ECC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_83 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
-@BUILD_CURVE25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_84 = wolfcrypt/src/src_libwolfssl_la-curve25519.lo
-@BUILD_ED25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_85 = wolfcrypt/src/src_libwolfssl_la-ed25519.lo
-@BUILD_CURVE25519_SMALL_TRUE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_86 = wolfcrypt/src/src_libwolfssl_la-fe_low_mem.lo
-@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__objects_87 = wolfcrypt/src/src_libwolfssl_la-fe_x25519_asm.lo
-@BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__objects_88 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-32-curve25519.lo \
+@BUILD_CAMELLIA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_72 = wolfcrypt/src/src_libwolfssl_la-camellia.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_MD2_TRUE@am__objects_73 = wolfcrypt/src/src_libwolfssl_la-md2.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_RIPEMD_TRUE@am__objects_74 = wolfcrypt/src/src_libwolfssl_la-ripemd.lo
+@BUILD_BLAKE2_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_75 = wolfcrypt/src/src_libwolfssl_la-blake2b.lo
+@BUILD_BLAKE2S_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_76 = wolfcrypt/src/src_libwolfssl_la-blake2s.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_HC128_TRUE@am__objects_77 = wolfcrypt/src/src_libwolfssl_la-hc128.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_RABBIT_TRUE@am__objects_78 = wolfcrypt/src/src_libwolfssl_la-rabbit.lo
+@BUILD_ARMASM_TRUE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_79 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-chacha.lo
+@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_80 = wolfcrypt/src/src_libwolfssl_la-chacha.lo
+@BUILD_ARMASM_FALSE@@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__objects_81 = wolfcrypt/src/src_libwolfssl_la-chacha_asm.lo
+@BUILD_CHACHA_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_POLY1305_TRUE@am__objects_82 = wolfcrypt/src/src_libwolfssl_la-chacha20_poly1305.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_INLINE_FALSE@am__objects_83 = wolfcrypt/src/src_libwolfssl_la-misc.lo
+@BUILD_FASTMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_84 = wolfcrypt/src/src_libwolfssl_la-tfm.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SLOWMATH_TRUE@am__objects_85 = wolfcrypt/src/src_libwolfssl_la-integer.lo
+@BUILD_ECC_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_FIPS_V2_FALSE@am__objects_86 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
+@BUILD_CURVE25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_87 = wolfcrypt/src/src_libwolfssl_la-curve25519.lo
+@BUILD_ED25519_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_88 = wolfcrypt/src/src_libwolfssl_la-ed25519.lo
+@BUILD_CURVE25519_SMALL_TRUE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_89 = wolfcrypt/src/src_libwolfssl_la-fe_low_mem.lo
+@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_TRUE@am__objects_90 = wolfcrypt/src/src_libwolfssl_la-fe_x25519_asm.lo
+@BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__objects_91 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-32-curve25519.lo \
 @BUILD_ARMASM_TRUE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@	wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-curve25519.lo
-@BUILD_ARMASM_FALSE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__objects_89 = wolfcrypt/src/src_libwolfssl_la-fe_operations.lo
-@BUILD_ED25519_SMALL_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__objects_90 = wolfcrypt/src/src_libwolfssl_la-ge_low_mem.lo
-@BUILD_ED25519_SMALL_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__objects_91 = wolfcrypt/src/src_libwolfssl_la-ge_operations.lo
-@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_TRUE@am__objects_92 = wolfcrypt/src/src_libwolfssl_la-fe_x25519_asm.lo
-@BUILD_ARMASM_TRUE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__objects_93 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-curve25519.lo
-@BUILD_ARMASM_FALSE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__objects_94 = wolfcrypt/src/src_libwolfssl_la-fe_operations.lo
-@BUILD_CURVE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_95 = wolfcrypt/src/src_libwolfssl_la-curve448.lo
-@BUILD_ED448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_96 = wolfcrypt/src/src_libwolfssl_la-ed448.lo
-@BUILD_FE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_97 = wolfcrypt/src/src_libwolfssl_la-fe_448.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__objects_98 = wolfcrypt/src/src_libwolfssl_la-ge_448.lo
-@BUILD_FE448_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__objects_99 = wolfcrypt/src/src_libwolfssl_la-fe_448.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_LIBZ_TRUE@am__objects_100 = wolfcrypt/src/src_libwolfssl_la-compress.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_PKCS7_TRUE@am__objects_101 = wolfcrypt/src/src_libwolfssl_la-pkcs7.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_SRP_TRUE@am__objects_102 = wolfcrypt/src/src_libwolfssl_la-srp.lo
-@BUILD_FIPS_RAND_FALSE@@BUILD_IDEA_TRUE@am__objects_103 = wolfcrypt/src/src_libwolfssl_la-idea.lo
-@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_104 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-wc_afalg.lo
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__objects_105 = src/src_libwolfssl_la-internal.lo \
+@BUILD_ARMASM_FALSE@@BUILD_CURVE25519_SMALL_FALSE@@BUILD_FEMATH_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_INTELASM_FALSE@am__objects_92 = wolfcrypt/src/src_libwolfssl_la-fe_operations.lo
+@BUILD_ED25519_SMALL_TRUE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__objects_93 = wolfcrypt/src/src_libwolfssl_la-ge_low_mem.lo
+@BUILD_ED25519_SMALL_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@am__objects_94 = wolfcrypt/src/src_libwolfssl_la-ge_operations.lo
+@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_TRUE@am__objects_95 = wolfcrypt/src/src_libwolfssl_la-fe_x25519_asm.lo
+@BUILD_ARMASM_TRUE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__objects_96 = wolfcrypt/src/port/arm/src_libwolfssl_la-armv8-curve25519.lo
+@BUILD_ARMASM_FALSE@@BUILD_ED25519_SMALL_FALSE@@BUILD_FEMATH_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GEMATH_TRUE@@BUILD_INTELASM_FALSE@am__objects_97 = wolfcrypt/src/src_libwolfssl_la-fe_operations.lo
+@BUILD_CURVE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_98 = wolfcrypt/src/src_libwolfssl_la-curve448.lo
+@BUILD_ED448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_99 = wolfcrypt/src/src_libwolfssl_la-ed448.lo
+@BUILD_FE448_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_100 = wolfcrypt/src/src_libwolfssl_la-fe_448.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__objects_101 = wolfcrypt/src/src_libwolfssl_la-ge_448.lo
+@BUILD_FE448_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_GE448_TRUE@am__objects_102 = wolfcrypt/src/src_libwolfssl_la-fe_448.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_LIBZ_TRUE@am__objects_103 = wolfcrypt/src/src_libwolfssl_la-compress.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_PKCS7_TRUE@am__objects_104 = wolfcrypt/src/src_libwolfssl_la-pkcs7.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_SRP_TRUE@am__objects_105 = wolfcrypt/src/src_libwolfssl_la-srp.lo
+@BUILD_FIPS_RAND_FALSE@@BUILD_IDEA_TRUE@am__objects_106 = wolfcrypt/src/src_libwolfssl_la-idea.lo
+@BUILD_AFALG_TRUE@@BUILD_FIPS_RAND_FALSE@am__objects_107 = wolfcrypt/src/port/af_alg/src_libwolfssl_la-wc_afalg.lo
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__objects_108 = src/src_libwolfssl_la-internal.lo \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@	src/src_libwolfssl_la-wolfio.lo \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@	src/src_libwolfssl_la-keys.lo \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@	src/src_libwolfssl_la-ssl.lo \
 @BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@	src/src_libwolfssl_la-tls.lo
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_TLS13_TRUE@am__objects_106 = src/src_libwolfssl_la-tls13.lo
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_OCSP_TRUE@am__objects_107 = src/src_libwolfssl_la-ocsp.lo
-@BUILD_CRL_TRUE@@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__objects_108 = src/src_libwolfssl_la-crl.lo
-@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_SNIFFER_TRUE@am__objects_109 = src/src_libwolfssl_la-sniffer.lo
-@BUILD_CRYPTOCB_TRUE@am__objects_110 = wolfcrypt/src/src_libwolfssl_la-cryptocb.lo
-@BUILD_PKCS11_TRUE@am__objects_111 = wolfcrypt/src/src_libwolfssl_la-wc_pkcs11.lo
-@BUILD_DEVCRYPTO_TRUE@am__objects_112 = wolfcrypt/src/port/devcrypto/src_libwolfssl_la-devcrypto_hash.lo \
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_TLS13_TRUE@am__objects_109 = src/src_libwolfssl_la-tls13.lo
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_OCSP_TRUE@am__objects_110 = src/src_libwolfssl_la-ocsp.lo
+@BUILD_CRL_TRUE@@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@am__objects_111 = src/src_libwolfssl_la-crl.lo
+@BUILD_CRYPTONLY_FALSE@@BUILD_FIPS_RAND_FALSE@@BUILD_SNIFFER_TRUE@am__objects_112 = src/src_libwolfssl_la-sniffer.lo
+@BUILD_CRYPTOCB_TRUE@am__objects_113 = wolfcrypt/src/src_libwolfssl_la-cryptocb.lo
+@BUILD_PKCS11_TRUE@am__objects_114 = wolfcrypt/src/src_libwolfssl_la-wc_pkcs11.lo
+@BUILD_DEVCRYPTO_TRUE@am__objects_115 = wolfcrypt/src/port/devcrypto/src_libwolfssl_la-devcrypto_hash.lo \
 @BUILD_DEVCRYPTO_TRUE@	wolfcrypt/src/port/devcrypto/src_libwolfssl_la-devcrypto_aes.lo \
 @BUILD_DEVCRYPTO_TRUE@	wolfcrypt/src/port/devcrypto/src_libwolfssl_la-wc_devcrypto.lo
-@BUILD_CAVIUM_TRUE@am__objects_113 = wolfcrypt/src/port/cavium/src_libwolfssl_la-cavium_nitrox.lo
-@BUILD_OCTEON_SYNC_TRUE@am__objects_114 = wolfcrypt/src/port/cavium/src_libwolfssl_la-cavium_octeon_sync.lo
-@BUILD_INTEL_QA_TRUE@am__objects_115 = wolfcrypt/src/port/intel/src_libwolfssl_la-quickassist.lo \
+@BUILD_CAVIUM_TRUE@am__objects_116 = wolfcrypt/src/port/cavium/src_libwolfssl_la-cavium_nitrox.lo
+@BUILD_OCTEON_SYNC_TRUE@am__objects_117 = wolfcrypt/src/port/cavium/src_libwolfssl_la-cavium_octeon_sync.lo
+@BUILD_INTEL_QA_TRUE@am__objects_118 = wolfcrypt/src/port/intel/src_libwolfssl_la-quickassist.lo \
 @BUILD_INTEL_QA_TRUE@	wolfcrypt/src/port/intel/src_libwolfssl_la-quickassist_mem.lo
-@BUILD_INTEL_QA_SYNC_TRUE@am__objects_116 = wolfcrypt/src/port/intel/src_libwolfssl_la-quickassist_sync.lo
-@BUILD_CRYPTOAUTHLIB_TRUE@am__objects_117 = wolfcrypt/src/port/atmel/src_libwolfssl_la-atmel.lo
+@BUILD_INTEL_QA_SYNC_TRUE@am__objects_119 = wolfcrypt/src/port/intel/src_libwolfssl_la-quickassist_sync.lo
+@BUILD_CRYPTOAUTHLIB_TRUE@am__objects_120 = wolfcrypt/src/port/atmel/src_libwolfssl_la-atmel.lo
 am_src_libwolfssl_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6) $(am__objects_7) $(am__objects_8) \
@@ -1475,21 +1584,21 @@ am_src_libwolfssl_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_18) $(am__objects_19) $(am__objects_20) \
 	$(am__objects_21) $(am__objects_22) $(am__objects_23) \
 	$(am__objects_24) $(am__objects_25) $(am__objects_26) \
-	$(am__objects_27) wolfcrypt/src/src_libwolfssl_la-hash.lo \
-	wolfcrypt/src/src_libwolfssl_la-cpuid.lo $(am__objects_28) \
-	$(am__objects_29) $(am__objects_30) $(am__objects_31) \
-	$(am__objects_32) $(am__objects_33) $(am__objects_34) \
-	$(am__objects_35) $(am__objects_36) $(am__objects_37) \
-	$(am__objects_38) $(am__objects_39) $(am__objects_40) \
-	$(am__objects_41) $(am__objects_42) $(am__objects_43) \
-	$(am__objects_44) $(am__objects_45) $(am__objects_46) \
-	$(am__objects_47) $(am__objects_48) $(am__objects_49) \
-	$(am__objects_50) $(am__objects_51) $(am__objects_52) \
-	$(am__objects_53) $(am__objects_54) \
+	$(am__objects_27) $(am__objects_28) $(am__objects_29) \
+	wolfcrypt/src/src_libwolfssl_la-hash.lo \
+	wolfcrypt/src/src_libwolfssl_la-cpuid.lo $(am__objects_30) \
+	$(am__objects_31) $(am__objects_32) $(am__objects_33) \
+	$(am__objects_34) $(am__objects_35) $(am__objects_36) \
+	$(am__objects_37) $(am__objects_38) $(am__objects_39) \
+	$(am__objects_40) $(am__objects_41) $(am__objects_42) \
+	$(am__objects_43) $(am__objects_44) $(am__objects_45) \
+	$(am__objects_46) $(am__objects_47) $(am__objects_48) \
+	$(am__objects_49) $(am__objects_50) $(am__objects_51) \
+	$(am__objects_52) $(am__objects_53) $(am__objects_54) \
+	$(am__objects_55) $(am__objects_56) $(am__objects_57) \
 	wolfcrypt/src/src_libwolfssl_la-logging.lo \
 	wolfcrypt/src/src_libwolfssl_la-wc_port.lo \
-	wolfcrypt/src/src_libwolfssl_la-error.lo $(am__objects_55) \
-	$(am__objects_56) $(am__objects_57) $(am__objects_58) \
+	wolfcrypt/src/src_libwolfssl_la-error.lo $(am__objects_58) \
 	$(am__objects_59) $(am__objects_60) $(am__objects_61) \
 	$(am__objects_62) $(am__objects_63) $(am__objects_64) \
 	$(am__objects_65) $(am__objects_66) $(am__objects_67) \
@@ -1509,7 +1618,8 @@ am_src_libwolfssl_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_107) $(am__objects_108) $(am__objects_109) \
 	$(am__objects_110) $(am__objects_111) $(am__objects_112) \
 	$(am__objects_113) $(am__objects_114) $(am__objects_115) \
-	$(am__objects_116) $(am__objects_117)
+	$(am__objects_116) $(am__objects_117) $(am__objects_118) \
+	$(am__objects_119) $(am__objects_120)
 src_libwolfssl_la_OBJECTS = $(am_src_libwolfssl_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -1808,12 +1918,29 @@ am__nobase_include_HEADERS_DIST = cyassl/ctaocrypt/aes.h \
 	wolfssl/wolfcrypt/mem_track.h wolfssl/wolfcrypt/wolfevent.h \
 	wolfssl/wolfcrypt/pkcs12.h wolfssl/wolfcrypt/wolfmath.h \
 	wolfssl/wolfcrypt/sha3.h wolfssl/wolfcrypt/cpuid.h \
-	wolfssl/wolfcrypt/cryptocb.h wolfssl/wolfcrypt/fips202.h \
-	wolfssl/wolfcrypt/hash_address.h wolfssl/wolfcrypt/hash_XMSS.h \
-	wolfssl/wolfcrypt/params.h wolfssl/wolfcrypt/randombytes.h \
-	wolfssl/wolfcrypt/utils.h wolfssl/wolfcrypt/wots.h \
-	wolfssl/wolfcrypt/xmss.h wolfssl/wolfcrypt/xmss_commons.h \
-	wolfssl/wolfcrypt/xmss_core.h \
+	wolfssl/wolfcrypt/cryptocb.h wolfssl/wolfcrypt/XMSS/fips202.h \
+	wolfssl/wolfcrypt/XMSS/hash_address.h \
+	wolfssl/wolfcrypt/XMSS/hash_XMSS.h \
+	wolfssl/wolfcrypt/XMSS/params.h \
+	wolfssl/wolfcrypt/XMSS/randombytes.h \
+	wolfssl/wolfcrypt/XMSS/utils.h wolfssl/wolfcrypt/XMSS/wots.h \
+	wolfssl/wolfcrypt/XMSS/xmss.h \
+	wolfssl/wolfcrypt/XMSS/xmss_commons.h \
+	wolfssl/wolfcrypt/XMSS/xmss_core.h \
+	wolfssl/wolfcrypt/DILITHIUM/aes256ctr.h \
+	wolfssl/wolfcrypt/DILITHIUM/api.h \
+	wolfssl/wolfcrypt/DILITHIUM/fips202.h \
+	wolfssl/wolfcrypt/DILITHIUM/ntt.h \
+	wolfssl/wolfcrypt/DILITHIUM/packing.h \
+	wolfssl/wolfcrypt/DILITHIUM/params.h \
+	wolfssl/wolfcrypt/DILITHIUM/poly.h \
+	wolfssl/wolfcrypt/DILITHIUM/polyvec.h \
+	wolfssl/wolfcrypt/DILITHIUM/randombytes.h \
+	wolfssl/wolfcrypt/DILITHIUM/reduce.h \
+	wolfssl/wolfcrypt/DILITHIUM/rng.h \
+	wolfssl/wolfcrypt/DILITHIUM/rounding.h \
+	wolfssl/wolfcrypt/DILITHIUM/sign.h \
+	wolfssl/wolfcrypt/DILITHIUM/symmetric.h \
 	wolfssl/wolfcrypt/port/atmel/atmel.h \
 	wolfssl/wolfcrypt/port/af_alg/afalg_hash.h \
 	wolfssl/wolfcrypt/port/af_alg/wc_afalg.h \
@@ -2454,13 +2581,13 @@ noinst_HEADERS = cyassl/ctaocrypt/port/pic32/pic32mz-crypt.h \
 	wolfssl/wolfcrypt/port/arm/cryptoCell.h \
 	wolfssl/wolfcrypt/port/Renesas/renesas-tsip-crypt.h \
 	wolfssl/wolfcrypt/port/cypress/psoc6_crypto.h \
-	wolfssl/internal.h $(am__append_17) $(am__append_132) \
-	$(am__append_143) $(am__append_145) $(am__append_147) \
-	$(am__append_156)
+	wolfssl/internal.h $(am__append_18) $(am__append_136) \
+	$(am__append_147) $(am__append_149) $(am__append_151) \
+	$(am__append_160)
 lib_LTLIBRARIES = src/libwolfssl.la
 man_MANS = 
 noinst_LTLIBRARIES = 
-include_HEADERS = $(am__append_21)
+include_HEADERS = $(am__append_22)
 nobase_include_HEADERS = cyassl/ctaocrypt/aes.h \
 	cyassl/ctaocrypt/arc4.h cyassl/ctaocrypt/asn.h \
 	cyassl/ctaocrypt/asn_public.h cyassl/ctaocrypt/poly1305.h \
@@ -2545,34 +2672,34 @@ nobase_include_HEADERS = cyassl/ctaocrypt/aes.h \
 	$(am__append_8) $(am__append_9) $(am__append_10) \
 	$(am__append_11) $(am__append_12) $(am__append_13) \
 	$(am__append_14) $(am__append_15) $(am__append_16) \
-	wolfssl/openssl/asn1.h wolfssl/openssl/asn1t.h \
-	wolfssl/openssl/aes.h wolfssl/openssl/bio.h \
-	wolfssl/openssl/bn.h wolfssl/openssl/buffer.h \
-	wolfssl/openssl/conf.h wolfssl/openssl/crypto.h \
-	wolfssl/openssl/des.h wolfssl/openssl/dh.h \
-	wolfssl/openssl/dsa.h wolfssl/openssl/ecdsa.h \
-	wolfssl/openssl/ecdh.h wolfssl/openssl/ec.h \
-	wolfssl/openssl/ec25519.h wolfssl/openssl/ed25519.h \
-	wolfssl/openssl/ec448.h wolfssl/openssl/ed448.h \
-	wolfssl/openssl/engine.h wolfssl/openssl/err.h \
-	wolfssl/openssl/evp.h wolfssl/openssl/hmac.h \
-	wolfssl/openssl/lhash.h wolfssl/openssl/md4.h \
-	wolfssl/openssl/md5.h wolfssl/openssl/ripemd.h \
-	wolfssl/openssl/obj_mac.h wolfssl/openssl/objects.h \
-	wolfssl/openssl/ocsp.h wolfssl/openssl/opensslconf.h \
-	wolfssl/openssl/opensslv.h wolfssl/openssl/ossl_typ.h \
-	wolfssl/openssl/pem.h wolfssl/openssl/pkcs12.h \
-	wolfssl/openssl/pkcs7.h wolfssl/openssl/rand.h \
-	wolfssl/openssl/rsa.h wolfssl/openssl/sha.h \
-	wolfssl/openssl/sha3.h wolfssl/openssl/ssl23.h \
-	wolfssl/openssl/ssl.h wolfssl/openssl/stack.h \
-	wolfssl/openssl/tls1.h wolfssl/openssl/ui.h \
-	wolfssl/openssl/x509.h wolfssl/openssl/x509_vfy.h \
-	wolfssl/openssl/x509v3.h wolfssl/openssl/rc4.h \
-	wolfssl/error-ssl.h wolfssl/ssl.h wolfssl/sniffer_error.h \
-	wolfssl/sniffer.h wolfssl/callbacks.h wolfssl/certs_test.h \
-	wolfssl/test.h wolfssl/version.h wolfssl/ocsp.h wolfssl/crl.h \
-	wolfssl/wolfio.h $(am__append_18)
+	$(am__append_17) wolfssl/openssl/asn1.h \
+	wolfssl/openssl/asn1t.h wolfssl/openssl/aes.h \
+	wolfssl/openssl/bio.h wolfssl/openssl/bn.h \
+	wolfssl/openssl/buffer.h wolfssl/openssl/conf.h \
+	wolfssl/openssl/crypto.h wolfssl/openssl/des.h \
+	wolfssl/openssl/dh.h wolfssl/openssl/dsa.h \
+	wolfssl/openssl/ecdsa.h wolfssl/openssl/ecdh.h \
+	wolfssl/openssl/ec.h wolfssl/openssl/ec25519.h \
+	wolfssl/openssl/ed25519.h wolfssl/openssl/ec448.h \
+	wolfssl/openssl/ed448.h wolfssl/openssl/engine.h \
+	wolfssl/openssl/err.h wolfssl/openssl/evp.h \
+	wolfssl/openssl/hmac.h wolfssl/openssl/lhash.h \
+	wolfssl/openssl/md4.h wolfssl/openssl/md5.h \
+	wolfssl/openssl/ripemd.h wolfssl/openssl/obj_mac.h \
+	wolfssl/openssl/objects.h wolfssl/openssl/ocsp.h \
+	wolfssl/openssl/opensslconf.h wolfssl/openssl/opensslv.h \
+	wolfssl/openssl/ossl_typ.h wolfssl/openssl/pem.h \
+	wolfssl/openssl/pkcs12.h wolfssl/openssl/pkcs7.h \
+	wolfssl/openssl/rand.h wolfssl/openssl/rsa.h \
+	wolfssl/openssl/sha.h wolfssl/openssl/sha3.h \
+	wolfssl/openssl/ssl23.h wolfssl/openssl/ssl.h \
+	wolfssl/openssl/stack.h wolfssl/openssl/tls1.h \
+	wolfssl/openssl/ui.h wolfssl/openssl/x509.h \
+	wolfssl/openssl/x509_vfy.h wolfssl/openssl/x509v3.h \
+	wolfssl/openssl/rc4.h wolfssl/error-ssl.h wolfssl/ssl.h \
+	wolfssl/sniffer_error.h wolfssl/sniffer.h wolfssl/callbacks.h \
+	wolfssl/certs_test.h wolfssl/test.h wolfssl/version.h \
+	wolfssl/ocsp.h wolfssl/crl.h wolfssl/wolfio.h $(am__append_19)
 EXTRA_HEADERS = 
 BUILT_SOURCES = 
 
@@ -3121,20 +3248,20 @@ EXTRA_DIST = lib/dummy wolfssl-ntru.vcproj wolfssl.vcproj \
 	tests/test-p521.conf sslSniffer/README.md \
 	sslSniffer/sslSniffer.vcproj sslSniffer/sslSniffer.vcxproj \
 	sslSniffer/sslSnifferTest/sslSniffTest.vcproj \
-	$(am__append_153) $(am__append_159) scripts/testsuite.pcap \
+	$(am__append_157) $(am__append_163) scripts/testsuite.pcap \
 	scripts/sniffer-ipv6.pcap scripts/sniffer-tls13-dh.pcap \
 	scripts/sniffer-tls13-ecc.pcap scripts/sniffer-tls13-gen.sh \
 	scripts/ping.test scripts/openssl.test scripts/dertoc.pl \
 	scripts/stm32l4-v4_0_1_build.sh scripts/cleanup_testfiles.sh
 dist_doc_DATA = certs/taoCert.txt doc/README.txt
-dist_noinst_SCRIPTS = $(am__append_157) $(am__append_158) \
-	$(am__append_160) $(am__append_161) $(am__append_162) \
-	$(am__append_163) $(am__append_164) $(am__append_165) \
-	$(am__append_166) $(am__append_167) $(am__append_168) \
-	$(am__append_169)
-noinst_SCRIPTS = $(am__append_20)
+dist_noinst_SCRIPTS = $(am__append_161) $(am__append_162) \
+	$(am__append_164) $(am__append_165) $(am__append_166) \
+	$(am__append_167) $(am__append_168) $(am__append_169) \
+	$(am__append_170) $(am__append_171) $(am__append_172) \
+	$(am__append_173)
+noinst_SCRIPTS = $(am__append_21)
 check_SCRIPTS = $(dist_noinst_SCRIPTS)
-noinst_DATA = $(am__append_19)
+noinst_DATA = $(am__append_20)
 exampledir = $(docdir)/example
 dist_example_DATA = examples/benchmark/tls_bench.c \
 	examples/client/client.c examples/echoclient/echoclient.c \
@@ -3142,48 +3269,49 @@ dist_example_DATA = examples/benchmark/tls_bench.c \
 	examples/sctp/sctp-server.c examples/sctp/sctp-server-dtls.c \
 	examples/sctp/sctp-client.c examples/sctp/sctp-client-dtls.c
 ACLOCAL_AMFLAGS = -I m4
-src_libwolfssl_la_SOURCES = $(am__append_22) $(am__append_23) \
-	$(am__append_24) $(am__append_25) $(am__append_26) \
-	$(am__append_27) $(am__append_28) $(am__append_29) \
-	$(am__append_30) $(am__append_31) $(am__append_32) \
-	$(am__append_33) $(am__append_34) $(am__append_35) \
-	$(am__append_36) $(am__append_37) $(am__append_38) \
-	$(am__append_39) $(am__append_40) $(am__append_41) \
-	$(am__append_42) $(am__append_43) $(am__append_44) \
-	$(am__append_45) $(am__append_46) $(am__append_47) \
-	$(am__append_48) wolfcrypt/src/hash.c wolfcrypt/src/cpuid.c \
+src_libwolfssl_la_SOURCES = $(am__append_23) $(am__append_24) \
+	$(am__append_25) $(am__append_26) $(am__append_27) \
+	$(am__append_28) $(am__append_29) $(am__append_30) \
+	$(am__append_31) $(am__append_32) $(am__append_33) \
+	$(am__append_34) $(am__append_35) $(am__append_36) \
+	$(am__append_37) $(am__append_38) $(am__append_39) \
+	$(am__append_40) $(am__append_41) $(am__append_42) \
+	$(am__append_43) $(am__append_44) $(am__append_45) \
+	$(am__append_46) $(am__append_47) $(am__append_48) \
 	$(am__append_49) $(am__append_50) $(am__append_51) \
-	$(am__append_52) $(am__append_53) $(am__append_54) \
-	$(am__append_55) $(am__append_56) $(am__append_57) \
-	$(am__append_58) $(am__append_59) $(am__append_60) \
-	$(am__append_61) $(am__append_62) $(am__append_63) \
-	$(am__append_64) $(am__append_65) $(am__append_66) \
-	$(am__append_67) $(am__append_68) $(am__append_69) \
-	$(am__append_70) $(am__append_71) $(am__append_72) \
-	$(am__append_73) $(am__append_74) $(am__append_75) \
+	wolfcrypt/src/hash.c wolfcrypt/src/cpuid.c $(am__append_52) \
+	$(am__append_53) $(am__append_54) $(am__append_55) \
+	$(am__append_56) $(am__append_57) $(am__append_58) \
+	$(am__append_59) $(am__append_60) $(am__append_61) \
+	$(am__append_62) $(am__append_63) $(am__append_64) \
+	$(am__append_65) $(am__append_66) $(am__append_67) \
+	$(am__append_68) $(am__append_69) $(am__append_70) \
+	$(am__append_71) $(am__append_72) $(am__append_73) \
+	$(am__append_74) $(am__append_75) $(am__append_76) \
+	$(am__append_77) $(am__append_78) $(am__append_79) \
 	wolfcrypt/src/logging.c wolfcrypt/src/wc_port.c \
-	wolfcrypt/src/error.c $(am__append_76) $(am__append_77) \
-	$(am__append_78) $(am__append_79) $(am__append_80) \
-	$(am__append_81) $(am__append_82) $(am__append_83) \
-	$(am__append_84) $(am__append_85) $(am__append_86) \
-	$(am__append_87) $(am__append_88) $(am__append_89) \
-	$(am__append_90) $(am__append_91) $(am__append_92) \
-	$(am__append_93) $(am__append_94) $(am__append_95) \
-	$(am__append_96) $(am__append_97) $(am__append_98) \
-	$(am__append_99) $(am__append_100) $(am__append_101) \
-	$(am__append_102) $(am__append_103) $(am__append_104) \
-	$(am__append_105) $(am__append_106) $(am__append_107) \
-	$(am__append_108) $(am__append_109) $(am__append_110) \
-	$(am__append_111) $(am__append_112) $(am__append_113) \
-	$(am__append_114) $(am__append_115) $(am__append_116) \
-	$(am__append_117) $(am__append_118) $(am__append_119) \
-	$(am__append_120) $(am__append_121) $(am__append_122) \
-	$(am__append_123) $(am__append_124) $(am__append_125) \
-	$(am__append_126) $(am__append_127) $(am__append_128) \
-	$(am__append_129) $(am__append_130) $(am__append_133) \
-	$(am__append_134) $(am__append_135) $(am__append_136) \
-	$(am__append_137) $(am__append_138) $(am__append_139) \
-	$(am__append_140)
+	wolfcrypt/src/error.c $(am__append_80) $(am__append_81) \
+	$(am__append_82) $(am__append_83) $(am__append_84) \
+	$(am__append_85) $(am__append_86) $(am__append_87) \
+	$(am__append_88) $(am__append_89) $(am__append_90) \
+	$(am__append_91) $(am__append_92) $(am__append_93) \
+	$(am__append_94) $(am__append_95) $(am__append_96) \
+	$(am__append_97) $(am__append_98) $(am__append_99) \
+	$(am__append_100) $(am__append_101) $(am__append_102) \
+	$(am__append_103) $(am__append_104) $(am__append_105) \
+	$(am__append_106) $(am__append_107) $(am__append_108) \
+	$(am__append_109) $(am__append_110) $(am__append_111) \
+	$(am__append_112) $(am__append_113) $(am__append_114) \
+	$(am__append_115) $(am__append_116) $(am__append_117) \
+	$(am__append_118) $(am__append_119) $(am__append_120) \
+	$(am__append_121) $(am__append_122) $(am__append_123) \
+	$(am__append_124) $(am__append_125) $(am__append_126) \
+	$(am__append_127) $(am__append_128) $(am__append_129) \
+	$(am__append_130) $(am__append_131) $(am__append_132) \
+	$(am__append_133) $(am__append_134) $(am__append_137) \
+	$(am__append_138) $(am__append_139) $(am__append_140) \
+	$(am__append_141) $(am__append_142) $(am__append_143) \
+	$(am__append_144)
 src_libwolfssl_la_LDFLAGS = ${AM_LDFLAGS} -no-undefined -version-info ${WOLFSSL_LIBRARY_VERSION}
 src_libwolfssl_la_LIBADD = $(LIBM) $(LIB_ADD) $(LIB_STATIC_ADD)
 src_libwolfssl_la_CFLAGS = -DBUILDING_WOLFSSL $(AM_CFLAGS)
@@ -3390,39 +3518,39 @@ ctaocrypt/src/src_libwolfssl_la-sha256.lo:  \
 	ctaocrypt/src/$(DEPDIR)/$(am__dirstamp)
 ctaocrypt/src/src_libwolfssl_la-rsa.lo: ctaocrypt/src/$(am__dirstamp) \
 	ctaocrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/$(am__dirstamp):
-	@$(MKDIR_P) wolfcrypt/src
-	@: > wolfcrypt/src/$(am__dirstamp)
-wolfcrypt/src/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) wolfcrypt/src/$(DEPDIR)
-	@: > wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-hash_address.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-params.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-randombytes.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-utils.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-wots.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-xmss.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-xmss_core.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src/XMSS
+	@: > wolfcrypt/src/XMSS/$(am__dirstamp)
+wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src/XMSS/$(DEPDIR)
+	@: > wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
 wolfcrypt/test/$(am__dirstamp):
 	@$(MKDIR_P) wolfcrypt/test
 	@: > wolfcrypt/test/$(am__dirstamp)
@@ -3432,9 +3560,51 @@ wolfcrypt/test/$(DEPDIR)/$(am__dirstamp):
 wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo:  \
 	wolfcrypt/test/$(am__dirstamp) \
 	wolfcrypt/test/$(DEPDIR)/$(am__dirstamp)
-wolfcrypt/src/src_libwolfssl_la-fips202.lo:  \
-	wolfcrypt/src/$(am__dirstamp) \
-	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo:  \
+	wolfcrypt/src/XMSS/$(am__dirstamp) \
+	wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src/DILITHIUM
+	@: > wolfcrypt/src/DILITHIUM/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src/DILITHIUM/$(DEPDIR)
+	@: > wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo:  \
+	wolfcrypt/src/DILITHIUM/$(am__dirstamp) \
+	wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
 ctaocrypt/src/src_libwolfssl_la-aes.lo: ctaocrypt/src/$(am__dirstamp) \
 	ctaocrypt/src/$(DEPDIR)/$(am__dirstamp)
 ctaocrypt/src/src_libwolfssl_la-des3.lo:  \
@@ -3454,6 +3624,12 @@ ctaocrypt/src/src_libwolfssl_la-fips_test.lo:  \
 ctaocrypt/src/src_libwolfssl_la-wolfcrypt_last.lo:  \
 	ctaocrypt/src/$(am__dirstamp) \
 	ctaocrypt/src/$(DEPDIR)/$(am__dirstamp)
+wolfcrypt/src/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src
+	@: > wolfcrypt/src/$(am__dirstamp)
+wolfcrypt/src/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) wolfcrypt/src/$(DEPDIR)
+	@: > wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
 wolfcrypt/src/src_libwolfssl_la-wolfcrypt_first.lo:  \
 	wolfcrypt/src/$(am__dirstamp) \
 	wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
@@ -4101,6 +4277,10 @@ mostlyclean-compile:
 	-rm -f wolfcrypt/benchmark/*.$(OBJEXT)
 	-rm -f wolfcrypt/src/*.$(OBJEXT)
 	-rm -f wolfcrypt/src/*.lo
+	-rm -f wolfcrypt/src/DILITHIUM/*.$(OBJEXT)
+	-rm -f wolfcrypt/src/DILITHIUM/*.lo
+	-rm -f wolfcrypt/src/XMSS/*.$(OBJEXT)
+	-rm -f wolfcrypt/src/XMSS/*.lo
 	-rm -f wolfcrypt/src/port/af_alg/*.$(OBJEXT)
 	-rm -f wolfcrypt/src/port/af_alg/*.lo
 	-rm -f wolfcrypt/src/port/arm/*.$(OBJEXT)
@@ -4198,14 +4378,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fe_operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fe_x25519_asm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips202.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips_test.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-ge_448.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-ge_low_mem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-ge_operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_address.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hc128.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hmac.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-idea.Plo@am__quote@
@@ -4216,7 +4393,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-memory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-misc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-params.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-pkcs12.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-pkcs7.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-poly1305.Plo@am__quote@
@@ -4224,7 +4400,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-pwdbased.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-rabbit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-random.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-randombytes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-ripemd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-rsa.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-selftest.Plo@am__quote@
@@ -4246,7 +4421,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-sp_x86_64_asm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-srp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-tfm.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-utils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wc_encrypt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wc_pkcs11.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wc_port.Plo@am__quote@
@@ -4254,10 +4428,28 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wolfcrypt_last.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wolfevent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wolfmath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wots.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_core.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-aes256ctr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-fips202.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-ntt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-packing.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-poly.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-polyvec.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-reduce.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rng.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rounding.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-sign.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-aes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-shake.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-fips202.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_address.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-params.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-randombytes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-utils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-wots.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_core.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/port/af_alg/$(DEPDIR)/src_libwolfssl_la-afalg_aes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/port/af_alg/$(DEPDIR)/src_libwolfssl_la-afalg_hash.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@wolfcrypt/src/port/af_alg/$(DEPDIR)/src_libwolfssl_la-wc_afalg.Plo@am__quote@
@@ -4451,68 +4643,68 @@ ctaocrypt/src/src_libwolfssl_la-rsa.lo: ctaocrypt/src/rsa.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o ctaocrypt/src/src_libwolfssl_la-rsa.lo `test -f 'ctaocrypt/src/rsa.c' || echo '$(srcdir)/'`ctaocrypt/src/rsa.c
 
-wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo: wolfcrypt/src/hash_XMSS.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo `test -f 'wolfcrypt/src/hash_XMSS.c' || echo '$(srcdir)/'`wolfcrypt/src/hash_XMSS.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/hash_XMSS.c' object='wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo: wolfcrypt/src/XMSS/hash_XMSS.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo `test -f 'wolfcrypt/src/XMSS/hash_XMSS.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/hash_XMSS.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_XMSS.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/hash_XMSS.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-hash_XMSS.lo `test -f 'wolfcrypt/src/hash_XMSS.c' || echo '$(srcdir)/'`wolfcrypt/src/hash_XMSS.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-hash_XMSS.lo `test -f 'wolfcrypt/src/XMSS/hash_XMSS.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/hash_XMSS.c
 
-wolfcrypt/src/src_libwolfssl_la-hash_address.lo: wolfcrypt/src/hash_address.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-hash_address.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_address.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-hash_address.lo `test -f 'wolfcrypt/src/hash_address.c' || echo '$(srcdir)/'`wolfcrypt/src/hash_address.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_address.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-hash_address.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/hash_address.c' object='wolfcrypt/src/src_libwolfssl_la-hash_address.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo: wolfcrypt/src/XMSS/hash_address.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_address.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo `test -f 'wolfcrypt/src/XMSS/hash_address.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/hash_address.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_address.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-hash_address.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/hash_address.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-hash_address.lo `test -f 'wolfcrypt/src/hash_address.c' || echo '$(srcdir)/'`wolfcrypt/src/hash_address.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-hash_address.lo `test -f 'wolfcrypt/src/XMSS/hash_address.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/hash_address.c
 
-wolfcrypt/src/src_libwolfssl_la-params.lo: wolfcrypt/src/params.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-params.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-params.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-params.lo `test -f 'wolfcrypt/src/params.c' || echo '$(srcdir)/'`wolfcrypt/src/params.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-params.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-params.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/params.c' object='wolfcrypt/src/src_libwolfssl_la-params.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo: wolfcrypt/src/XMSS/params.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-params.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo `test -f 'wolfcrypt/src/XMSS/params.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/params.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-params.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-params.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/params.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-params.lo `test -f 'wolfcrypt/src/params.c' || echo '$(srcdir)/'`wolfcrypt/src/params.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-params.lo `test -f 'wolfcrypt/src/XMSS/params.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/params.c
 
-wolfcrypt/src/src_libwolfssl_la-randombytes.lo: wolfcrypt/src/randombytes.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-randombytes.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-randombytes.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-randombytes.lo `test -f 'wolfcrypt/src/randombytes.c' || echo '$(srcdir)/'`wolfcrypt/src/randombytes.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-randombytes.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-randombytes.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/randombytes.c' object='wolfcrypt/src/src_libwolfssl_la-randombytes.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo: wolfcrypt/src/XMSS/randombytes.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-randombytes.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo `test -f 'wolfcrypt/src/XMSS/randombytes.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/randombytes.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-randombytes.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-randombytes.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/randombytes.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-randombytes.lo `test -f 'wolfcrypt/src/randombytes.c' || echo '$(srcdir)/'`wolfcrypt/src/randombytes.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-randombytes.lo `test -f 'wolfcrypt/src/XMSS/randombytes.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/randombytes.c
 
-wolfcrypt/src/src_libwolfssl_la-utils.lo: wolfcrypt/src/utils.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-utils.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-utils.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-utils.lo `test -f 'wolfcrypt/src/utils.c' || echo '$(srcdir)/'`wolfcrypt/src/utils.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-utils.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-utils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/utils.c' object='wolfcrypt/src/src_libwolfssl_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo: wolfcrypt/src/XMSS/utils.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-utils.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo `test -f 'wolfcrypt/src/XMSS/utils.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/utils.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-utils.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/utils.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-utils.lo `test -f 'wolfcrypt/src/utils.c' || echo '$(srcdir)/'`wolfcrypt/src/utils.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-utils.lo `test -f 'wolfcrypt/src/XMSS/utils.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/utils.c
 
-wolfcrypt/src/src_libwolfssl_la-wots.lo: wolfcrypt/src/wots.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-wots.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wots.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-wots.lo `test -f 'wolfcrypt/src/wots.c' || echo '$(srcdir)/'`wolfcrypt/src/wots.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wots.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-wots.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/wots.c' object='wolfcrypt/src/src_libwolfssl_la-wots.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo: wolfcrypt/src/XMSS/wots.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-wots.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo `test -f 'wolfcrypt/src/XMSS/wots.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/wots.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-wots.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-wots.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/wots.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-wots.lo `test -f 'wolfcrypt/src/wots.c' || echo '$(srcdir)/'`wolfcrypt/src/wots.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-wots.lo `test -f 'wolfcrypt/src/XMSS/wots.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/wots.c
 
-wolfcrypt/src/src_libwolfssl_la-xmss.lo: wolfcrypt/src/xmss.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-xmss.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-xmss.lo `test -f 'wolfcrypt/src/xmss.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/xmss.c' object='wolfcrypt/src/src_libwolfssl_la-xmss.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo: wolfcrypt/src/XMSS/xmss.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo `test -f 'wolfcrypt/src/XMSS/xmss.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/xmss.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-xmss.lo `test -f 'wolfcrypt/src/xmss.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss.lo `test -f 'wolfcrypt/src/XMSS/xmss.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss.c
 
-wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo: wolfcrypt/src/xmss_commons.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo `test -f 'wolfcrypt/src/xmss_commons.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss_commons.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/xmss_commons.c' object='wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo: wolfcrypt/src/XMSS/xmss_commons.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo `test -f 'wolfcrypt/src/XMSS/xmss_commons.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss_commons.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_commons.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/xmss_commons.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo `test -f 'wolfcrypt/src/xmss_commons.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss_commons.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_commons.lo `test -f 'wolfcrypt/src/XMSS/xmss_commons.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss_commons.c
 
-wolfcrypt/src/src_libwolfssl_la-xmss_core.lo: wolfcrypt/src/xmss_core.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-xmss_core.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_core.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-xmss_core.lo `test -f 'wolfcrypt/src/xmss_core.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss_core.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_core.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-xmss_core.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/xmss_core.c' object='wolfcrypt/src/src_libwolfssl_la-xmss_core.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo: wolfcrypt/src/XMSS/xmss_core.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_core.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo `test -f 'wolfcrypt/src/XMSS/xmss_core.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss_core.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_core.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-xmss_core.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/xmss_core.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-xmss_core.lo `test -f 'wolfcrypt/src/xmss_core.c' || echo '$(srcdir)/'`wolfcrypt/src/xmss_core.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-xmss_core.lo `test -f 'wolfcrypt/src/XMSS/xmss_core.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/xmss_core.c
 
 wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo: wolfcrypt/test/XMSS_signature_test.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo -MD -MP -MF wolfcrypt/test/$(DEPDIR)/src_libwolfssl_la-XMSS_signature_test.Tpo -c -o wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo `test -f 'wolfcrypt/test/XMSS_signature_test.c' || echo '$(srcdir)/'`wolfcrypt/test/XMSS_signature_test.c
@@ -4521,12 +4713,96 @@ wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo: wolfcrypt/test/XMSS_sig
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo `test -f 'wolfcrypt/test/XMSS_signature_test.c' || echo '$(srcdir)/'`wolfcrypt/test/XMSS_signature_test.c
 
-wolfcrypt/src/src_libwolfssl_la-fips202.lo: wolfcrypt/src/fips202.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/src_libwolfssl_la-fips202.lo -MD -MP -MF wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo -c -o wolfcrypt/src/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/fips202.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo wolfcrypt/src/$(DEPDIR)/src_libwolfssl_la-fips202.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/fips202.c' object='wolfcrypt/src/src_libwolfssl_la-fips202.lo' libtool=yes @AMDEPBACKSLASH@
+wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo: wolfcrypt/src/XMSS/fips202.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo -MD -MP -MF wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/XMSS/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/fips202.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo wolfcrypt/src/XMSS/$(DEPDIR)/src_libwolfssl_la-fips202.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/XMSS/fips202.c' object='wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/fips202.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/XMSS/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/XMSS/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/XMSS/fips202.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo: wolfcrypt/src/DILITHIUM/aes256ctr.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-aes256ctr.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo `test -f 'wolfcrypt/src/DILITHIUM/aes256ctr.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/aes256ctr.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-aes256ctr.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-aes256ctr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/aes256ctr.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-aes256ctr.lo `test -f 'wolfcrypt/src/DILITHIUM/aes256ctr.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/aes256ctr.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo: wolfcrypt/src/DILITHIUM/fips202.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/DILITHIUM/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/fips202.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-fips202.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-fips202.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/fips202.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-fips202.lo `test -f 'wolfcrypt/src/DILITHIUM/fips202.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/fips202.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo: wolfcrypt/src/DILITHIUM/ntt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-ntt.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo `test -f 'wolfcrypt/src/DILITHIUM/ntt.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/ntt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-ntt.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-ntt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/ntt.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-ntt.lo `test -f 'wolfcrypt/src/DILITHIUM/ntt.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/ntt.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo: wolfcrypt/src/DILITHIUM/packing.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-packing.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo `test -f 'wolfcrypt/src/DILITHIUM/packing.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/packing.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-packing.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-packing.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/packing.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-packing.lo `test -f 'wolfcrypt/src/DILITHIUM/packing.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/packing.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo: wolfcrypt/src/DILITHIUM/poly.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-poly.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo `test -f 'wolfcrypt/src/DILITHIUM/poly.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/poly.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-poly.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-poly.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/poly.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-poly.lo `test -f 'wolfcrypt/src/DILITHIUM/poly.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/poly.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo: wolfcrypt/src/DILITHIUM/polyvec.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-polyvec.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo `test -f 'wolfcrypt/src/DILITHIUM/polyvec.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/polyvec.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-polyvec.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-polyvec.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/polyvec.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-polyvec.lo `test -f 'wolfcrypt/src/DILITHIUM/polyvec.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/polyvec.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo: wolfcrypt/src/DILITHIUM/reduce.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-reduce.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo `test -f 'wolfcrypt/src/DILITHIUM/reduce.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/reduce.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-reduce.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-reduce.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/reduce.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-reduce.lo `test -f 'wolfcrypt/src/DILITHIUM/reduce.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/reduce.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo: wolfcrypt/src/DILITHIUM/rng.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rng.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo `test -f 'wolfcrypt/src/DILITHIUM/rng.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/rng.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rng.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rng.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/rng.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rng.lo `test -f 'wolfcrypt/src/DILITHIUM/rng.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/rng.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo: wolfcrypt/src/DILITHIUM/rounding.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rounding.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo `test -f 'wolfcrypt/src/DILITHIUM/rounding.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/rounding.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rounding.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-rounding.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/rounding.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-rounding.lo `test -f 'wolfcrypt/src/DILITHIUM/rounding.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/rounding.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo: wolfcrypt/src/DILITHIUM/sign.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-sign.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo `test -f 'wolfcrypt/src/DILITHIUM/sign.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/sign.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-sign.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-sign.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/sign.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo `test -f 'wolfcrypt/src/DILITHIUM/sign.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/sign.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo: wolfcrypt/src/DILITHIUM/symmetric-shake.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-shake.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo `test -f 'wolfcrypt/src/DILITHIUM/symmetric-shake.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/symmetric-shake.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-shake.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-shake.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/symmetric-shake.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo `test -f 'wolfcrypt/src/DILITHIUM/symmetric-shake.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/symmetric-shake.c
+
+wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo: wolfcrypt/src/DILITHIUM/symmetric-aes.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo -MD -MP -MF wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-aes.Tpo -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo `test -f 'wolfcrypt/src/DILITHIUM/symmetric-aes.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/symmetric-aes.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-aes.Tpo wolfcrypt/src/DILITHIUM/$(DEPDIR)/src_libwolfssl_la-symmetric-aes.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wolfcrypt/src/DILITHIUM/symmetric-aes.c' object='wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -c -o wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo `test -f 'wolfcrypt/src/DILITHIUM/symmetric-aes.c' || echo '$(srcdir)/'`wolfcrypt/src/DILITHIUM/symmetric-aes.c
 
 ctaocrypt/src/src_libwolfssl_la-aes.lo: ctaocrypt/src/aes.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libwolfssl_la_CPPFLAGS) $(CPPFLAGS) $(src_libwolfssl_la_CFLAGS) $(CFLAGS) -MT ctaocrypt/src/src_libwolfssl_la-aes.lo -MD -MP -MF ctaocrypt/src/$(DEPDIR)/src_libwolfssl_la-aes.Tpo -c -o ctaocrypt/src/src_libwolfssl_la-aes.lo `test -f 'ctaocrypt/src/aes.c' || echo '$(srcdir)/'`ctaocrypt/src/aes.c
@@ -5478,6 +5754,8 @@ clean-libtool:
 	-rm -rf testsuite/.libs testsuite/_libs
 	-rm -rf wolfcrypt/benchmark/.libs wolfcrypt/benchmark/_libs
 	-rm -rf wolfcrypt/src/.libs wolfcrypt/src/_libs
+	-rm -rf wolfcrypt/src/DILITHIUM/.libs wolfcrypt/src/DILITHIUM/_libs
+	-rm -rf wolfcrypt/src/XMSS/.libs wolfcrypt/src/XMSS/_libs
 	-rm -rf wolfcrypt/src/port/af_alg/.libs wolfcrypt/src/port/af_alg/_libs
 	-rm -rf wolfcrypt/src/port/arm/.libs wolfcrypt/src/port/arm/_libs
 	-rm -rf wolfcrypt/src/port/atmel/.libs wolfcrypt/src/port/atmel/_libs
@@ -6083,6 +6361,10 @@ distclean-generic:
 	-rm -f wolfcrypt/benchmark/$(am__dirstamp)
 	-rm -f wolfcrypt/src/$(DEPDIR)/$(am__dirstamp)
 	-rm -f wolfcrypt/src/$(am__dirstamp)
+	-rm -f wolfcrypt/src/DILITHIUM/$(DEPDIR)/$(am__dirstamp)
+	-rm -f wolfcrypt/src/DILITHIUM/$(am__dirstamp)
+	-rm -f wolfcrypt/src/XMSS/$(DEPDIR)/$(am__dirstamp)
+	-rm -f wolfcrypt/src/XMSS/$(am__dirstamp)
 	-rm -f wolfcrypt/src/port/af_alg/$(DEPDIR)/$(am__dirstamp)
 	-rm -f wolfcrypt/src/port/af_alg/$(am__dirstamp)
 	-rm -f wolfcrypt/src/port/arm/$(DEPDIR)/$(am__dirstamp)
@@ -6113,7 +6395,7 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ctaocrypt/src/$(DEPDIR) examples/benchmark/$(DEPDIR) examples/client/$(DEPDIR) examples/echoclient/$(DEPDIR) examples/echoserver/$(DEPDIR) examples/sctp/$(DEPDIR) examples/server/$(DEPDIR) mcapi/$(DEPDIR) src/$(DEPDIR) sslSniffer/sslSnifferTest/$(DEPDIR) tests/$(DEPDIR) testsuite/$(DEPDIR) wolfcrypt/benchmark/$(DEPDIR) wolfcrypt/src/$(DEPDIR) wolfcrypt/src/port/af_alg/$(DEPDIR) wolfcrypt/src/port/arm/$(DEPDIR) wolfcrypt/src/port/atmel/$(DEPDIR) wolfcrypt/src/port/cavium/$(DEPDIR) wolfcrypt/src/port/devcrypto/$(DEPDIR) wolfcrypt/src/port/intel/$(DEPDIR) wolfcrypt/test/$(DEPDIR) wolfcrypt/user-crypto/src/$(DEPDIR)
+	-rm -rf ctaocrypt/src/$(DEPDIR) examples/benchmark/$(DEPDIR) examples/client/$(DEPDIR) examples/echoclient/$(DEPDIR) examples/echoserver/$(DEPDIR) examples/sctp/$(DEPDIR) examples/server/$(DEPDIR) mcapi/$(DEPDIR) src/$(DEPDIR) sslSniffer/sslSnifferTest/$(DEPDIR) tests/$(DEPDIR) testsuite/$(DEPDIR) wolfcrypt/benchmark/$(DEPDIR) wolfcrypt/src/$(DEPDIR) wolfcrypt/src/DILITHIUM/$(DEPDIR) wolfcrypt/src/XMSS/$(DEPDIR) wolfcrypt/src/port/af_alg/$(DEPDIR) wolfcrypt/src/port/arm/$(DEPDIR) wolfcrypt/src/port/atmel/$(DEPDIR) wolfcrypt/src/port/cavium/$(DEPDIR) wolfcrypt/src/port/devcrypto/$(DEPDIR) wolfcrypt/src/port/intel/$(DEPDIR) wolfcrypt/test/$(DEPDIR) wolfcrypt/user-crypto/src/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -6164,7 +6446,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ctaocrypt/src/$(DEPDIR) examples/benchmark/$(DEPDIR) examples/client/$(DEPDIR) examples/echoclient/$(DEPDIR) examples/echoserver/$(DEPDIR) examples/sctp/$(DEPDIR) examples/server/$(DEPDIR) mcapi/$(DEPDIR) src/$(DEPDIR) sslSniffer/sslSnifferTest/$(DEPDIR) tests/$(DEPDIR) testsuite/$(DEPDIR) wolfcrypt/benchmark/$(DEPDIR) wolfcrypt/src/$(DEPDIR) wolfcrypt/src/port/af_alg/$(DEPDIR) wolfcrypt/src/port/arm/$(DEPDIR) wolfcrypt/src/port/atmel/$(DEPDIR) wolfcrypt/src/port/cavium/$(DEPDIR) wolfcrypt/src/port/devcrypto/$(DEPDIR) wolfcrypt/src/port/intel/$(DEPDIR) wolfcrypt/test/$(DEPDIR) wolfcrypt/user-crypto/src/$(DEPDIR)
+	-rm -rf ctaocrypt/src/$(DEPDIR) examples/benchmark/$(DEPDIR) examples/client/$(DEPDIR) examples/echoclient/$(DEPDIR) examples/echoserver/$(DEPDIR) examples/sctp/$(DEPDIR) examples/server/$(DEPDIR) mcapi/$(DEPDIR) src/$(DEPDIR) sslSniffer/sslSnifferTest/$(DEPDIR) tests/$(DEPDIR) testsuite/$(DEPDIR) wolfcrypt/benchmark/$(DEPDIR) wolfcrypt/src/$(DEPDIR) wolfcrypt/src/DILITHIUM/$(DEPDIR) wolfcrypt/src/XMSS/$(DEPDIR) wolfcrypt/src/port/af_alg/$(DEPDIR) wolfcrypt/src/port/arm/$(DEPDIR) wolfcrypt/src/port/atmel/$(DEPDIR) wolfcrypt/src/port/cavium/$(DEPDIR) wolfcrypt/src/port/devcrypto/$(DEPDIR) wolfcrypt/src/port/intel/$(DEPDIR) wolfcrypt/test/$(DEPDIR) wolfcrypt/user-crypto/src/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic \
 	maintainer-clean-local

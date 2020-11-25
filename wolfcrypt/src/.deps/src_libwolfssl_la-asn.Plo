@@ -1,6 +1,7 @@
 wolfcrypt/src/src_libwolfssl_la-asn.lo: wolfcrypt/src/asn.c \
  /usr/include/stdc-predef.h config.h wolfssl/wolfcrypt/settings.h \
- wolfssl/wolfcrypt/visibility.h wolfssl/wolfcrypt/params.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -13,7 +14,8 @@ wolfcrypt/src/src_libwolfssl_la-asn.lo: wolfcrypt/src/asn.c \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- wolfssl/wolfcrypt/randombytes.h wolfssl/wolfcrypt/randombytes.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
  wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/types.h \
  wolfssl/wolfcrypt/wc_port.h /usr/include/pthread.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -78,9 +80,9 @@ wolfcrypt/src/src_libwolfssl_la-asn.lo: wolfcrypt/src/asn.c \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/ctype.h wolfssl/wolfcrypt/sha256.h wolfssl/wolfcrypt/xmss.h \
- wolfssl/wolfcrypt/asn.h wolfssl/wolfcrypt/integer.h \
- wolfssl/wolfcrypt/tfm.h \
+ /usr/include/ctype.h wolfssl/wolfcrypt/sha256.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss.h wolfssl/wolfcrypt/asn.h \
+ wolfssl/wolfcrypt/integer.h wolfssl/wolfcrypt/tfm.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
@@ -142,7 +144,7 @@ wolfssl/wolfcrypt/settings.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
 
@@ -172,9 +174,9 @@ wolfssl/wolfcrypt/params.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
 wolfssl/wolfcrypt/random.h:
 
@@ -334,7 +336,7 @@ wolfssl/wolfcrypt/memory.h:
 
 wolfssl/wolfcrypt/sha256.h:
 
-wolfssl/wolfcrypt/xmss.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss.h:
 
 wolfssl/wolfcrypt/asn.h:
 

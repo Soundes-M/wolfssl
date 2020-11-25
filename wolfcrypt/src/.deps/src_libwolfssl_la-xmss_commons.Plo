@@ -58,10 +58,14 @@ wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo: \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
- wolfssl/wolfcrypt/hash_XMSS.h wolfssl/wolfcrypt/params.h config.h \
- wolfssl/wolfcrypt/visibility.h wolfssl/wolfcrypt/hash_address.h \
- wolfssl/wolfcrypt/params.h wolfssl/wolfcrypt/wots.h \
- wolfssl/wolfcrypt/utils.h wolfssl/wolfcrypt/xmss_commons.h
+ /usr/local/include/wolfssl/wolfcrypt/hash_XMSS.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h config.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/hash_address.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h \
+ /usr/local/include/wolfssl/wolfcrypt/wots.h \
+ /usr/local/include/wolfssl/wolfcrypt/utils.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss_commons.h
 
 /usr/include/stdc-predef.h:
 
@@ -191,20 +195,20 @@ wolfcrypt/src/src_libwolfssl_la-xmss_commons.lo: \
 
 /usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
-wolfssl/wolfcrypt/hash_XMSS.h:
+/usr/local/include/wolfssl/wolfcrypt/hash_XMSS.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
 config.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/hash_address.h:
+/usr/local/include/wolfssl/wolfcrypt/hash_address.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
-wolfssl/wolfcrypt/wots.h:
+/usr/local/include/wolfssl/wolfcrypt/wots.h:
 
-wolfssl/wolfcrypt/utils.h:
+/usr/local/include/wolfssl/wolfcrypt/utils.h:
 
-wolfssl/wolfcrypt/xmss_commons.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss_commons.h:

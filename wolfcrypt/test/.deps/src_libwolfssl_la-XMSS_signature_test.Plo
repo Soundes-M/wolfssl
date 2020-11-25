@@ -57,11 +57,14 @@ wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo: \
  /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h wolfssl/wolfcrypt/params.h \
- config.h wolfssl/wolfcrypt/visibility.h wolfssl/wolfcrypt/randombytes.h \
- wolfssl/wolfcrypt/randombytes.h wolfssl/wolfcrypt/random.h \
- wolfssl/wolfcrypt/types.h wolfssl/wolfcrypt/settings.h \
- wolfssl/wolfcrypt/wc_port.h /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h config.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
+ wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/types.h \
+ wolfssl/wolfcrypt/settings.h wolfssl/wolfcrypt/wc_port.h \
+ /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
@@ -80,7 +83,8 @@ wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo: \
  /usr/include/linux/limits.h /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/sys/time.h wolfssl/wolfcrypt/memory.h \
- /usr/include/ctype.h wolfssl/wolfcrypt/sha256.h wolfssl/wolfcrypt/xmss.h
+ /usr/include/ctype.h wolfssl/wolfcrypt/sha256.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss.h
 
 /usr/include/stdc-predef.h:
 
@@ -210,15 +214,15 @@ wolfcrypt/test/src_libwolfssl_la-XMSS_signature_test.lo: \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
 config.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
 wolfssl/wolfcrypt/random.h:
 
@@ -282,4 +286,4 @@ wolfssl/wolfcrypt/memory.h:
 
 wolfssl/wolfcrypt/sha256.h:
 
-wolfssl/wolfcrypt/xmss.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss.h:

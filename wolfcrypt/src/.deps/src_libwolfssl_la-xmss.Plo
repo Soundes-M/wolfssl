@@ -12,10 +12,13 @@ wolfcrypt/src/src_libwolfssl_la-xmss.lo: wolfcrypt/src/xmss.c \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- wolfssl/wolfcrypt/xmss.h config.h wolfssl/wolfcrypt/visibility.h \
- wolfssl/wolfcrypt/params.h wolfssl/wolfcrypt/xmss_core.h \
- wolfssl/wolfcrypt/params.h wolfssl/wolfcrypt/xmss_commons.h \
- /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss.h config.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss_core.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss_commons.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/libio.h \
@@ -57,19 +60,19 @@ wolfcrypt/src/src_libwolfssl_la-xmss.lo: wolfcrypt/src/xmss.c \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
-wolfssl/wolfcrypt/xmss.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss.h:
 
 config.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
-wolfssl/wolfcrypt/xmss_core.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss_core.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
-wolfssl/wolfcrypt/xmss_commons.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss_commons.h:
 
 /usr/include/stdio.h:
 

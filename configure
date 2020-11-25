@@ -875,6 +875,8 @@ BUILD_ALL_FALSE
 BUILD_ALL_TRUE
 BUILD_DISTRO_FALSE
 BUILD_DISTRO_TRUE
+BUILD_DILITHIUM_FALSE
+BUILD_DILITHIUM_TRUE
 BUILD_XMSS_FALSE
 BUILD_XMSS_TRUE
 IS_VCS_CHECKOUT_FALSE
@@ -1133,6 +1135,7 @@ enable_memorylog
 enable_stacklog
 enable_qt_test
 enable_XMSS
+enable_DILITHIUM
 enable_rsa
 enable_oaep
 enable_rsapub
@@ -2024,6 +2027,7 @@ Optional Features:
   --enable-stacklog       Enable stack logging (default: disabled)
   --enable-qt-test        Enable qt tests (default: disabled)
   --enable-XMSS           Enable XMSS (default: enabled)
+  --enable-DILITHIUM      Enable DILITHIUM (default: enabled)
   --enable-rsa            Enable RSA (default: enabled)
   --enable-oaep           Enable RSA OAEP (default: enabled)
   --enable-rsapub         Enable RSA Public Only (default: disabled)
@@ -17462,6 +17466,32 @@ fi
  fi
 
 
+# DILITHIUM
+# to turn this on build with ./configure --enable-DILITHIUM, to disable use --disable-DILITHIUM
+ # Check whether --enable-DILITHIUM was given.
+if test "${enable_DILITHIUM+set}" = set; then :
+  enableval=$enable_DILITHIUM;  ENABLED_DILITHIUM=$enableval
+else
+   ENABLED_DILITHIUM=yes
+
+fi
+
+
+# If DILITHIUM is not turned on (--disable-DILITHIUM was used) then set relevant CFLAGS "NO_DILITHIUM"
+ if test "$ENABLED_DILITHIUM" = "no"
+ then
+     AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
+ else
+     # turn off DILITHIUM if leanpsk or leantls on
+     if test "$ENABLED_LEANPSK" = "yes" || test "$ENABLED_LEANTLS" = "yes"
+     then
+         AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
+         ENABLED_DILITHIUM=no
+     fi
+ fi
+
+
+
 
 # RSA
 # Check whether --enable-rsa was given.
@@ -25955,6 +25985,15 @@ else
   BUILD_XMSS_FALSE=
 fi
 
+ if test "x$ENABLED_DILITHIUM" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"; then
+  BUILD_DILITHIUM_TRUE=
+  BUILD_DILITHIUM_FALSE='#'
+else
+  BUILD_DILITHIUM_TRUE='#'
+  BUILD_DILITHIUM_FALSE=
+fi
+
+
 
  if test "x$ENABLED_DISTRO" = "xyes"; then
   BUILD_DISTRO_TRUE=
@@ -27316,6 +27355,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_XMSS_TRUE}" && test -z "${BUILD_XMSS_FALSE}"; then
   as_fn_error $? "conditional \"BUILD_XMSS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_DILITHIUM_TRUE}" && test -z "${BUILD_DILITHIUM_FALSE}"; then
+  as_fn_error $? "conditional \"BUILD_DILITHIUM\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${BUILD_DISTRO_TRUE}" && test -z "${BUILD_DISTRO_FALSE}"; then
@@ -30198,6 +30241,7 @@ echo "   * Linux AF_ALG:               $ENABLED_AFALG"
 echo "   * Linux devcrypto:            $ENABLED_DEVCRYPTO"
 echo "   * Crypto callbacks:           $ENABLED_CRYPTOCB"
 echo "   * XMSS signature  :           $ENABLED_XMSS"
+echo "   * DILITHIUM signature  :      $ENABLED_DILITHIUM"
 echo ""
 echo "---"
 

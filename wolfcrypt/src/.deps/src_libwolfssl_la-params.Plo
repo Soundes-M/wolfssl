@@ -18,8 +18,10 @@ wolfcrypt/src/src_libwolfssl_la-params.lo: wolfcrypt/src/params.c \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- wolfssl/wolfcrypt/params.h config.h wolfssl/wolfcrypt/visibility.h \
- wolfssl/wolfcrypt/xmss_core.h wolfssl/wolfcrypt/params.h
+ /usr/local/include/wolfssl/wolfcrypt/params.h config.h \
+ wolfssl/wolfcrypt/visibility.h \
+ /usr/local/include/wolfssl/wolfcrypt/xmss_core.h \
+ /usr/local/include/wolfssl/wolfcrypt/params.h
 
 /usr/include/stdc-predef.h:
 
@@ -65,12 +67,12 @@ wolfcrypt/src/src_libwolfssl_la-params.lo: wolfcrypt/src/params.c \
 
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:
 
 config.h:
 
 wolfssl/wolfcrypt/visibility.h:
 
-wolfssl/wolfcrypt/xmss_core.h:
+/usr/local/include/wolfssl/wolfcrypt/xmss_core.h:
 
-wolfssl/wolfcrypt/params.h:
+/usr/local/include/wolfssl/wolfcrypt/params.h:

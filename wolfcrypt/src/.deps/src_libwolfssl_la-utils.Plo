@@ -1,10 +1,10 @@
 wolfcrypt/src/src_libwolfssl_la-utils.lo: wolfcrypt/src/utils.c \
- /usr/include/stdc-predef.h wolfssl/wolfcrypt/utils.h config.h \
- wolfssl/wolfcrypt/visibility.h
+ /usr/include/stdc-predef.h /usr/local/include/wolfssl/wolfcrypt/utils.h \
+ config.h wolfssl/wolfcrypt/visibility.h
 
 /usr/include/stdc-predef.h:
 
-wolfssl/wolfcrypt/utils.h:
+/usr/local/include/wolfssl/wolfcrypt/utils.h:
 
 config.h:
 

@@ -1,6 +1,7 @@
 wolfcrypt/src/src_libwolfssl_la-randombytes.lo: \
  wolfcrypt/src/randombytes.c /usr/include/stdc-predef.h \
- wolfssl/wolfcrypt/randombytes.h wolfssl/wolfcrypt/randombytes.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
+ /usr/local/include/wolfssl/wolfcrypt/randombytes.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -85,9 +86,9 @@ wolfcrypt/src/src_libwolfssl_la-randombytes.lo: \
 
 /usr/include/stdc-predef.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
-wolfssl/wolfcrypt/randombytes.h:
+/usr/local/include/wolfssl/wolfcrypt/randombytes.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
 

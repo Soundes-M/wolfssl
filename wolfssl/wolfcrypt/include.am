@@ -86,18 +86,34 @@ noinst_HEADERS+= \
                          wolfssl/wolfcrypt/port/cypress/psoc6_crypto.h
 
 if BUILD_XMSS
-nobase_include_HEADERS+= wolfssl/wolfcrypt/fips202.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/hash_address.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/hash_XMSS.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/params.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/randombytes.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/utils.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/wots.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss_commons.h
-nobase_include_HEADERS+= wolfssl/wolfcrypt/xmss_core.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/fips202.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/hash_address.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/hash_XMSS.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/params.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/randombytes.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/utils.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/wots.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/xmss.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/xmss_commons.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/XMSS/xmss_core.h
 endif
 
+if BUILD_DILITHIUM
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/aes256ctr.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/api.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/fips202.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/ntt.h
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/packing.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/params.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/poly.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/polyvec.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/randombytes.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/reduce.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/rng.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/rounding.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/sign.h 
+nobase_include_HEADERS+= wolfssl/wolfcrypt/DILITHIUM/symmetric.h
+endif
 
 
 if BUILD_CRYPTOAUTHLIB

@@ -2075,6 +2075,29 @@ fi
  fi
 
 
+# DILITHIUM
+# to turn this on build with ./configure --enable-DILITHIUM, to disable use --disable-DILITHIUM
+ AC_ARG_ENABLE([DILITHIUM],
+     [AS_HELP_STRING([--enable-DILITHIUM],[Enable DILITHIUM (default: enabled)])],
+     [ ENABLED_DILITHIUM=$enableval ],
+     [ ENABLED_DILITHIUM=yes ]
+     )
+
+# If DILITHIUM is not turned on (--disable-DILITHIUM was used) then set relevant CFLAGS "NO_DILITHIUM"
+ if test "$ENABLED_DILITHIUM" = "no"
+ then
+     AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
+ else
+     # turn off DILITHIUM if leanpsk or leantls on
+     if test "$ENABLED_LEANPSK" = "yes" || test "$ENABLED_LEANTLS" = "yes"
+     then
+         AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
+         ENABLED_DILITHIUM=no
+     fi
+ fi
+
+
+
 
 # RSA
 AC_ARG_ENABLE([rsa],
@@ -5282,6 +5305,8 @@ esac
 # test scripts for make check.
 
 AM_CONDITIONAL([BUILD_XMSS],[test "x$ENABLED_XMSS" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
+AM_CONDITIONAL([BUILD_DILITHIUM],[test "x$ENABLED_DILITHIUM" = "xyes" || test "x$ENABLED_USERSETTINGS" = "xyes"])
+
 
 AM_CONDITIONAL([BUILD_DISTRO],[test "x$ENABLED_DISTRO" = "xyes"])
 AM_CONDITIONAL([BUILD_ALL],[test "x$ENABLED_ALL" = "xyes"])
@@ -5679,6 +5704,7 @@ echo "   * Linux AF_ALG:               $ENABLED_AFALG"
 echo "   * Linux devcrypto:            $ENABLED_DEVCRYPTO"
 echo "   * Crypto callbacks:           $ENABLED_CRYPTOCB"
 echo "   * XMSS signature  :           $ENABLED_XMSS"
+echo "   * DILITHIUM signature  :      $ENABLED_DILITHIUM"
 echo ""
 echo "---"
 
