@@ -601,7 +601,7 @@ am__append_20 = certs/p521/gen-p521-certs.sh \
 ##		             wolfcrypt/src/DILITHIUM/symmetric-shake.c  \
 ##                             wolfcrypt/src/DILITHIUM/symmetric-aes.c 
 
-##am__append_36 = wolfcrypt/src/ecc.c
+###am__append_36 = wolfcrypt/src/ecc.c
 ##am__append_37 = wolfcrypt/src/aes.c
 ###am__append_38 = wolfcrypt/src/aes_asm.S
 ####am__append_39 = wolfcrypt/src/aes_gcm_asm.S
@@ -731,7 +731,7 @@ am__append_104 = wolfcrypt/src/chacha20_poly1305.c
 #am__append_105 = wolfcrypt/src/misc.c
 am__append_106 = wolfcrypt/src/tfm.c
 #am__append_107 = wolfcrypt/src/integer.c
-am__append_108 = wolfcrypt/src/ecc.c
+#am__append_108 = wolfcrypt/src/ecc.c
 #am__append_109 = wolfcrypt/src/curve25519.c
 #am__append_110 = wolfcrypt/src/ed25519.c
 ##am__append_111 = wolfcrypt/src/fe_low_mem.c
@@ -1420,7 +1420,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 ##	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-sign.lo \
 ##	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-shake.lo \
 ##	wolfcrypt/src/DILITHIUM/src_libwolfssl_la-symmetric-aes.lo
-##am__objects_14 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
+###am__objects_14 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
 ##am__objects_15 = wolfcrypt/src/src_libwolfssl_la-aes.lo
 ###am__objects_16 = wolfcrypt/src/src_libwolfssl_la-aes_asm.lo
 ####am__objects_17 = wolfcrypt/src/src_libwolfssl_la-aes_gcm_asm.lo
@@ -1532,7 +1532,7 @@ am__objects_82 = wolfcrypt/src/src_libwolfssl_la-chacha20_poly1305.lo
 #am__objects_83 = wolfcrypt/src/src_libwolfssl_la-misc.lo
 am__objects_84 = wolfcrypt/src/src_libwolfssl_la-tfm.lo
 #am__objects_85 = wolfcrypt/src/src_libwolfssl_la-integer.lo
-am__objects_86 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
+#am__objects_86 = wolfcrypt/src/src_libwolfssl_la-ecc.lo
 #am__objects_87 = wolfcrypt/src/src_libwolfssl_la-curve25519.lo
 #am__objects_88 = wolfcrypt/src/src_libwolfssl_la-ed25519.lo
 ##am__objects_89 = wolfcrypt/src/src_libwolfssl_la-fe_low_mem.lo
@@ -2328,7 +2328,7 @@ ACLOCAL = ${SHELL} /home/soundes/WSSL/wolfssl/build-aux/missing aclocal-1.15
 AMINCLUDE = aminclude.am
 AMTAR = $${TAR-tar}
 AM_CCASFLAGS = 
-AM_CFLAGS = -DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_FFDHE_2048 -DHAVE_EXT_CACHE -DWOLFSSL_VERIFY_CB_ALL_CERTS -DWOLFSSL_EXTRA_ALERTS -DOPENSSL_EXTRA -DWOLFSSL_ALWAYS_VERIFY_CB -D_POSIX_THREADS  -fvisibility=hidden -DHAVE_THREAD_LS -DNDEBUG -pthread -DTFM_TIMING_RESISTANT -DECC_TIMING_RESISTANT -DWC_RSA_BLINDING -DHAVE_AESGCM -DWOLFSSL_SHA512 -DWOLFSSL_SHA384 -DWOLFSSL_CERT_GEN -DWOLFSSL_CERT_REQ -DWOLFSSL_CERT_EXT -DHAVE_HKDF -DNO_DSA -DHAVE_ECC -DTFM_ECC256 -DECC_SHAMIR -DWC_RSA_PSS -DWOLFSSL_BASE64_ENCODE -DNO_RC4 -DNO_HC128 -DNO_RABBIT -DWOLFSSL_SHA224 -DWOLFSSL_SHA3 -DWOLFSSL_SHAKE256 -DHAVE_POLY1305 -DHAVE_ONE_TIME_AUTH -DHAVE_CHACHA -DHAVE_HASHDRBG -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_EXTENDED_MASTER -DNO_RC4 -DHAVE_ENCRYPT_THEN_MAC -DNO_PSK -DNO_MD4 -DWOLFSSL_ENCRYPTED_KEYS -DUSE_FAST_MATH -DWOLFSSL_X86_64_BUILD -DWC_NO_ASYNC_THREADING -DHAVE_DH_DEFAULT_PARAMS -DNO_DES3 -Wall -Wno-unused -O2 -DHAVE___UINT128_T=1
+AM_CFLAGS = -DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_FFDHE_2048 -DHAVE_EXT_CACHE -DWOLFSSL_VERIFY_CB_ALL_CERTS -DWOLFSSL_EXTRA_ALERTS -DOPENSSL_EXTRA -DWOLFSSL_ALWAYS_VERIFY_CB -D_POSIX_THREADS  -fvisibility=hidden -DHAVE_THREAD_LS -DNDEBUG -pthread -DTFM_TIMING_RESISTANT -DECC_TIMING_RESISTANT -DWC_RSA_BLINDING -DHAVE_AESGCM -DWOLFSSL_SHA512 -DWOLFSSL_SHA384 -DWOLFSSL_CERT_GEN -DWOLFSSL_CERT_REQ -DWOLFSSL_CERT_EXT -DHAVE_HKDF -DNO_DSA -DHAVE_ECC -DTFM_ECC256 -DECC_SHAMIR -DWC_RSA_PSS -DWOLFSSL_BASE64_ENCODE -DNO_RC4 -DNO_HC128 -DNO_RABBIT -DWOLFSSL_SHA224 -DWOLFSSL_SHA3 -DWOLFSSL_SHAKE256 -DHAVE_POLY1305 -DHAVE_ONE_TIME_AUTH -DHAVE_CHACHA -DHAVE_HASHDRBG -DHAVE_EXTENDED_MASTER -DNO_RC4 -DHAVE_ENCRYPT_THEN_MAC -DNO_PSK -DNO_MD4 -DWOLFSSL_ENCRYPTED_KEYS -DUSE_FAST_MATH -DWOLFSSL_X86_64_BUILD -DWC_NO_ASYNC_THREADING -DHAVE_DH_DEFAULT_PARAMS -DNO_DES3 -Wall -Wno-unused -O2 -DHAVE___UINT128_T=1
 AM_CPPFLAGS = 
 AM_DEFAULT_VERBOSITY = 0
 AM_LDFLAGS = 

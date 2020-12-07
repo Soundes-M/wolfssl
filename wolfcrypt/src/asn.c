@@ -31,13 +31,18 @@ that can be serialized and deserialized in a cross-platform way.
     #include <config.h>
 #endif
 #define HAVE_XMSS 1 
+#define HAVE_DILITHIUM 1
 #include <wolfssl/wolfcrypt/settings.h>
 
 
 #ifdef HAVE_XMSS
-#include <wolfssl/wolfcrypt/params.h>
-#include <wolfssl/wolfcrypt/randombytes.h>
-#include <wolfssl/wolfcrypt/xmss.h>
+#include <wolfssl/wolfcrypt/XMSS/params.h>
+#include <wolfssl/wolfcrypt/XMSS/randombytes.h>
+#include <wolfssl/wolfcrypt/XMSS/xmss.h>
+#endif
+
+#ifdef HAVE_DILITHIUM
+//#include <wolfssl/wolfcrypt/DILITHIUM/sign.h>
 #endif
 
 
@@ -13043,7 +13048,7 @@ int SetName(byte* output, word32 outputSz, CertName* name)
 
 /* encode info from cert into DER encoded format */
 static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
-                      WC_RNG* rng, const byte* ntruKey, byte* XMSSKey, int XMSSSz, word16 ntruSz,
+                      WC_RNG* rng, const byte* ntruKey, byte* XMSSKey,int XMSSSz,  uint8_t *DILITHIUMKey, int DILITHIUMSz, word16 ntruSz,
                       ed25519_key* ed25519Key, ed448_key* ed448Key)
 {
     
@@ -13053,7 +13058,7 @@ static int EncodeCert(Cert* cert, DerCert* der, RsaKey* rsaKey, ecc_key* eccKey,
 
     /* make sure at least one key type is provided */
     if (rsaKey == NULL && eccKey == NULL && ed25519Key == NULL &&
-                                          ed448Key == NULL && ntruKey == NULL && XMSSKey == NULL) {
+                                          ed448Key == NULL && ntruKey == NULL && XMSSKey == NULL && DILITHIUMKey == NULL) {
         return PUBLIC_KEY_E;
     }
 
@@ -13125,6 +13130,15 @@ if (cert->keyType == XMSS_KEY) {
         der->publicKeySz = SetXMSSPublicKey(der->publicKey, XMSSKey, XMSSSz); 
     }
 #endif /* HAVE_XMSS */
+
+#ifdef HAVE_DILITHIUM
+if (cert->keyType == DILITHIUM_KEY) {
+        if (DILITHIUMKey == NULL)
+            return PUBLIC_KEY_E;
+        // with header always
+        der->publicKeySz = SetDILITHIUMPublicKey(der->publicKey, DILITHIUMKey, DILITHIUMSz); 
+    }
+#endif /* HAVE_DILITHIUM */
 
 
 #ifdef HAVE_NTRU
@@ -13618,7 +13632,7 @@ static int AddSignature(byte* buf, int bodySz, const byte* sig, int sigSz,
 /* Make an x509 Certificate v3 any key type from cert input, write to buffer */
 static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
                        RsaKey* rsaKey, ecc_key* eccKey, WC_RNG* rng,
-                       const byte* ntruKey, byte* XMSSKey, int XMSSSz, word16 ntruSz,
+                       const byte* ntruKey, byte* XMSSKey, int XMSSSz, uint8_t* DILITHIUMKey, int DILITHIUMSz, word16 ntruSz,
                        ed25519_key* ed25519Key, ed448_key* ed448Key)
 {
     int ret;
@@ -13641,7 +13655,7 @@ static int MakeAnyCert(Cert* cert, byte* derBuffer, word32 derSz,
         return MEMORY_E;
 #endif
 
-    ret = EncodeCert(cert, der, rsaKey, eccKey, rng, ntruKey, XMSSKey, XMSSSz, ntruSz,
+    ret = EncodeCert(cert, der, rsaKey, eccKey, rng, ntruKey, XMSSKey, XMSSSz,  DILITHIUMKey, DILITHIUMSz, ntruSz,
                      ed25519Key, ed448Key);
     if (ret == 0) {
         if (der->total + MAX_SEQ_SZ * 2 > (int)derSz)
@@ -13661,10 +13675,15 @@ int wc_MakeXMSSCert(Cert* cert, byte* derBuffer, word32 derSz,
                     byte* XMSSKey, int XMSSSz,  WC_RNG* rng)
 {
     return MakeAnyCert(cert, derBuffer, derSz, NULL, NULL, rng,
-            NULL, XMSSKey, XMSSSz, 0, NULL, NULL);
+            NULL, XMSSKey, XMSSSz, NULL, 0, 0, NULL, NULL);
 } 
  
- 
+int wc_MakeDILITHIUMCert(Cert* cert, byte* derBuffer, word32 derSz,
+                    uint8_t* DILITHIUMKey, int DILITHIUMSz,  WC_RNG* rng)
+{
+    return MakeAnyCert(cert, derBuffer, derSz, NULL, NULL, rng,
+            NULL, NULL, 0, DILITHIUMKey, DILITHIUMSz, 0, NULL, NULL);
+} 
 
 /* Make an x509 Certificate v3 RSA or ECC from cert input, write to buffer */
 int wc_MakeCert_ex(Cert* cert, byte* derBuffer, word32 derSz, int keyType,
@@ -13684,14 +13703,14 @@ int wc_MakeCert_ex(Cert* cert, byte* derBuffer, word32 derSz, int keyType,
     else if (keyType == ED448_TYPE)
         ed448Key = (ed448_key*)key;
 
-    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL, 0,0,
+    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL, 0,NULL, 0, 0,
                        ed25519Key, ed448Key);
 }
 /* Make an x509 Certificate v3 RSA or ECC from cert input, write to buffer */
 int wc_MakeCert(Cert* cert, byte* derBuffer, word32 derSz, RsaKey* rsaKey,
              ecc_key* eccKey, WC_RNG* rng)
 {
-    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL,0, 0,
+    return MakeAnyCert(cert, derBuffer, derSz, rsaKey, eccKey, rng, NULL, NULL,0, NULL, 0, 0,
                        NULL, NULL);
 }
 
@@ -14245,9 +14264,34 @@ int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buff
     //end verification 
 */
     return sigSz;
-
-
 }
+
+int wc_SignDILITHIUMCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, uint8_t *DILITHIUMKey )
+{    
+    int sigSz = 0; /*
+#define DILITHIUM_MLEN 59
+    uint8_t sm[DILITHIUM_MLEN + CRYPTO_BYTES];
+    size_t smlen;
+
+    // This should be changed later, it depeds on which DILITHIUM version is used. (here DILITHIUM II)
+    sigSz = DILITHIUM_MLEN + CRYPTO_BYTES;
+  
+
+    //crypto_sign(sm, &smlen, buf, DILITHIUM_MLEN, DILITHIUMKey);
+  
+    if (sigSz >= 0) {
+        if (requestSz + MAX_SEQ_SZ * 2 + sigSz > (int)buffSz)
+            sigSz = BUFFER_E;
+        else
+            sigSz = AddSignature(buf, requestSz, (byte*)sm, sigSz,
+                                 sType);
+            
+    }
+    */
+    return sigSz;
+}
+
+
 int wc_SignCert(int requestSz, int sType, byte* buf, word32 buffSz,
                 RsaKey* rsaKey, ecc_key* eccKey, WC_RNG* rng)
 {
@@ -14284,7 +14328,66 @@ int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert)
     }
     return rc;
 }
-  
+//export the DILITHIUM public key
+int SetDILITHIUMPublicKey(byte* output, uint8_t* DILITHIUMKey, int DILITHIUMSz)
+{  
+    byte bitString[1 + MAX_LENGTH_SZ + 1];
+    int  idx; 
+    DILITHIUMSz = 4000; //TODO this should be changed 
+    int  bitStringSz; 
+    byte algo[MAX_ALGO_SZ];
+    byte pub[DILITHIUMSz];
+ 
+     
+    int  algoSz; 
+    if (pub == NULL || DILITHIUMKey == NULL || DILITHIUMSz < MAX_SEQ_SZ)
+        return BAD_FUNC_ARG;
+
+    for(int i=0;i<DILITHIUMSz;i++)
+        pub[i] = DILITHIUMKey[i]; 
+
+    //TODO: improve the return values
+    //TODO: check the cast from unsigned char to bytes
+    
+#ifdef WOLFSSL_SMALL_STACK
+        algo = (byte*)XMALLOC(MAX_ALGO_SZ, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+        if (algo == NULL) {
+            XFREE(pub, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+            return MEMORY_E;
+        }
+#endif
+   
+    algoSz  = SetAlgoID(XMSSk, algo, oidKeyType, 0);
+
+    bitStringSz = SetBitString(DILITHIUMSz, 0, bitString);
+
+    idx = SetSequence(DILITHIUMSz +  bitStringSz + algoSz, output);
+ 
+
+    /* algo */
+    if (output)
+        XMEMCPY(output + idx, algo, algoSz);
+    idx += algoSz; 
+    /* bit string */
+    if (output)
+    {   
+        XMEMCPY(output + idx, bitString, bitStringSz);
+        idx += bitStringSz;
+    }
+    else
+        idx = 0;
+
+    /* pub */
+    if (output)
+        XMEMCPY(output + idx, pub, DILITHIUMSz);
+    idx += DILITHIUMSz;
+
+
+
+    return idx;
+}
+
+
 //export the XMSS public key
 int SetXMSSPublicKey(byte* output, byte* XMSSKey, int XMSSSz)
 {  
@@ -14343,6 +14446,48 @@ int SetXMSSPublicKey(byte* output, byte* XMSSKey, int XMSSSz)
 
     return idx;
 }
+// This function is equivalent to SetKeyId From PublicKey for DILITHIUM
+int wc_SetSubjectKeyIdFromDILITHIUMPublicKey(Cert *cert, uint8_t *DILITHIUMKey, int kid_type)
+{
+    byte *buf;
+    int   bufferSz, ret;
+
+    if (cert == NULL || DILITHIUMKey == NULL|| (kid_type != SKID_TYPE && kid_type != AKID_TYPE))
+        return BAD_FUNC_ARG;
+
+    buf = (byte *)XMALLOC(MAX_PUBLIC_KEY_SZ, cert->heap,  DYNAMIC_TYPE_TMP_BUFFER);
+    if (buf == NULL)
+        return MEMORY_E;  
+
+    /* Public Key */
+    bufferSz = -1;
+ 
+    /* XMSS public key */
+    if (DILITHIUMKey != NULL)
+        bufferSz = SetDILITHIUMPublicKey(buf, DILITHIUMKey, MAX_PUBLIC_KEY_SZ);
+   
+    if (bufferSz <= 0) {
+        XFREE(buf, cert->heap, DYNAMIC_TYPE_TMP_BUFFER);
+        return PUBLIC_KEY_E; 
+    }
+
+    /* Compute SKID by hashing public key */
+    if (kid_type == SKID_TYPE) {
+        ret = CalcHashId(buf, bufferSz, cert->skid);
+        cert->skidSz = KEYID_SIZE;
+    }
+    else if (kid_type == AKID_TYPE) {
+        ret = CalcHashId(buf, bufferSz, cert->akid);
+        cert->akidSz = KEYID_SIZE;
+    }
+    else
+        ret = BAD_FUNC_ARG;
+
+    XFREE(buf, cert->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    return ret;
+
+}
+
 // This function is equivalent to SetKeyId From PublicKey for XMSS
 int wc_SetSubjectKeyIdFromXMSSPublicKey(Cert *cert, byte *XMSSKey, int kid_type)
 {

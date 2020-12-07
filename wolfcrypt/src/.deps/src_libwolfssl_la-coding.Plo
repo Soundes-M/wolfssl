@@ -83,7 +83,10 @@ wolfcrypt/src/src_libwolfssl_la-coding.lo: wolfcrypt/src/coding.c \
  wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/sha256.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/dh.h \
  wolfssl/wolfcrypt/sha.h wolfssl/wolfcrypt/md5.h \
- wolfssl/wolfcrypt/asn_public.h
+ wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h
 
 /usr/include/stdc-predef.h:
 
@@ -300,3 +303,11 @@ wolfssl/wolfcrypt/sha.h:
 wolfssl/wolfcrypt/md5.h:
 
 wolfssl/wolfcrypt/asn_public.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:

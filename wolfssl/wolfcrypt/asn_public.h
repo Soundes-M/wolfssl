@@ -32,7 +32,7 @@ This library defines the interface APIs for X509 certificates.
 #define WOLF_CRYPT_ASN_PUBLIC_H
 
 #include <wolfssl/wolfcrypt/types.h>
-
+#include "stdint.h"
 #ifdef __cplusplus
     extern "C" {
 #endif
@@ -140,7 +140,8 @@ enum Ctc_SigType {
     CTC_SHA512wECDSA = 526,
     CTC_ED25519      = 256,
     CTC_ED448        = 257,
-    CTC_XMSS         = 258
+    CTC_XMSS         = 258,
+    CTC_DILITHIUM       = 259
 };
 
 enum Ctc_Encoding {
@@ -397,12 +398,21 @@ WOLFSSL_API int wc_GetCertDates(Cert* cert, struct tm* before,
     struct tm* after);
 #endif
 
+#ifdef HAVE_DILITHIUM
+WOLFSSL_API int SetDILITHIUMPublicKey(byte* output, uint8_t* DILITHIUMKey, int DILITHIUMSz);
+WOLFSSL_API int wc_MakeDILITHIUMCert(Cert*, byte* derBuffer, word32 derSz,
+                                       uint8_t* DILITHIUMKey, int DILITHIUMSz, 
+                                       WC_RNG*); 
+WOLFSSL_API int wc_SignDILITHIUMCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, uint8_t *DILITHIUMKey);
+#endif
+
 #ifdef HAVE_XMSS
 WOLFSSL_API int SetXMSSPublicKey(byte* buf, byte* XMSSKey, int outLen);
 WOLFSSL_API int wc_SignXMSSCert(int requestSz, int sType, byte* buf, unsigned long long buffSz, unsigned char *XMSSKey);
 WOLFSSL_API int wc_MakeXMSSCert(Cert*, byte* derBuffer, word32 derSz,
                                        byte* XMSSKey, int XMSSSz, 
                                        WC_RNG*);
+
 #endif
 
 #ifdef WOLFSSL_CERT_EXT
@@ -417,8 +427,10 @@ WOLFSSL_API int wc_SetSubjectKeyIdFromPublicKey_ex(Cert *cert, int keyType,
 WOLFSSL_API int wc_SetSubjectKeyIdFromPublicKey(Cert *cert, RsaKey *rsakey,
                                                 ecc_key *eckey);
 WOLFSSL_API int wc_SetSubjectKeyId(Cert *cert, const char* file);
+
 WOLFSSL_API int wc_SetSubjectKeyIdFromXMSSPublicKey(Cert *cert, byte *XMSSKey, int kid_type);
- 
+WOLFSSL_API int wc_SetSubjectKeyIdFromDILITHIUMPublicKey(Cert *cert, uint8_t *DILITHIUMKey, int kid_type);
+
 WOLFSSL_API int wc_GetSubjectRaw(byte **subjectRaw, Cert *cert);
 WOLFSSL_API int wc_SetSubjectRaw(Cert* cert, const byte* der, int derSz);
 WOLFSSL_API int wc_SetIssuerRaw(Cert* cert, const byte* der, int derSz);

@@ -475,6 +475,7 @@ enum Key_Sum {
     ED25519k = 256,
     ED448k   = 257,
     XMSSk    = 275,
+    DILITHIUMk    = 276,
     DHk      = 647, /* dhKeyAgreement OID: 1.2.840.113549.1.3.1 */
 };
 
@@ -1198,7 +1199,8 @@ enum cert_enums {
     ECC_KEY         = 12,
     ED25519_KEY     = 13,
     ED448_KEY       = 14,
-    XMSS_KEY        = 15
+    XMSS_KEY        = 15, 
+    DILITHIUM_KEY   = 16
 };
 
 #endif /* WOLFSSL_CERT_GEN */

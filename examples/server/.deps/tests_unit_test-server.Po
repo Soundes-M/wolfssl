@@ -74,7 +74,10 @@ examples/server/tests_unit_test-server.o: examples/server/server.c \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/ctype.h wolfssl/wolfcrypt/asn_public.h wolfssl/callbacks.h \
+ /usr/include/ctype.h wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h wolfssl/callbacks.h \
  wolfssl/openssl/bn.h wolfssl/wolfcrypt/integer.h wolfssl/wolfcrypt/tfm.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
@@ -108,10 +111,9 @@ examples/server/tests_unit_test-server.o: examples/server/server.c \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
- /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -127,9 +129,7 @@ examples/server/tests_unit_test-server.o: examples/server/server.c \
  wolfssl/wolfcrypt/asn.h wolfssl/wolfcrypt/dh.h wolfssl/openssl/stack.h \
  wolfssl/openssl/conf.h wolfssl/test.h /usr/include/assert.h \
  wolfssl/wolfcrypt/mem_track.h /usr/include/netinet/tcp.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/signal.h /usr/include/x86_64-linux-gnu/bits/signum.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
@@ -338,6 +338,14 @@ wolfssl/wolfcrypt/memory.h:
 
 wolfssl/wolfcrypt/asn_public.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 wolfssl/callbacks.h:
 
 wolfssl/openssl/bn.h:
@@ -456,8 +464,6 @@ wolfssl/wolfio.h:
 
 /usr/include/netinet/in.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
 /usr/include/x86_64-linux-gnu/bits/in.h:
 
 /usr/include/netdb.h:
@@ -515,12 +521,6 @@ wolfssl/test.h:
 wolfssl/wolfcrypt/mem_track.h:
 
 /usr/include/netinet/tcp.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/signal.h:
 

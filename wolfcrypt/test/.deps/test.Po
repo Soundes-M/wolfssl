@@ -82,12 +82,15 @@ wolfcrypt/test/test.o: wolfcrypt/test/test.c /usr/include/stdc-predef.h \
  wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/sha256.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/dh.h \
  wolfssl/wolfcrypt/sha.h wolfssl/wolfcrypt/md5.h \
- wolfssl/wolfcrypt/asn_public.h wolfssl/wolfcrypt/md2.h \
- wolfssl/wolfcrypt/md4.h wolfssl/wolfcrypt/sha512.h \
- wolfssl/wolfcrypt/arc4.h wolfssl/wolfcrypt/coding.h \
- wolfssl/wolfcrypt/signature.h wolfssl/wolfcrypt/hash.h \
- wolfssl/wolfcrypt/sha3.h wolfssl/wolfcrypt/rsa.h \
- wolfssl/wolfcrypt/des3.h wolfssl/wolfcrypt/aes.h \
+ wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ wolfssl/wolfcrypt/md2.h wolfssl/wolfcrypt/md4.h \
+ wolfssl/wolfcrypt/sha512.h wolfssl/wolfcrypt/arc4.h \
+ wolfssl/wolfcrypt/coding.h wolfssl/wolfcrypt/signature.h \
+ wolfssl/wolfcrypt/hash.h wolfssl/wolfcrypt/sha3.h \
+ wolfssl/wolfcrypt/rsa.h wolfssl/wolfcrypt/des3.h wolfssl/wolfcrypt/aes.h \
  wolfssl/wolfcrypt/wc_encrypt.h wolfssl/wolfcrypt/chacha.h \
  wolfssl/wolfcrypt/cmac.h wolfssl/wolfcrypt/poly1305.h \
  wolfssl/wolfcrypt/camellia.h wolfssl/wolfcrypt/hmac.h \
@@ -118,10 +121,9 @@ wolfcrypt/test/test.o: wolfcrypt/test/test.c /usr/include/stdc-predef.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
- /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -355,6 +357,14 @@ wolfssl/wolfcrypt/md5.h:
 
 wolfssl/wolfcrypt/asn_public.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 wolfssl/wolfcrypt/md2.h:
 
 wolfssl/wolfcrypt/md4.h:
@@ -488,8 +498,6 @@ wolfssl/wolfio.h:
 /usr/include/arpa/inet.h:
 
 /usr/include/netinet/in.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/in.h:
 

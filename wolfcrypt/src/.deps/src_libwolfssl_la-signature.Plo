@@ -84,8 +84,11 @@ wolfcrypt/src/src_libwolfssl_la-signature.lo: wolfcrypt/src/signature.c \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/dh.h \
- wolfssl/wolfcrypt/asn_public.h wolfssl/wolfcrypt/ecc.h \
- wolfssl/wolfcrypt/rsa.h
+ wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ wolfssl/wolfcrypt/ecc.h wolfssl/wolfcrypt/rsa.h
 
 /usr/include/stdc-predef.h:
 
@@ -308,6 +311,14 @@ wolfssl/wolfcrypt/wolfmath.h:
 wolfssl/wolfcrypt/dh.h:
 
 wolfssl/wolfcrypt/asn_public.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 wolfssl/wolfcrypt/ecc.h:
 

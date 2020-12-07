@@ -79,20 +79,22 @@ tests/tests_unit_test-api.o: tests/api.c /usr/include/stdc-predef.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/sha256.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/asn_public.h \
- wolfssl/error-ssl.h wolfssl/wolfcrypt/error-crypt.h wolfssl/ssl.h \
- wolfssl/version.h wolfssl/wolfcrypt/logging.h wolfssl/callbacks.h \
- wolfssl/openssl/bn.h wolfssl/openssl/hmac.h wolfssl/openssl/evp.h \
- wolfssl/openssl/md5.h wolfssl/wolfcrypt/hash.h wolfssl/wolfcrypt/md5.h \
- wolfssl/wolfcrypt/sha.h wolfssl/wolfcrypt/sha512.h \
- wolfssl/wolfcrypt/sha3.h wolfssl/openssl/sha.h wolfssl/openssl/sha3.h \
- wolfssl/openssl/ripemd.h wolfssl/openssl/rsa.h wolfssl/openssl/err.h \
- wolfssl/openssl/dsa.h wolfssl/openssl/ec.h wolfssl/openssl/dh.h \
- wolfssl/wolfcrypt/aes.h wolfssl/wolfcrypt/des3.h \
- wolfssl/wolfcrypt/arc4.h wolfssl/wolfcrypt/hmac.h \
- wolfssl/wolfcrypt/pwdbased.h wolfssl/openssl/objects.h \
- wolfssl/openssl/opensslv.h wolfssl/wolfio.h /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h wolfssl/error-ssl.h \
+ wolfssl/wolfcrypt/error-crypt.h wolfssl/ssl.h wolfssl/version.h \
+ wolfssl/wolfcrypt/logging.h wolfssl/callbacks.h wolfssl/openssl/bn.h \
+ wolfssl/openssl/hmac.h wolfssl/openssl/evp.h wolfssl/openssl/md5.h \
+ wolfssl/wolfcrypt/hash.h wolfssl/wolfcrypt/md5.h wolfssl/wolfcrypt/sha.h \
+ wolfssl/wolfcrypt/sha512.h wolfssl/wolfcrypt/sha3.h \
+ wolfssl/openssl/sha.h wolfssl/openssl/sha3.h wolfssl/openssl/ripemd.h \
+ wolfssl/openssl/rsa.h wolfssl/openssl/err.h wolfssl/openssl/dsa.h \
+ wolfssl/openssl/ec.h wolfssl/openssl/dh.h wolfssl/wolfcrypt/aes.h \
+ wolfssl/wolfcrypt/des3.h wolfssl/wolfcrypt/arc4.h \
+ wolfssl/wolfcrypt/hmac.h wolfssl/wolfcrypt/pwdbased.h \
+ wolfssl/openssl/objects.h wolfssl/openssl/opensslv.h wolfssl/wolfio.h \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
@@ -108,10 +110,9 @@ tests/tests_unit_test-api.o: tests/api.c /usr/include/stdc-predef.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
- /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -126,9 +127,7 @@ tests/tests_unit_test-api.o: tests/api.c /usr/include/stdc-predef.h \
  wolfssl/openssl/crypto.h wolfssl/wolfcrypt/asn.h wolfssl/wolfcrypt/dh.h \
  wolfssl/openssl/stack.h wolfssl/openssl/conf.h wolfssl/test.h \
  /usr/include/assert.h wolfssl/wolfcrypt/mem_track.h \
- /usr/include/netinet/tcp.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/signal.h \
+ /usr/include/netinet/tcp.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
@@ -360,6 +359,14 @@ wolfssl/wolfcrypt/wolfmath.h:
 
 wolfssl/wolfcrypt/asn_public.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 wolfssl/error-ssl.h:
 
 wolfssl/wolfcrypt/error-crypt.h:
@@ -468,8 +475,6 @@ wolfssl/wolfio.h:
 
 /usr/include/netinet/in.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
 /usr/include/x86_64-linux-gnu/bits/in.h:
 
 /usr/include/netdb.h:
@@ -525,12 +530,6 @@ wolfssl/test.h:
 wolfssl/wolfcrypt/mem_track.h:
 
 /usr/include/netinet/tcp.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/signal.h:
 

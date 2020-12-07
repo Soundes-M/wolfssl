@@ -923,72 +923,72 @@ configure:15121: checking for PTHREAD_PRIO_INHERIT
 configure:15137: gcc -o conftest    -pthread   conftest.c   >&5
 configure:15137: $? = 0
 configure:15146: result: yes
-configure:21123: checking for fast RSA
-configure:21138: result: no
-configure:22373: checking for library containing gethostbyname
-configure:22404: gcc -o conftest      conftest.c   >&5
-configure:22404: $? = 0
-configure:22421: result: none required
-configure:22429: checking for library containing socket
-configure:22460: gcc -o conftest      conftest.c   >&5
-configure:22460: $? = 0
-configure:22477: result: none required
-configure:22528: checking for vcs system
-configure:22548: result: git
-configure:22557: checking for vcs checkout
-configure:22569: result: yes
-configure:22600: checking whether the linker accepts -Werror
-configure:22619: gcc -o conftest       -Werror conftest.c   >&5
-configure:22619: $? = 0
-configure:22628: result: yes
-configure:22683: checking whether the linker accepts -z relro -z now
-configure:22702: gcc -o conftest       -z relro -z now conftest.c   >&5
-configure:22702: $? = 0
-configure:22712: result: yes
-configure:22724: checking whether the linker accepts -pie
-configure:22743: gcc -o conftest       -pie conftest.c   >&5
-configure:22743: $? = 0
-configure:22753: result: yes
-configure:22788: checking whether C compiler accepts -Werror
-configure:22807: gcc -c     -Werror  conftest.c >&5
-configure:22807: $? = 0
-configure:22816: result: yes
-configure:22832: : CFLAGS="$CFLAGS"
-configure:22835: $? = 0
-configure:23175: checking whether C compiler accepts -Wno-pragmas
-configure:23194: gcc -c    -Werror  -Wno-pragmas  conftest.c >&5
-configure:23194: $? = 0
-configure:23203: result: yes
-configure:23219: : CFLAGS="$CFLAGS"
-configure:23222: $? = 0
-configure:23251: checking whether C compiler accepts -Wall
-configure:23270: gcc -c    -Werror -Wno-pragmas  -Wall  conftest.c >&5
-configure:23270: $? = 0
-configure:23279: result: yes
-configure:23295: : CFLAGS="$CFLAGS"
-configure:23298: $? = 0
-configure:23326: checking whether C compiler accepts -Wno-strict-aliasing
-configure:23345: gcc -c    -Werror -Wno-pragmas -Wall  -Wno-strict-aliasing  conftest.c >&5
-configure:23345: $? = 0
-configure:23354: result: yes
-configure:23370: : CFLAGS="$CFLAGS"
-configure:23373: $? = 0
-configure:23401: checking whether C compiler accepts -Wextra
-configure:23420: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing  -Wextra  conftest.c >&5
-configure:23420: $? = 0
-configure:23429: result: yes
-configure:23445: : CFLAGS="$CFLAGS"
-configure:23448: $? = 0
-configure:23476: checking whether C compiler accepts -Wunknown-pragmas
-configure:23495: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra  -Wunknown-pragmas  conftest.c >&5
-configure:23495: $? = 0
-configure:23504: result: yes
-configure:23520: : CFLAGS="$CFLAGS"
-configure:23523: $? = 0
-configure:23551: checking whether C compiler accepts -Wthis-test-should-fail
-configure:23570: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas  -Wthis-test-should-fail  conftest.c >&5
+configure:21120: checking for fast RSA
+configure:21135: result: no
+configure:22370: checking for library containing gethostbyname
+configure:22401: gcc -o conftest      conftest.c   >&5
+configure:22401: $? = 0
+configure:22418: result: none required
+configure:22426: checking for library containing socket
+configure:22457: gcc -o conftest      conftest.c   >&5
+configure:22457: $? = 0
+configure:22474: result: none required
+configure:22525: checking for vcs system
+configure:22545: result: git
+configure:22554: checking for vcs checkout
+configure:22566: result: yes
+configure:22597: checking whether the linker accepts -Werror
+configure:22616: gcc -o conftest       -Werror conftest.c   >&5
+configure:22616: $? = 0
+configure:22625: result: yes
+configure:22680: checking whether the linker accepts -z relro -z now
+configure:22699: gcc -o conftest       -z relro -z now conftest.c   >&5
+configure:22699: $? = 0
+configure:22709: result: yes
+configure:22721: checking whether the linker accepts -pie
+configure:22740: gcc -o conftest       -pie conftest.c   >&5
+configure:22740: $? = 0
+configure:22750: result: yes
+configure:22785: checking whether C compiler accepts -Werror
+configure:22804: gcc -c     -Werror  conftest.c >&5
+configure:22804: $? = 0
+configure:22813: result: yes
+configure:22829: : CFLAGS="$CFLAGS"
+configure:22832: $? = 0
+configure:23172: checking whether C compiler accepts -Wno-pragmas
+configure:23191: gcc -c    -Werror  -Wno-pragmas  conftest.c >&5
+configure:23191: $? = 0
+configure:23200: result: yes
+configure:23216: : CFLAGS="$CFLAGS"
+configure:23219: $? = 0
+configure:23248: checking whether C compiler accepts -Wall
+configure:23267: gcc -c    -Werror -Wno-pragmas  -Wall  conftest.c >&5
+configure:23267: $? = 0
+configure:23276: result: yes
+configure:23292: : CFLAGS="$CFLAGS"
+configure:23295: $? = 0
+configure:23323: checking whether C compiler accepts -Wno-strict-aliasing
+configure:23342: gcc -c    -Werror -Wno-pragmas -Wall  -Wno-strict-aliasing  conftest.c >&5
+configure:23342: $? = 0
+configure:23351: result: yes
+configure:23367: : CFLAGS="$CFLAGS"
+configure:23370: $? = 0
+configure:23398: checking whether C compiler accepts -Wextra
+configure:23417: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing  -Wextra  conftest.c >&5
+configure:23417: $? = 0
+configure:23426: result: yes
+configure:23442: : CFLAGS="$CFLAGS"
+configure:23445: $? = 0
+configure:23473: checking whether C compiler accepts -Wunknown-pragmas
+configure:23492: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra  -Wunknown-pragmas  conftest.c >&5
+configure:23492: $? = 0
+configure:23501: result: yes
+configure:23517: : CFLAGS="$CFLAGS"
+configure:23520: $? = 0
+configure:23548: checking whether C compiler accepts -Wthis-test-should-fail
+configure:23567: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas  -Wthis-test-should-fail  conftest.c >&5
 gcc: error: unrecognized command line option '-Wthis-test-should-fail'
-configure:23570: $? = 1
+configure:23567: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "wolfssl"
@@ -1047,131 +1047,131 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:23579: result: no
-configure:23630: checking whether C compiler accepts --param=ssp-buffer-size=1
-configure:23649: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas  --param=ssp-buffer-size=1  conftest.c >&5
-configure:23649: $? = 0
-configure:23658: result: yes
-configure:23674: : CFLAGS="$CFLAGS"
-configure:23677: $? = 0
-configure:23707: checking whether C compiler accepts -Waddress
-configure:23726: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1  -Waddress  conftest.c >&5
-configure:23726: $? = 0
-configure:23735: result: yes
-configure:23751: : CFLAGS="$CFLAGS"
-configure:23754: $? = 0
-configure:23782: checking whether C compiler accepts -Warray-bounds
-configure:23801: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress  -Warray-bounds  conftest.c >&5
-configure:23801: $? = 0
-configure:23810: result: yes
-configure:23826: : CFLAGS="$CFLAGS"
-configure:23829: $? = 0
-configure:23857: checking whether C compiler accepts -Wbad-function-cast
-configure:23876: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds  -Wbad-function-cast  conftest.c >&5
-configure:23876: $? = 0
-configure:23885: result: yes
-configure:23901: : CFLAGS="$CFLAGS"
-configure:23904: $? = 0
-configure:23932: checking whether C compiler accepts -Wchar-subscripts
-configure:23951: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast  -Wchar-subscripts  conftest.c >&5
-configure:23951: $? = 0
-configure:23960: result: yes
-configure:23976: : CFLAGS="$CFLAGS"
-configure:23979: $? = 0
-configure:24007: checking whether C compiler accepts -Wcomment
-configure:24026: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts  -Wcomment  conftest.c >&5
-configure:24026: $? = 0
-configure:24035: result: yes
-configure:24051: : CFLAGS="$CFLAGS"
-configure:24054: $? = 0
-configure:24082: checking whether C compiler accepts -Wfloat-equal
-configure:24101: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment  -Wfloat-equal  conftest.c >&5
-configure:24101: $? = 0
-configure:24110: result: yes
-configure:24126: : CFLAGS="$CFLAGS"
-configure:24129: $? = 0
-configure:24157: checking whether C compiler accepts -Wformat-security
-configure:24176: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal  -Wformat-security  conftest.c >&5
-configure:24176: $? = 0
-configure:24185: result: yes
-configure:24201: : CFLAGS="$CFLAGS"
-configure:24204: $? = 0
-configure:24232: checking whether C compiler accepts -Wformat=2
-configure:24251: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security  -Wformat=2  conftest.c >&5
-configure:24251: $? = 0
-configure:24260: result: yes
-configure:24276: : CFLAGS="$CFLAGS"
-configure:24279: $? = 0
-configure:24307: checking whether C compiler accepts -Wmaybe-uninitialized
-configure:24326: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2  -Wmaybe-uninitialized  conftest.c >&5
-configure:24326: $? = 0
-configure:24335: result: yes
-configure:24351: : CFLAGS="$CFLAGS"
-configure:24354: $? = 0
-configure:24382: checking whether C compiler accepts -Wmissing-field-initializers
-configure:24401: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized  -Wmissing-field-initializers  conftest.c >&5
-configure:24401: $? = 0
-configure:24410: result: yes
-configure:24426: : CFLAGS="$CFLAGS"
-configure:24429: $? = 0
-configure:24457: checking whether C compiler accepts -Wmissing-noreturn
-configure:24476: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers  -Wmissing-noreturn  conftest.c >&5
-configure:24476: $? = 0
-configure:24485: result: yes
-configure:24501: : CFLAGS="$CFLAGS"
-configure:24504: $? = 0
-configure:24532: checking whether C compiler accepts -Wmissing-prototypes
-configure:24551: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn  -Wmissing-prototypes  conftest.c >&5
-configure:24551: $? = 0
-configure:24560: result: yes
-configure:24576: : CFLAGS="$CFLAGS"
-configure:24579: $? = 0
-configure:24607: checking whether C compiler accepts -Wnested-externs
-configure:24626: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes  -Wnested-externs  conftest.c >&5
-configure:24626: $? = 0
-configure:24635: result: yes
-configure:24651: : CFLAGS="$CFLAGS"
-configure:24654: $? = 0
-configure:24682: checking whether C compiler accepts -Wnormalized=id
-configure:24701: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs  -Wnormalized=id  conftest.c >&5
-configure:24701: $? = 0
-configure:24710: result: yes
-configure:24726: : CFLAGS="$CFLAGS"
-configure:24729: $? = 0
-configure:24757: checking whether C compiler accepts -Woverride-init
-configure:24776: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id  -Woverride-init  conftest.c >&5
-configure:24776: $? = 0
-configure:24785: result: yes
-configure:24801: : CFLAGS="$CFLAGS"
-configure:24804: $? = 0
-configure:24832: checking whether C compiler accepts -Wpointer-arith
-configure:24851: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init  -Wpointer-arith  conftest.c >&5
-configure:24851: $? = 0
-configure:24860: result: yes
-configure:24876: : CFLAGS="$CFLAGS"
-configure:24879: $? = 0
-configure:24907: checking whether C compiler accepts -Wpointer-sign
-configure:24926: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith  -Wpointer-sign  conftest.c >&5
-configure:24926: $? = 0
-configure:24935: result: yes
-configure:24951: : CFLAGS="$CFLAGS"
-configure:24954: $? = 0
-configure:24982: checking whether C compiler accepts -Wredundant-decls
-configure:25001: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign  -Wredundant-decls  conftest.c >&5
-configure:25001: $? = 0
-configure:25010: result: yes
-configure:25026: : CFLAGS="$CFLAGS"
-configure:25029: $? = 0
-configure:25057: checking whether C compiler accepts -Wshadow
-configure:25076: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls  -Wshadow  conftest.c >&5
-configure:25076: $? = 0
-configure:25085: result: yes
-configure:25101: : CFLAGS="$CFLAGS"
-configure:25104: $? = 0
-configure:25132: checking whether C compiler accepts -Wshorten-64-to-32
-configure:25151: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow  -Wshorten-64-to-32  conftest.c >&5
+configure:23576: result: no
+configure:23627: checking whether C compiler accepts --param=ssp-buffer-size=1
+configure:23646: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas  --param=ssp-buffer-size=1  conftest.c >&5
+configure:23646: $? = 0
+configure:23655: result: yes
+configure:23671: : CFLAGS="$CFLAGS"
+configure:23674: $? = 0
+configure:23704: checking whether C compiler accepts -Waddress
+configure:23723: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1  -Waddress  conftest.c >&5
+configure:23723: $? = 0
+configure:23732: result: yes
+configure:23748: : CFLAGS="$CFLAGS"
+configure:23751: $? = 0
+configure:23779: checking whether C compiler accepts -Warray-bounds
+configure:23798: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress  -Warray-bounds  conftest.c >&5
+configure:23798: $? = 0
+configure:23807: result: yes
+configure:23823: : CFLAGS="$CFLAGS"
+configure:23826: $? = 0
+configure:23854: checking whether C compiler accepts -Wbad-function-cast
+configure:23873: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds  -Wbad-function-cast  conftest.c >&5
+configure:23873: $? = 0
+configure:23882: result: yes
+configure:23898: : CFLAGS="$CFLAGS"
+configure:23901: $? = 0
+configure:23929: checking whether C compiler accepts -Wchar-subscripts
+configure:23948: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast  -Wchar-subscripts  conftest.c >&5
+configure:23948: $? = 0
+configure:23957: result: yes
+configure:23973: : CFLAGS="$CFLAGS"
+configure:23976: $? = 0
+configure:24004: checking whether C compiler accepts -Wcomment
+configure:24023: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts  -Wcomment  conftest.c >&5
+configure:24023: $? = 0
+configure:24032: result: yes
+configure:24048: : CFLAGS="$CFLAGS"
+configure:24051: $? = 0
+configure:24079: checking whether C compiler accepts -Wfloat-equal
+configure:24098: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment  -Wfloat-equal  conftest.c >&5
+configure:24098: $? = 0
+configure:24107: result: yes
+configure:24123: : CFLAGS="$CFLAGS"
+configure:24126: $? = 0
+configure:24154: checking whether C compiler accepts -Wformat-security
+configure:24173: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal  -Wformat-security  conftest.c >&5
+configure:24173: $? = 0
+configure:24182: result: yes
+configure:24198: : CFLAGS="$CFLAGS"
+configure:24201: $? = 0
+configure:24229: checking whether C compiler accepts -Wformat=2
+configure:24248: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security  -Wformat=2  conftest.c >&5
+configure:24248: $? = 0
+configure:24257: result: yes
+configure:24273: : CFLAGS="$CFLAGS"
+configure:24276: $? = 0
+configure:24304: checking whether C compiler accepts -Wmaybe-uninitialized
+configure:24323: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2  -Wmaybe-uninitialized  conftest.c >&5
+configure:24323: $? = 0
+configure:24332: result: yes
+configure:24348: : CFLAGS="$CFLAGS"
+configure:24351: $? = 0
+configure:24379: checking whether C compiler accepts -Wmissing-field-initializers
+configure:24398: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized  -Wmissing-field-initializers  conftest.c >&5
+configure:24398: $? = 0
+configure:24407: result: yes
+configure:24423: : CFLAGS="$CFLAGS"
+configure:24426: $? = 0
+configure:24454: checking whether C compiler accepts -Wmissing-noreturn
+configure:24473: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers  -Wmissing-noreturn  conftest.c >&5
+configure:24473: $? = 0
+configure:24482: result: yes
+configure:24498: : CFLAGS="$CFLAGS"
+configure:24501: $? = 0
+configure:24529: checking whether C compiler accepts -Wmissing-prototypes
+configure:24548: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn  -Wmissing-prototypes  conftest.c >&5
+configure:24548: $? = 0
+configure:24557: result: yes
+configure:24573: : CFLAGS="$CFLAGS"
+configure:24576: $? = 0
+configure:24604: checking whether C compiler accepts -Wnested-externs
+configure:24623: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes  -Wnested-externs  conftest.c >&5
+configure:24623: $? = 0
+configure:24632: result: yes
+configure:24648: : CFLAGS="$CFLAGS"
+configure:24651: $? = 0
+configure:24679: checking whether C compiler accepts -Wnormalized=id
+configure:24698: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs  -Wnormalized=id  conftest.c >&5
+configure:24698: $? = 0
+configure:24707: result: yes
+configure:24723: : CFLAGS="$CFLAGS"
+configure:24726: $? = 0
+configure:24754: checking whether C compiler accepts -Woverride-init
+configure:24773: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id  -Woverride-init  conftest.c >&5
+configure:24773: $? = 0
+configure:24782: result: yes
+configure:24798: : CFLAGS="$CFLAGS"
+configure:24801: $? = 0
+configure:24829: checking whether C compiler accepts -Wpointer-arith
+configure:24848: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init  -Wpointer-arith  conftest.c >&5
+configure:24848: $? = 0
+configure:24857: result: yes
+configure:24873: : CFLAGS="$CFLAGS"
+configure:24876: $? = 0
+configure:24904: checking whether C compiler accepts -Wpointer-sign
+configure:24923: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith  -Wpointer-sign  conftest.c >&5
+configure:24923: $? = 0
+configure:24932: result: yes
+configure:24948: : CFLAGS="$CFLAGS"
+configure:24951: $? = 0
+configure:24979: checking whether C compiler accepts -Wredundant-decls
+configure:24998: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign  -Wredundant-decls  conftest.c >&5
+configure:24998: $? = 0
+configure:25007: result: yes
+configure:25023: : CFLAGS="$CFLAGS"
+configure:25026: $? = 0
+configure:25054: checking whether C compiler accepts -Wshadow
+configure:25073: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls  -Wshadow  conftest.c >&5
+configure:25073: $? = 0
+configure:25082: result: yes
+configure:25098: : CFLAGS="$CFLAGS"
+configure:25101: $? = 0
+configure:25129: checking whether C compiler accepts -Wshorten-64-to-32
+configure:25148: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow  -Wshorten-64-to-32  conftest.c >&5
 gcc: error: unrecognized command line option '-Wshorten-64-to-32'
-configure:25151: $? = 1
+configure:25148: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "wolfssl"
@@ -1230,26 +1230,26 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:25160: result: no
-configure:25207: checking whether C compiler accepts -Wsign-compare
-configure:25226: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow  -Wsign-compare  conftest.c >&5
-configure:25226: $? = 0
-configure:25235: result: yes
-configure:25251: : CFLAGS="$CFLAGS"
-configure:25254: $? = 0
-configure:25282: checking whether C compiler accepts -Wstrict-overflow=1
-configure:25301: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare  -Wstrict-overflow=1  conftest.c >&5
-configure:25301: $? = 0
-configure:25310: result: yes
-configure:25326: : CFLAGS="$CFLAGS"
-configure:25329: $? = 0
-configure:25357: checking whether C compiler accepts -Wstrict-prototypes
-configure:25376: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1  -Wstrict-prototypes  conftest.c >&5
+configure:25157: result: no
+configure:25204: checking whether C compiler accepts -Wsign-compare
+configure:25223: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow  -Wsign-compare  conftest.c >&5
+configure:25223: $? = 0
+configure:25232: result: yes
+configure:25248: : CFLAGS="$CFLAGS"
+configure:25251: $? = 0
+configure:25279: checking whether C compiler accepts -Wstrict-overflow=1
+configure:25298: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare  -Wstrict-overflow=1  conftest.c >&5
+configure:25298: $? = 0
+configure:25307: result: yes
+configure:25323: : CFLAGS="$CFLAGS"
+configure:25326: $? = 0
+configure:25354: checking whether C compiler accepts -Wstrict-prototypes
+configure:25373: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1  -Wstrict-prototypes  conftest.c >&5
 conftest.c:52:1: error: function declaration isn't a prototype [-Werror=strict-prototypes]
  main ()
  ^~~~
 cc1: all warnings being treated as errors
-configure:25376: $? = 1
+configure:25373: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "wolfssl"
@@ -1308,58 +1308,58 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:25385: result: no
-configure:25432: checking whether C compiler accepts -Wswitch-enum
-configure:25451: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1  -Wswitch-enum  conftest.c >&5
-configure:25451: $? = 0
-configure:25460: result: yes
-configure:25476: : CFLAGS="$CFLAGS"
-configure:25479: $? = 0
-configure:25507: checking whether C compiler accepts -Wundef
-configure:25526: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum  -Wundef  conftest.c >&5
-configure:25526: $? = 0
-configure:25535: result: yes
-configure:25551: : CFLAGS="$CFLAGS"
-configure:25554: $? = 0
-configure:25582: checking whether C compiler accepts -Wunused
-configure:25601: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef  -Wunused  conftest.c >&5
-configure:25601: $? = 0
-configure:25610: result: yes
-configure:25626: : CFLAGS="$CFLAGS"
-configure:25629: $? = 0
-configure:25657: checking whether C compiler accepts -Wunused-result
-configure:25676: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused  -Wunused-result  conftest.c >&5
-configure:25676: $? = 0
-configure:25685: result: yes
-configure:25701: : CFLAGS="$CFLAGS"
-configure:25704: $? = 0
-configure:25732: checking whether C compiler accepts -Wunused-variable
-configure:25751: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result  -Wunused-variable  conftest.c >&5
-configure:25751: $? = 0
-configure:25760: result: yes
-configure:25776: : CFLAGS="$CFLAGS"
-configure:25779: $? = 0
-configure:25807: checking whether C compiler accepts -Wwrite-strings
-configure:25826: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result -Wunused-variable  -Wwrite-strings  conftest.c >&5
-configure:25826: $? = 0
-configure:25835: result: yes
-configure:25851: : CFLAGS="$CFLAGS"
-configure:25854: $? = 0
-configure:25882: checking whether C compiler accepts -fwrapv
-configure:25901: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result -Wunused-variable -Wwrite-strings  -fwrapv  conftest.c >&5
-configure:25901: $? = 0
-configure:25910: result: yes
-configure:25926: : CFLAGS="$CFLAGS"
-configure:25929: $? = 0
-configure:26938: result: creating wolfssl-config - generic 4.5.0 for -lwolfssl
-configure:27063: checking the number of available CPUs
-configure:27146: result: 8
-configure:27163: adding automake macro support
-configure:27167: creating aminclude.am
-configure:27198: added jobserver support to make for 9 jobs
-configure:27319: checking that generated files are newer than configure
-configure:27325: result: done
-configure:27825: creating ./config.status
+configure:25382: result: no
+configure:25429: checking whether C compiler accepts -Wswitch-enum
+configure:25448: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1  -Wswitch-enum  conftest.c >&5
+configure:25448: $? = 0
+configure:25457: result: yes
+configure:25473: : CFLAGS="$CFLAGS"
+configure:25476: $? = 0
+configure:25504: checking whether C compiler accepts -Wundef
+configure:25523: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum  -Wundef  conftest.c >&5
+configure:25523: $? = 0
+configure:25532: result: yes
+configure:25548: : CFLAGS="$CFLAGS"
+configure:25551: $? = 0
+configure:25579: checking whether C compiler accepts -Wunused
+configure:25598: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef  -Wunused  conftest.c >&5
+configure:25598: $? = 0
+configure:25607: result: yes
+configure:25623: : CFLAGS="$CFLAGS"
+configure:25626: $? = 0
+configure:25654: checking whether C compiler accepts -Wunused-result
+configure:25673: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused  -Wunused-result  conftest.c >&5
+configure:25673: $? = 0
+configure:25682: result: yes
+configure:25698: : CFLAGS="$CFLAGS"
+configure:25701: $? = 0
+configure:25729: checking whether C compiler accepts -Wunused-variable
+configure:25748: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result  -Wunused-variable  conftest.c >&5
+configure:25748: $? = 0
+configure:25757: result: yes
+configure:25773: : CFLAGS="$CFLAGS"
+configure:25776: $? = 0
+configure:25804: checking whether C compiler accepts -Wwrite-strings
+configure:25823: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result -Wunused-variable  -Wwrite-strings  conftest.c >&5
+configure:25823: $? = 0
+configure:25832: result: yes
+configure:25848: : CFLAGS="$CFLAGS"
+configure:25851: $? = 0
+configure:25879: checking whether C compiler accepts -fwrapv
+configure:25898: gcc -c    -Werror -Wno-pragmas -Wall -Wno-strict-aliasing -Wextra -Wunknown-pragmas --param=ssp-buffer-size=1 -Waddress -Warray-bounds -Wbad-function-cast -Wchar-subscripts -Wcomment -Wfloat-equal -Wformat-security -Wformat=2 -Wmaybe-uninitialized -Wmissing-field-initializers -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=id -Woverride-init -Wpointer-arith -Wpointer-sign -Wredundant-decls -Wshadow -Wsign-compare -Wstrict-overflow=1 -Wswitch-enum -Wundef -Wunused -Wunused-result -Wunused-variable -Wwrite-strings  -fwrapv  conftest.c >&5
+configure:25898: $? = 0
+configure:25907: result: yes
+configure:25923: : CFLAGS="$CFLAGS"
+configure:25926: $? = 0
+configure:26935: result: creating wolfssl-config - generic 4.5.0 for -lwolfssl
+configure:27060: checking the number of available CPUs
+configure:27143: result: 8
+configure:27160: adding automake macro support
+configure:27164: creating aminclude.am
+configure:27195: added jobserver support to make for 9 jobs
+configure:27316: checking that generated files are newer than configure
+configure:27322: result: done
+configure:27822: creating ./config.status
 
 ## ---------------------- ##
 ## Running config.status. ##
@@ -1574,7 +1574,7 @@ AMINCLUDE='aminclude.am'
 AMTAR='$${TAR-tar}'
 AM_BACKSLASH='\'
 AM_CCASFLAGS=''
-AM_CFLAGS='-DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_FFDHE_2048 -DHAVE_EXT_CACHE -DWOLFSSL_VERIFY_CB_ALL_CERTS -DWOLFSSL_EXTRA_ALERTS -DOPENSSL_EXTRA -DWOLFSSL_ALWAYS_VERIFY_CB -D_POSIX_THREADS  -fvisibility=hidden -DHAVE_THREAD_LS -DNDEBUG -pthread -DTFM_TIMING_RESISTANT -DECC_TIMING_RESISTANT -DWC_RSA_BLINDING -DHAVE_AESGCM -DWOLFSSL_SHA512 -DWOLFSSL_SHA384 -DWOLFSSL_CERT_GEN -DWOLFSSL_CERT_REQ -DWOLFSSL_CERT_EXT -DHAVE_HKDF -DNO_DSA -DHAVE_ECC -DTFM_ECC256 -DECC_SHAMIR -DWC_RSA_PSS -DWOLFSSL_BASE64_ENCODE -DNO_RC4 -DNO_HC128 -DNO_RABBIT -DWOLFSSL_SHA224 -DWOLFSSL_SHA3 -DWOLFSSL_SHAKE256 -DHAVE_POLY1305 -DHAVE_ONE_TIME_AUTH -DHAVE_CHACHA -DHAVE_HASHDRBG -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_EXTENDED_MASTER -DNO_RC4 -DHAVE_ENCRYPT_THEN_MAC -DNO_PSK -DNO_MD4 -DWOLFSSL_ENCRYPTED_KEYS -DUSE_FAST_MATH -DWOLFSSL_X86_64_BUILD -DWC_NO_ASYNC_THREADING -DHAVE_DH_DEFAULT_PARAMS -DNO_DES3 -Wall -Wno-unused -O2 -DHAVE___UINT128_T=1'
+AM_CFLAGS='-DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES -DHAVE_FFDHE_2048 -DHAVE_EXT_CACHE -DWOLFSSL_VERIFY_CB_ALL_CERTS -DWOLFSSL_EXTRA_ALERTS -DOPENSSL_EXTRA -DWOLFSSL_ALWAYS_VERIFY_CB -D_POSIX_THREADS  -fvisibility=hidden -DHAVE_THREAD_LS -DNDEBUG -pthread -DTFM_TIMING_RESISTANT -DECC_TIMING_RESISTANT -DWC_RSA_BLINDING -DHAVE_AESGCM -DWOLFSSL_SHA512 -DWOLFSSL_SHA384 -DWOLFSSL_CERT_GEN -DWOLFSSL_CERT_REQ -DWOLFSSL_CERT_EXT -DHAVE_HKDF -DNO_DSA -DHAVE_ECC -DTFM_ECC256 -DECC_SHAMIR -DWC_RSA_PSS -DWOLFSSL_BASE64_ENCODE -DNO_RC4 -DNO_HC128 -DNO_RABBIT -DWOLFSSL_SHA224 -DWOLFSSL_SHA3 -DWOLFSSL_SHAKE256 -DHAVE_POLY1305 -DHAVE_ONE_TIME_AUTH -DHAVE_CHACHA -DHAVE_HASHDRBG -DHAVE_EXTENDED_MASTER -DNO_RC4 -DHAVE_ENCRYPT_THEN_MAC -DNO_PSK -DNO_MD4 -DWOLFSSL_ENCRYPTED_KEYS -DUSE_FAST_MATH -DWOLFSSL_X86_64_BUILD -DWC_NO_ASYNC_THREADING -DHAVE_DH_DEFAULT_PARAMS -DNO_DES3 -Wall -Wno-unused -O2 -DHAVE___UINT128_T=1'
 AM_CPPFLAGS=''
 AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
 AM_DEFAULT_VERBOSITY='0'
@@ -1650,8 +1650,8 @@ BUILD_DISTRO_FALSE=''
 BUILD_DISTRO_TRUE='#'
 BUILD_DSA_FALSE=''
 BUILD_DSA_TRUE='#'
-BUILD_ECC_FALSE='#'
-BUILD_ECC_TRUE=''
+BUILD_ECC_FALSE=''
+BUILD_ECC_TRUE='#'
 BUILD_ED25519_FALSE=''
 BUILD_ED25519_SMALL_FALSE=''
 BUILD_ED25519_SMALL_TRUE='#'

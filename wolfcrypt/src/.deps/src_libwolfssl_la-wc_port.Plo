@@ -89,7 +89,10 @@ wolfcrypt/src/src_libwolfssl_la-wc_port.lo: wolfcrypt/src/wc_port.c \
  wolfssl/wolfcrypt/aes.h wolfssl/wolfcrypt/des3.h \
  wolfssl/wolfcrypt/arc4.h wolfssl/wolfcrypt/hmac.h \
  wolfssl/wolfcrypt/pwdbased.h wolfssl/openssl/objects.h wolfssl/ssl.h \
- wolfssl/version.h wolfssl/wolfcrypt/asn_public.h wolfssl/callbacks.h \
+ wolfssl/version.h wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h wolfssl/callbacks.h \
  wolfssl/openssl/hmac.h wolfssl/openssl/opensslv.h wolfssl/wolfio.h \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
@@ -108,10 +111,9 @@ wolfcrypt/src/src_libwolfssl_la-wc_port.lo: wolfcrypt/src/wc_port.c \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
- /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -382,6 +384,14 @@ wolfssl/version.h:
 
 wolfssl/wolfcrypt/asn_public.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 wolfssl/callbacks.h:
 
 wolfssl/openssl/hmac.h:
@@ -435,8 +445,6 @@ wolfssl/wolfio.h:
 /usr/include/arpa/inet.h:
 
 /usr/include/netinet/in.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/in.h:
 

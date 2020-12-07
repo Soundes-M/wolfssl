@@ -79,8 +79,10 @@ src/src_libwolfssl_la-tls13.lo: src/tls13.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/ctype.h wolfssl/ssl.h wolfssl/version.h \
  wolfssl/wolfcrypt/logging.h wolfssl/wolfcrypt/asn_public.h \
- wolfssl/callbacks.h wolfssl/openssl/bn.h wolfssl/wolfcrypt/integer.h \
- wolfssl/wolfcrypt/tfm.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h wolfssl/callbacks.h \
+ wolfssl/openssl/bn.h wolfssl/wolfcrypt/integer.h wolfssl/wolfcrypt/tfm.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
@@ -110,10 +112,9 @@ src/src_libwolfssl_la-tls13.lo: src/tls13.c /usr/include/stdc-predef.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
- /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
@@ -336,6 +337,14 @@ wolfssl/wolfcrypt/logging.h:
 
 wolfssl/wolfcrypt/asn_public.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 wolfssl/callbacks.h:
 
 wolfssl/openssl/bn.h:
@@ -441,8 +450,6 @@ wolfssl/wolfio.h:
 /usr/include/arpa/inet.h:
 
 /usr/include/netinet/in.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/in.h:
 

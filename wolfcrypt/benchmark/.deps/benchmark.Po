@@ -90,10 +90,14 @@ wolfcrypt/benchmark/benchmark.o: wolfcrypt/benchmark/benchmark.c \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/hash.h \
  wolfssl/wolfcrypt/asn.h wolfssl/wolfcrypt/dh.h \
- wolfssl/wolfcrypt/asn_public.h wolfssl/wolfcrypt/ripemd.h \
- wolfssl/wolfcrypt/cmac.h wolfssl/wolfcrypt/hmac.h \
- wolfssl/wolfcrypt/pwdbased.h wolfssl/wolfcrypt/ecc.h \
- wolfssl/wolfcrypt/error-crypt.h wolfssl/certs_test.h
+ wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ wolfssl/wolfcrypt/ripemd.h wolfssl/wolfcrypt/cmac.h \
+ wolfssl/wolfcrypt/hmac.h wolfssl/wolfcrypt/pwdbased.h \
+ wolfssl/wolfcrypt/ecc.h wolfssl/wolfcrypt/error-crypt.h \
+ wolfssl/certs_test.h
 
 /usr/include/stdc-predef.h:
 
@@ -336,6 +340,14 @@ wolfssl/wolfcrypt/asn.h:
 wolfssl/wolfcrypt/dh.h:
 
 wolfssl/wolfcrypt/asn_public.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 wolfssl/wolfcrypt/ripemd.h:
 

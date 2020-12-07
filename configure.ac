@@ -2089,11 +2089,8 @@ fi
      AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
  else
      # turn off DILITHIUM if leanpsk or leantls on
-     if test "$ENABLED_LEANPSK" = "yes" || test "$ENABLED_LEANTLS" = "yes"
-     then
-         AM_CFLAGS="$AM_CFLAGS -DNO_DILITHIUM"
-         ENABLED_DILITHIUM=no
-     fi
+     ENABLED_ECC="no" 
+     
  fi
 
 

@@ -74,7 +74,10 @@ wolfcrypt/src/src_libwolfssl_la-ecc.lo: wolfcrypt/src/ecc.c \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/ctype.h wolfssl/wolfcrypt/ecc.h wolfssl/wolfcrypt/integer.h \
+ /usr/include/ctype.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h \
+ /usr/include/stdint.h /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ wolfssl/wolfcrypt/ecc.h wolfssl/wolfcrypt/integer.h \
  wolfssl/wolfcrypt/tfm.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
@@ -268,6 +271,14 @@ wolfssl/wolfcrypt/memory.h:
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
 
 /usr/include/ctype.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 wolfssl/wolfcrypt/ecc.h:
 

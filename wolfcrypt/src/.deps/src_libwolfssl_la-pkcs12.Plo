@@ -81,11 +81,14 @@ wolfcrypt/src/src_libwolfssl_la-pkcs12.lo: wolfcrypt/src/pkcs12.c \
  wolfssl/wolfcrypt/random.h wolfssl/wolfcrypt/sha256.h \
  wolfssl/wolfcrypt/wolfmath.h wolfssl/wolfcrypt/dh.h \
  wolfssl/wolfcrypt/sha.h wolfssl/wolfcrypt/md5.h \
- wolfssl/wolfcrypt/asn_public.h wolfssl/wolfcrypt/error-crypt.h \
- wolfssl/wolfcrypt/hmac.h wolfssl/wolfcrypt/hash.h \
- wolfssl/wolfcrypt/sha512.h wolfssl/wolfcrypt/sha3.h \
- wolfssl/wolfcrypt/logging.h wolfcrypt/src/misc.c \
- wolfssl/wolfcrypt/misc.h wolfssl/wolfcrypt/pkcs12.h \
+ wolfssl/wolfcrypt/asn_public.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ wolfssl/wolfcrypt/error-crypt.h wolfssl/wolfcrypt/hmac.h \
+ wolfssl/wolfcrypt/hash.h wolfssl/wolfcrypt/sha512.h \
+ wolfssl/wolfcrypt/sha3.h wolfssl/wolfcrypt/logging.h \
+ wolfcrypt/src/misc.c wolfssl/wolfcrypt/misc.h wolfssl/wolfcrypt/pkcs12.h \
  wolfssl/wolfcrypt/pwdbased.h
 
 /usr/include/stdc-predef.h:
@@ -297,6 +300,14 @@ wolfssl/wolfcrypt/sha.h:
 wolfssl/wolfcrypt/md5.h:
 
 wolfssl/wolfcrypt/asn_public.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 wolfssl/wolfcrypt/error-crypt.h:
 
